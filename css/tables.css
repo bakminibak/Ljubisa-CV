@@ -1,0 +1,265 @@
+.tg  a {
+    text-decoration: underline;
+}
+.tg  a:hover {
+    text-decoration: none;
+    font-weight: bolder;
+}
+
+.tg th h1 {
+    font-weight: bold;
+    text-align: left;
+    color: #185875;
+}
+
+.tg td {
+    font-weight: normal;
+    /*
+    -webkit-box-shadow: 0 2px 2px -2px #0E1119;
+        -moz-box-shadow: 0 2px 2px -2px #0E1119;
+            box-shadow: 0 2px 2px -2px #0E1119;
+            */
+            border-bottom: 2px solid;
+            overflow: hidden;
+}
+.tg {
+    text-align: left;
+    overflow: hidden;
+    width: 95%;
+    margin: 0 auto;
+    display: table;
+    padding: 0 0 3em 0;
+}
+
+.tg td, th {
+    padding-bottom: 1%;
+    padding-top: 1%;
+    padding-left:2%;  
+    padding-right:2%;  
+}
+.container th {
+    position: relative;
+}
+.container th h2 {
+    text-align: left;
+    padding-left: 2%;    
+    padding-bottom: 2%;
+}
+/* Background-color of the odd rows */
+.tg tr:nth-child(odd) {
+    /*background-color: rgb(255, 255, 51);*/
+}
+
+/* Background-color of the even rows */
+.tg tr:nth-child(even) {
+    /*background-color: rgb(204, 204, 0);*/
+    background-color: transparent;
+}
+
+.tg th {
+    /*background-color: #b3b300;*/
+    padding: 0;
+    margin: 0;
+    padding-left: 2%;
+    border-bottom:2px dashed black;
+    vertical-align: bottom;
+    padding-bottom:15px;
+}
+.tg th:first-child {    
+    padding-left: 0px;
+    padding-bottom: 0px;
+}
+.tg td:first-child {font-weight: bold }
+.tg tr:first-child {    
+    -webkit-box-shadow: 0 6px 6px -6px #0E1119;
+    -moz-box-shadow: 0 6px 6px -6px #0E1119;
+        box-shadow: 0 6px 6px -6px #0E1119; 
+    }
+.tg tr td:first-child { 
+    text-align: right;
+}
+.tg tr:hover {
+    background-color: #82E531;
+    -webkit-box-shadow: 0 6px 6px -6px #0E1119;
+        -moz-box-shadow: 0 6px 6px -6px #0E1119;
+            box-shadow: 0 6px 6px -6px #0E1119;
+}
+.tg tr:hover:first-child { 
+    
+    background-color:transparent;
+}
+.tg tr.website {
+    display: none;
+}
+.tg td:hover {
+    color: #000000;
+    font-weight: bold;
+
+    background-color: #9BEA59;
+    box-shadow: rgb(1, 82, 5) -1px 1px, rgb(1, 82, 5) -2px 2px, rgb(1, 82, 5) -3px 3px, rgb(1, 82, 5) -4px 4px,     rgb(1, 82, 5) -5px 5px, rgb(1, 82, 5) -6px 6px;
+    transform: translate3d(6px, -6px, 0);
+
+    transition-delay: 0s;
+    transition-duration: 0.4s;
+    transition-property: all;
+    transition-timing-function: line;
+}
+.tg span.mejl::before {
+    content: "ljubisas.cv@gmail.com";
+}
+.tg span.adress::before {
+    content: "♯♬♪-♫♪♩♫-♬♪-♫♪, ";
+}
+.tg span.status::before {
+    content: "?????????!!!!";
+}
+#best-scores table{
+    width: 100%;
+    margin-bottom: 25px;
+}
+#best-scores table td {
+    position: relative;    
+}
+#best-scores table td, #best-scores table th {
+    padding:1% 3%;
+}
+#best-scores table th {    
+    border-bottom: 1px black dashed; 
+}
+#best-scores table tr.t-header:hover {
+    background-color:initial;
+    color:initial;;
+}
+#best-scores table tr:last-child, #best-scores table tr:last-child td {
+    border-bottom: 1px dashed #000000;
+}
+
+@media screen {
+    #best-scores  div.score {
+        width: 1em;
+        margin-left: auto;
+        margin-right: auto;
+        height: 1em;
+        overflow: hidden;
+        word-break: break-all;
+        -webkit-transition: width 1s; /* Safari */
+        transition: width 0.5s;
+    }
+    
+    #best-scores:hover div.score {
+        width: 100%;   
+        margin-top: 0px; 
+    }
+}
+
+
+.skills-right{
+    text-align: left;
+}
+#best-scores table tr th, #best-scores table tr th {
+    text-align: left;
+}
+#best-scores table tr th:nth-child(2) { /* I don't think they are 0 based */
+    text-align: center;
+ }
+ 
+ #best-scores table tr th:nth-child(3) { /* I don't think they are 0 based */
+    text-align: right;
+ }
+ #best-scores .skills-right table tr th:nth-child(3) { /* I don't think they are 0 based */
+    text-align: left;
+ }
+ #best-scores table tr td:nth-child(2) { /* I don't think they are 0 based */
+    text-align: right;
+ }
+ #best-scores table tr td:nth-child(3) { /* I don't think they are 0 based */
+    text-align: right;
+ }
+ #best-scores .skills-right table tr td:nth-child(3) { /* I don't think they are 0 based */
+    text-align: left;
+ }
+.skills-left{
+    text-align: right;
+}
+@media screen and (max-width: 580px){ 
+    #best-scores .skills-left h3 {
+        text-align: left;
+    }
+    #best-scores table tr th:nth-child(3) { /* I don't think they are 0 based */
+        text-align: left;
+     }
+     #best-scores .skills-right table tr th:nth-child(3) { /* I don't think they are 0 based */
+        text-align: left;
+     }
+     #best-scores table tr td:nth-child(2) { /* I don't think they are 0 based */
+        text-align: left;
+     }
+     #best-scores table tr td:nth-child(3) { /* I don't think they are 0 based */
+        text-align: left;
+     }
+     #best-scores .skills-right table tr td:nth-child(3) { /* I don't think they are 0 based */
+        text-align: left;
+     }
+    .skills-left{
+        text-align: left;
+    }
+}
+    
+@media print {   
+    .tg {
+        width: 100%;
+        padding: 0 0 0 0;
+    }
+    .tg td, .container th { 
+        padding:3px;
+    }
+    .skills-left tr th:nth-child(3) { /* I don't think they are 0 based */
+        text-align: left;
+     }
+    .skills-left tr td:nth-child(3) { /* I don't think they are 0 based */
+        text-align: left;
+     }
+     .tg span.mejl::before {
+        content: "ljubisa.s@gmail.com";
+    }
+     .tg span.adress::before {
+        content: "Nikola Vapcarov 11/1-4, ";
+    }
+    .tg span.bDay::before {
+        content: "29/06/1979 ";
+    }
+    .tg .roman-bDay{
+        display: none;
+    }
+    .tg .status span{
+        display: none;
+    }
+    .tg .status span::before {
+        content: "Signle";
+    }
+    .tg tr.website {
+        display: table-row;
+    }
+
+    #best-scores .skills-left h3 {
+        text-align: left;
+    }
+    #best-scores table tr th:nth-child(3) { /* I don't think they are 0 based */
+        text-align: left;
+     }
+     #best-scores .skills-right table tr th:nth-child(3) { /* I don't think they are 0 based */
+        text-align: left;
+     }
+     #best-scores table tr td:nth-child(2) { /* I don't think they are 0 based */
+        text-align: left;
+     }
+     #best-scores table tr td:nth-child(3) { /* I don't think they are 0 based */
+        text-align: left;
+     }
+     #best-scores .skills-right table tr td:nth-child(3) { /* I don't think they are 0 based */
+        text-align: left;
+     }
+    .skills-left{
+        text-align: left;
+    }
+}

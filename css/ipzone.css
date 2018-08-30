@@ -1,0 +1,199 @@
+@import 'dos.css';
+
+html, body {
+    padding: 0;
+    margin: 0;      
+    border: 0; 
+    height: 100%;
+    width: 100%;
+    min-width: 300px;  
+    font-size: 10px !important;
+}
+
+header{
+    width: inherit !important;
+    height: 50px;
+    background-color:#363636; 
+    z-index: 300;
+}
+body.dos nav {
+    position:fixed;
+}
+footer {
+    text-align: left;
+}
+footer input {
+    width: 50%;
+    margin: 10px;
+}
+section {
+    padding:0;
+    margin:0;
+    margin-left:auto;
+    margin-right:auto;    
+    width: 80%; /* 920px */
+    height: auto;
+    min-height:98%;
+    min-width: 300px;
+    border-bottom: dashed 1px;   
+}
+
+section .container {
+    padding: 25px;
+    margin-bottom: 25px;
+    height: auto;
+    width: auto;    
+    min-width: 200px;
+}
+#homePage {
+    position: relative;
+    text-align: left;
+}
+#homePage .container, #thank-you .container {
+    padding: 0;
+    margin: 0;
+    display: table;
+    width: 100%;
+    height: 80%;
+}
+#homePage h4 img {
+    width: auto;
+    height: 15px;
+    margin-right: 10px;
+}
+#homePage .homePage-CoRights-container {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    bottom: 30px;
+    width: 90%;
+    text-transform: capitalize;
+}
+#homePage .homePage-CoRights-container div {
+    width: 50%;
+    float: left;
+}
+#homePage .homePage-CoRights-container div:last-child {
+    text-align: right;
+}
+.wrap {
+    text-align: left;
+	box-sizing: border-box;
+	display: table-cell;
+    vertical-align: middle;
+    width: 100%;
+}
+.wrap p {
+    padding:0px 0px 25px 0px;
+}
+#thank-you .container{
+    padding: 0;
+    margin: 0;
+    display: table;
+    width: 100%;
+    height: 80%;
+}
+
+ul#info-toolbar {
+    padding: 0;
+    margin: 0;
+    display: inline-table;    
+    width: auto !important;
+    padding-left: 0px !important;
+    height: 35px;    
+    line-height: 35px;  
+    background-color: #363636;  
+}
+#info-toolbar li, #info-toolbar li ul li {
+    cursor: pointer;
+}
+#info-toolbar li {
+    float: left;
+    display: table-cell;
+    margin-right: 15px;
+    margin-left: 15px;
+}
+#info-toolbar li a{ 
+    display: block;
+}
+#info-toolbar li:hover ul, #info-toolbar li:active ul { 
+    display: block;
+}
+label {
+    font-size: 10px !important;
+}
+textarea, input{
+    font-family: 'Press Start 2P', cursive;
+    background-color: transparent;
+    border: none;
+    text-indent: 0px;
+    overflow: hidden;
+    color: white;
+    animation: cursor 1s infinite;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    line-height: 20px;
+    width: 50%;
+}
+input:focus {
+    animation: cursorOut 0.1s forwards;
+   opacity: 1;
+}
+@keyframes cursor {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+@keyframes cursor {
+	0% {
+		opacity: 0;
+	}
+	40% {
+		opacity: 0;
+	}
+	50% {
+		opacity: 1;
+	}
+	90% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+.terminal {
+    margin-top: 50px;
+    border: double #cccccc 1px;
+    padding: 15px;
+}
+.terminal .output {
+    padding: 5px;
+    margin-top: -25px;
+    background-color: #000084;
+    float: left;
+    
+}
+body.dos ul, .terminal ul {
+    border: double #cccccc;
+    margin-top: 25px;
+}
+.output-msg {
+    display: none;
+    padding-left:5px;
+}
+#menuToggle {
+    display: none;
+}
+pre {
+    font-size: 18px !important;
+    font-weight: bolder;
+}
+form {
+    border: 3px double #cccccc;
+    border-style: double !important;
+    padding: 5px;
+    
+}

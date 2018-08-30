@@ -1,0 +1,348 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+@import url('https://fonts.googleapis.com/css?family=Poiret+One');
+@import url('https://fonts.googleapis.com/css?family=Nothing+You+Could+Do');
+
+
+.score {
+    display: block;
+}
+.graph {
+    display: none;
+}
+@media screen {
+    body.modern {    
+        background-color: #FFFF; 
+        font-family: 'Raleway', sans-serif;
+        font-family: 'Poiret One', cursive;
+        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,878787+100&0+0,0.65+100 */
+        background: -moz-radial-gradient(center, ellipse cover, rgba(0,0,0,0) 0%, rgba(135,135,135,0.65) 100%); /* FF3.6-15 */
+        background: -webkit-radial-gradient(center, ellipse cover, rgba(0,0,0,0) 0%,rgba(135,135,135,0.65) 100%); /* Chrome10-25,Safari5.1-6 */
+        background: radial-gradient(ellipse at center, rgba(0,0,0,0) 0%,rgba(135,135,135,0.65) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6878787',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+    }
+    body.modern section  {  
+    }
+    body.modern h1 {
+        border-bottom: 3vmax;
+    }
+    body.modern h1 {
+        text-shadow: 2px 2px 5px rgba(150, 150, 150, 1);
+        text-decoration: underline;
+        text-decoration-color: red;
+        text-decoration-style: double;
+        padding:0px 0px;
+    }
+    body.modern #experience .experience-step .exp-date {
+        background-color: red;
+        /**/
+    }
+    body.modern #best-scores table tr:hover, body.modern .oval-thought-border {
+        -webkit-box-shadow: 2px 3px 10px 0px rgba(0,0,0,0.3);
+        -moz-box-shadow: 2px 3px 10px 0px rgba(0,0,0,0.3);
+        box-shadow: 2px 3px 10px 0px rgba(0,0,0,0.3);
+    }
+
+    body.modern .img-wrapper img{
+        -webkit-border-top-left-radius: 20px;
+        -webkit-border-bottom-right-radius: 20px;
+        -moz-border-radius-topleft: 20px;
+        -moz-border-radius-bottomright: 20px;
+        border-top-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+    }
+    body.modern  .qrBubiMail svg {  
+        fill: black;    
+    }
+    body.modern span.titleDesc {
+        border-bottom: 3px double;
+    }
+    body.modern  #info-toolbar .color-style {
+        display: none;
+    }
+}
+body.greenBlue #best-scores table tr:hover {
+    background-color: #00735C;
+    color:#1DA78C;
+}
+/* --------------------- */
+@media screen {
+    /* --------------------- */
+    body.street ~{
+        
+        box-shadow:none;
+    }
+    body.street {    
+        background-color: #FFFF; 
+        font-family: 'Nothing You Could Do', cursive;
+            /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,878787+100&0+0,0.65+100 */
+        background: -moz-radial-gradient(center, ellipse cover, rgba(0,0,0,0) 0%, rgba(135,135,135,0.65) 100%); /* FF3.6-15 */
+        background: -webkit-radial-gradient(center, ellipse cover, rgba(0,0,0,0) 0%,rgba(135,135,135,0.65) 100%); /* Chrome10-25,Safari5.1-6 */
+        background: radial-gradient(ellipse at center, rgba(0,0,0,0) 0%,rgba(135,135,135,0.65) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6878787',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+        background-image: url(../images/white_painted_textured_wall_tileable.jpg);
+        background-size: 150px auto;
+    }
+    body.street section  {  
+    }
+    body.street h1 {
+        border-bottom: 3vmax;
+        background-image: url(../images/small_brush2.png);
+        padding-bottom: 3vh;
+        background-repeat: no-repeat;
+        background-position: center bottom;
+        background-size: 100% 15%;
+        z-index: 100;
+    }
+    body.street h1,body.street h2, body.street h3, body.street h4 {
+        text-shadow: 2px 2px 5px rgba(150, 150, 150, 1);
+        padding:0px 50px;
+    }
+    body.street h1 {
+        -moz-transform: rotate(-5deg) skew(-5deg, 0);
+        -ms-transform: rotate(-5deg) skew(-5deg, 0);
+        -o-transform: rotate(-5deg) skew(-5deg, 0);
+            transform: rotate(-5deg) skew(-5deg, 0);
+    }
+    body.street  .oval-thought-border {
+        -webkit-box-shadow: 2px 3px 10px 0px rgba(0,0,0,0.3);
+        -moz-box-shadow: 2px 3px 10px 0px rgba(0,0,0,0.3);
+        box-shadow: 2px 3px 10px 0px rgba(0,0,0,0.3);
+    }
+   
+    body.street #portfolio .portfolio-list ul, body.street #portfolio .portfolio-list ul li {
+        margin: 0px;
+        padding: 0px;
+        list-style: none;
+    }
+    body.street #portfolio .portfolio-list ul {
+        background-color:transparent;
+    }
+    body.street #portfolio .container .wrapper {
+        position: relative;
+        width: auto;
+        height: auto;
+        overflow: hidden;
+        display: block;
+        padding: 10px;
+        background-color: transparent;
+        clear: both;
+    }
+    body.street #portfolio .portfolio-list ul li {
+        float: left;
+        width: 23%;
+        height: 15%;
+        padding: 0.5%;
+        background-color: transparent;
+        overflow: hidden;
+        display: block;          
+        background-color: #000000;
+        background-image: url(../images/small_ptrn.png);
+    }
+    body.street #portfolio .portfolio-list ul li:active{ 
+        position: absolute;
+        left: 0px;
+        top:0px;
+        bottom: 0px;
+        right: 0px;
+        width: 100%;
+        height: 100%;    
+        text-align: center;
+        background-color: #000000;
+        background-image: url(../images/small_ptrn.png);
+    }
+    body.street #portfolio .portfolio-list ul li:active p { 
+        color: #000000;
+        font-weight: bolder;
+        background-color: #797979;
+    }
+    
+    body.street #introduction .text-col-split,
+    body.street #best-scores #developer-skills,
+    body.street #best-scores #design-skills,
+    body.street #bio .tg{
+        -moz-transform: rotate(-5deg) skew(-5deg, 0);
+        -ms-transform: rotate(-5deg) skew(-5deg, 0);
+        -o-transform: rotate(-5deg) skew(-5deg, 0);
+            transform: rotate(-5deg) skew(-5deg, 0);
+        /* clip-path: polygon(0% 80%, 30% 70%, 25% 55%, 22% 45%, 28% 15%, 40% 5%, 55% 5%, 65% 10%, 75% 25%, 75% 35%, 75% 45%, 70% 55%, 70% 65%, 100% 80%); */
+        
+    }    
+    body.street #bio .tg div.profileImage img{
+        z-index: -1;
+        /*
+        clip-path: polygon(0% 80%, 30% 70%, 25% 55%, 22% 45%, 28% 15%, 40% 5%, 55% 5%, 65% 10%, 75% 25%, 75% 35%, 75% 45%, 70% 55%, 70% 65%, 100% 80%);
+        border: 5px solid rgb(92, 7, 7);
+        */
+    }  
+    body.street #bio .tg tr, body.street #bio .tg tr th, body.street #bio .tg tr td {        
+        border: 0px none;
+        box-shadow: none;
+        
+    } 
+    body.street #introduction .text-col-split{
+
+    }
+    body.street .tg tr:first-child {    
+        -webkit-box-shadow: none;
+        -moz-box-shadow:none;
+            box-shadow: none;
+        }
+        body.street .tg tr:first-child th {  
+            
+            background-image: none;
+        }
+    body.street #bio .tg tr {
+        background-image: url(../images/small_brush2.png);
+        padding-bottom: 3vh;
+        background-repeat: no-repeat;
+        background-position: center bottom;
+        background-size: 100% 15%;
+
+    } 
+    body.street  #info-toolbar .color-style {
+        display: none;
+    }
+    body.street  .qrBubiMail svg {  
+        fill: black;    
+    }
+}
+
+/* --------------------- */
+@media screen {
+    /* --------------------- */
+    body.street ~{
+        
+        box-shadow:none;
+    }
+    body.street {    
+        background-color: #FFFF; 
+        font-family: 'Nothing You Could Do', cursive;
+            /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,878787+100&0+0,0.65+100 */
+        background: -moz-radial-gradient(center, ellipse cover, rgba(0,0,0,0) 0%, rgba(135,135,135,0.65) 100%); /* FF3.6-15 */
+        background: -webkit-radial-gradient(center, ellipse cover, rgba(0,0,0,0) 0%,rgba(135,135,135,0.65) 100%); /* Chrome10-25,Safari5.1-6 */
+        background: radial-gradient(ellipse at center, rgba(0,0,0,0) 0%,rgba(135,135,135,0.65) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6878787',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+        background-image: url(../images/white_painted_textured_wall_tileable.jpg);
+        background-size: 150px auto;
+    }
+    body.street section  {  
+    }
+    body.street h1 {
+        border-bottom: 3vmax;
+        background-image: url(../images/small_brush2.png);
+        padding-bottom: 3vh;
+        background-repeat: no-repeat;
+        background-position: center bottom;
+        background-size: 100% 15%;
+        z-index: 100;
+    }
+    body.street h1,body.street h2, body.street h3, body.street h4 {
+        text-shadow: 2px 2px 5px rgba(150, 150, 150, 1);
+        padding:0px 50px;
+    }
+    body.street h1 {
+        -moz-transform: rotate(-5deg) skew(-5deg, 0);
+        -ms-transform: rotate(-5deg) skew(-5deg, 0);
+        -o-transform: rotate(-5deg) skew(-5deg, 0);
+            transform: rotate(-5deg) skew(-5deg, 0);
+    }
+    body.street  .oval-thought-border {
+        -webkit-box-shadow: 2px 3px 10px 0px rgba(0,0,0,0.3);
+        -moz-box-shadow: 2px 3px 10px 0px rgba(0,0,0,0.3);
+        box-shadow: 2px 3px 10px 0px rgba(0,0,0,0.3);
+    }
+   
+    body.street #portfolio .portfolio-list ul, body.street #portfolio .portfolio-list ul li {
+        margin: 0px;
+        padding: 0px;
+        list-style: none;
+    }
+    body.street #portfolio .portfolio-list ul {
+        background-color:transparent;
+    }
+    body.street #portfolio .container .wrapper {
+        position: relative;
+        width: auto;
+        height: auto;
+        overflow: hidden;
+        display: block;
+        padding: 10px;
+        background-color: transparent;
+        clear: both;
+    }
+    body.street #portfolio .portfolio-list ul li {
+        float: left;
+        width: 23%;
+        height: 15%;
+        padding: 0.5%;
+        background-color: transparent;
+        overflow: hidden;
+        display: block;          
+        background-color: #000000;
+        background-image: url(../images/small_ptrn.png);
+    }
+    body.street #portfolio .portfolio-list ul li:active{ 
+        position: absolute;
+        left: 0px;
+        top:0px;
+        bottom: 0px;
+        right: 0px;
+        width: 100%;
+        height: 100%;    
+        text-align: center;
+        background-color: #000000;
+        background-image: url(../images/small_ptrn.png);
+    }
+    body.street #portfolio .portfolio-list ul li:active p { 
+        color: #000000;
+        font-weight: bolder;
+        background-color: #797979;
+    }
+    
+    body.street #introduction .text-col-split,
+    body.street #best-scores #developer-skills,
+    body.street #best-scores #design-skills,
+    body.street #bio .tg{
+        -moz-transform: rotate(-5deg) skew(-5deg, 0);
+        -ms-transform: rotate(-5deg) skew(-5deg, 0);
+        -o-transform: rotate(-5deg) skew(-5deg, 0);
+            transform: rotate(-5deg) skew(-5deg, 0);
+        /* clip-path: polygon(0% 80%, 30% 70%, 25% 55%, 22% 45%, 28% 15%, 40% 5%, 55% 5%, 65% 10%, 75% 25%, 75% 35%, 75% 45%, 70% 55%, 70% 65%, 100% 80%); */
+        
+    }    
+    body.street #bio .tg div.profileImage img{
+        z-index: -1;
+        /*
+        clip-path: polygon(0% 80%, 30% 70%, 25% 55%, 22% 45%, 28% 15%, 40% 5%, 55% 5%, 65% 10%, 75% 25%, 75% 35%, 75% 45%, 70% 55%, 70% 65%, 100% 80%);
+        border: 5px solid rgb(92, 7, 7);
+        */
+    }  
+    body.street #bio .tg tr, body.street #bio .tg tr th, body.street #bio .tg tr td {        
+        border: 0px none;
+        box-shadow: none;
+        
+    } 
+    body.street #introduction .text-col-split{
+
+    }
+    body.street .tg tr:first-child {    
+        -webkit-box-shadow: none;
+        -moz-box-shadow:none;
+            box-shadow: none;
+        }
+        body.street .tg tr:first-child th {  
+            
+            background-image: none;
+        }
+    body.street #bio .tg tr {
+        background-image: url(../images/small_brush2.png);
+        padding-bottom: 3vh;
+        background-repeat: no-repeat;
+        background-position: center bottom;
+        background-size: 100% 15%;
+
+    } 
+    body.street  #info-toolbar .color-style {
+        display: none;
+    }
+}

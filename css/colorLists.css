@@ -1,0 +1,365 @@
+/* ** Normal/white ** */
+body{    
+    background-color: #FFFF; 
+}
+#bio span.o-bck{
+    background-color: #000000;
+    color: #dbff34;
+}
+ul li span, #version-style span{    
+    background-color: #363636;
+    color:#ffffff;
+}
+#info-toolbar {
+    background-color: #363636;
+}
+.tg tr:hover {
+    background-color: rgb(224, 224, 224);
+    -webkit-box-shadow: 0 6px 6px -6px #0E1119;
+        -moz-box-shadow: 0 6px 6px -6px #0E1119;
+            box-shadow: 0 6px 6px -6px #0E1119;
+}
+#portfolio figure:hover figcaption {
+    color:#FFFFFF;
+}
+.generateCV {
+    
+}
+.tg td:hover {
+    color: #000000;
+    background-color: rgb(187, 187, 187);
+    box-shadow: rgb(138, 138, 138) -1px 1px, rgb(138, 138, 138) -2px 2px, rgb(138, 138, 138) -3px 3px, rgb(138, 138, 138) -4px 4px,     rgb(138, 138, 138) -5px 5px, rgb(138, 138, 138) -6px 6px;
+}
+.infoHelp { 
+    background: rgba(255, 255, 255, 0.95);
+} 
+.infoHelp:after { 
+    background: rgba(255, 255, 255, 0.95);
+}
+#experience .close {
+    /*
+    background-color: #ffffff;
+    border: 3px solid rgb(48, 48, 48);
+    */
+}
+#experience .close span {
+    background: #232323;
+    background: rgb(48, 48, 48);
+    background: rgba(48, 48, 48, 0.8);
+
+}
+#experience .experience-step {
+    background-color: #eeeeee;
+    background: rgb(238, 238, 238); /* Fall-back for browsers that don't support rgba */
+    background: rgba(238, 238, 238, .9);
+    border: rgb(48, 48, 48);
+}
+#experience .experience-step .exp-date {
+    background-color: rgb(62, 136, 0);
+    background-color:#3e8800;
+    color: #ffffff;
+    
+    background-color:rgb(58, 58, 58);
+
+}
+#experience .experience-step:active .exp-date {
+    
+
+}
+#portfolio figure:hover figcaption {
+    background-color: rgb(41, 41, 41);
+    background-color: rgba(41, 41, 41,0.9);
+}
+#introduction .shorInfo div {
+    background-color:#363636;
+    color: #ffffff;
+}
+body.modern span.titleDesc {
+    border-bottom-color:red !important;
+}
+body.modern h1 {
+    text-shadow: rgba(150, 150, 150, 1);
+    text-decoration-color: red;
+}
+body.modern a {
+    color:#0E1119; 
+}
+body.modern a:hover {
+    color: #000000;
+}
+
+body.modern .generateCV a:hover {    
+    background-color: rgb(255, 0, 0);
+    background-color: rgba(255, 0, 0,0.9);
+    color: white;
+    padding: 2px 14px 2px 14px;
+    margin: 5px;
+}
+body.modern #introduction .shorInfo div:nth-child(2) {
+    background-color: rgb(255, 0, 0);
+    background-color: rgba(255, 0, 0,0.9);
+    color: #ffffff;
+}
+body.modern #experience .experience-step .exp-date {
+    background-color: red;
+    /**/
+}
+body.modern #portfolio figure:hover figcaption {
+    background-color:rgb(255, 0, 0);
+    background-color: rgba(255, 0, 0,1);
+    color: #ffffff;
+}
+body.modern #portfolio figure figcaption.blue {
+    background-color: rgb(0, 108, 250);
+    background-color: rgba(0, 108, 250,0.9);
+    color: #ffffff;
+}
+body.modern #portfolio figure figcaption.green {
+    background-color: rgb(0, 50, 189);
+    background-color: rgba(0, 50, 189,0.9);
+}
+body.modern .infoHelp { 
+    
+    background-color:rgb(255, 255, 255);
+    background-color: rgba(255, 255, 255,0.8);
+    
+    color:rgb(48, 48, 48);
+    font-weight: bolder;
+    border-color: rgb(255, 0, 0);
+} 
+
+#contact-form .button {
+    background-color:  rgb(48, 48, 48); 
+    color: white;
+}
+footer .button {
+    background-color:  rgb(48, 48, 48); 
+    color: white;
+}
+#menu a {
+  color: #232323;
+}
+
+#menu a:hover {
+  color: rgb(100, 100, 100);
+}
+#menu{  
+  background: rgb(226, 226, 226);
+  background: rgba(226, 226, 226, 0.95);
+}
+#menuToggle span
+{  
+  background: rgb(138, 138, 138);
+  background: rgba(138, 138, 138, 0.8);
+}
+#menuToggle input:checked ~ span
+{
+  background: rgb(48, 48, 48);
+}
+.qrBubiMail svg {
+    fill: black;      
+}
+
+.oval-thought-border {
+    border-color:rgb(48, 48, 48);
+    color:#333;
+    background:rgb(255, 255, 255);
+    background:rgba(255, 255, 255, 0.9);
+  }
+  
+.oval-thought-border:before {
+    border-color:rgb(48, 48, 48);
+    background:rgb(255, 255, 255);
+    background:rgba(255, 255, 255, 0.8);
+}
+
+.oval-thought-border:after {
+    border-color:rgb(48, 48, 48);
+    background:rgb(255, 255, 255);
+    background:rgba(255, 255, 255, 0.8);
+}
+
+#planePart1 {
+    fill:rgb(158, 158, 158);
+}
+#planePart2 {
+    fill:#5a5a5a;
+}
+body.modern h1,body.modern h2, body.modern h3, body.modern h4 {
+    text-shadow: 2px 2px 5px rgba(150, 150, 150, 1);
+    text-decoration-color: rgb(0, 0, 0);
+}
+
+
+/* ** monoGreen ** */
+body.monoGreen {
+    color:#9BEA59; /* Light Color*/
+    color:#82E531; /* Primary Color*/
+    color:#65DE00; /* Primary Color*/
+    color:#4FAE00; /* Primary Color*/
+    color:#3E8800; /* Dark Color*/
+}
+/* ** greenBlue ** */
+body.green{    
+    background-color: #65DE00; 
+}
+body.green #best-scores table tr:hover {
+    background-color: #0000ff;
+    color:#dbff34;
+}
+body.green .tg tr:hover {
+    background-color: #82E531;
+    -webkit-box-shadow: 0 6px 6px -6px #0E1119;
+        -moz-box-shadow: 0 6px 6px -6px #0E1119;
+            box-shadow: 0 6px 6px -6px #0E1119;
+}
+body.green .tg td:hover {
+    color: #000000;
+    background-color: #9BEA59;
+    box-shadow: rgb(1, 82, 5) -1px 1px, rgb(1, 82, 5) -2px 2px, rgb(1, 82, 5) -3px 3px, rgb(1, 82, 5) -4px 4px,     rgb(1, 82, 5) -5px 5px, rgb(1, 82, 5) -6px 6px;
+    transform: translate3d(6px, -6px, 0);
+}
+body.green #contact-form .button {
+    background-color: #4CAF50; 
+    color: white;
+}
+body.green #planePart1 {
+    fill:#4FAE00;
+}
+body.green #planePart2 {
+    fill:#3E8800;
+}
+body.modern.green h1, body.modern.green  h2, body.modern.green h3 {
+    text-shadow: 2px 2px 5px rgba(150, 150, 150, 1);
+    text-decoration-color: #4FAE00;
+}
+body.modern.green .experience-step .exp-date {
+    background-color: rgb(62, 136, 0);
+    background-color:#3e8800;
+    color: #ffffff;
+
+}
+/* ** greenBlue ** */
+body.greenBlue{    
+    background-color: #1DA78C; 
+}
+body.greenBlue #bio span.o-bck{
+    background-color: #000000;
+    color: #ffffff;
+}
+body.greenBlue #best-scores table tr:hover {
+    background-color: #00735C;
+    color:#1DA78C;
+}
+body.greenBlue .tg tr:hover {
+    background-color: #3CB79F;
+    -webkit-box-shadow: 0 6px 6px -6px #0E1119;
+        -moz-box-shadow: 0 6px 6px -6px #0E1119;
+            box-shadow: 0 6px 6px -6px #0E1119;
+}
+body.greenBlue .tg td:hover {
+    color: #000000;
+    background-color: #65CDB9;
+    box-shadow: rgb(0,115, 92,1) -1px 1px, rgb(0,115, 92,1) -2px 2px, rgb(0,115, 92,1) -3px 3px, rgb(0,115, 92,1) -4px 4px,     rgb(0,115, 92,1) -5px 5px, rgb(0,115, 92,1) -6px 6px;
+    transform: translate3d(6px, -6px, 0);
+}
+body.greenBlue #planePart1 {
+    fill:#019477;
+}
+body.greenBlue #planePart2 {
+    fill:#00735C;
+}
+body.modern.greenBlue h1, body.modern.greenBlue  h2, body.modern.greenBlue h3 {
+    text-shadow: 2px 2px 5px rgba(150, 150, 150, 1);
+    text-decoration-color: #019477;
+}
+/* ** vrYellow ** */
+body.vrYellow{    
+    background-color: #D3FF00; 
+}
+body.vrYellow #best-scores table tr:hover {
+    background-color: #00735C;
+    color:#1DA78C;
+}
+body.vrYellow .tg tr:hover {
+    background-color: #E4FF61;
+    -webkit-box-shadow: 0 6px 6px -6px #0E1119;
+        -moz-box-shadow: 0 6px 6px -6px #0E1119;
+            box-shadow: 0 6px 6px -6px #0E1119;
+}
+body.vrYellow .tg td:hover {
+    color: #000000;
+    background-color: #DCFF31;
+    box-shadow: rgb(173, 189, 0) -1px 1px, rgb(173, 189, 0) -2px 2px, rgb(173, 189, 0) -3px 3px, rgb(173, 189, 0) -4px 4px,     rgb(173, 189, 0) -5px 5px, rgb(173, 189, 0) -6px 6px;
+    transform: translate3d(6px, -6px, 0);
+}
+body.vrYellow #planePart1 {
+    fill:#d1d400;
+}
+body.vrYellow #planePart2 {
+    fill:#808b00;
+}
+body.modern.vrYellow h1, body.modern.vrYellow  h2, body.modern.vrYellow h3 {
+    text-shadow: 2px 2px 5px rgba(150, 150, 150, 1);
+    text-decoration-color: #d0e700;
+}
+/* As hex codes */
+
+.color-primary-0 { color: #65DE00 }	/* Main Primary color */
+.color-primary-1 { color: #9BEA59 }
+.color-primary-2 { color: #82E531 }
+.color-primary-3 { color: #4FAE00 }
+.color-primary-4 { color: #3E8800 }
+
+
+
+/* As RGBa codes */
+
+.rgba-primary-0 { color: rgba(101,222,  0,1) }	/* Main Primary color */
+.rgba-primary-1 { color: rgba(155,234, 89,1) }
+.rgba-primary-2 { color: rgba(130,229, 49,1) }
+.rgba-primary-3 { color: rgba( 79,174,  0,1) }
+.rgba-primary-4 { color: rgba( 62,136,  0,1) }
+
+/* As hex codes */
+
+.color-primary-0 { color: #1DA78C }	/* Main Primary color */
+.color-primary-1 { color: #65CDB9 }
+.color-primary-2 { color: #3CB79F }
+.color-primary-3 { color: #019477 }
+.color-primary-4 { color: #00735C }
+
+
+
+/* As RGBa codes */
+
+.rgba-primary-0 { color: rgba( 29,167,140,1) }	/* Main Primary color */
+.rgba-primary-1 { color: rgba(101,205,185,1) }
+.rgba-primary-2 { color: rgba( 60,183,159,1) }
+.rgba-primary-3 { color: rgba(  1,148,119,1) }
+.rgba-primary-4 { color: rgba(  0,115, 92,1) }
+
+
+
+
+/* ** vrYellow ** */
+/* As hex codes */
+
+.color-primary-0 { color: #D3FF00 }	/* Main Primary color */
+.color-primary-1 { color: #E4FF61 }
+.color-primary-2 { color: #DCFF31 }
+.color-primary-3 { color: #D3FF00 }
+.color-primary-4 { color: #CEF900 }
+.color-primary-5 { color: #d0e700 }
+.color-primary-6 { color: #adbd00 }
+.color-primary-6 { color: rgb(173, 189, 0) }
+
+
+
+/* As RGBa codes */
+
+.rgba-primary-0 { color: rgba(211,255,  0,1) }	/* Main Primary color */
+.rgba-primary-1 { color: rgba(228,255, 97,1) }
+.rgba-primary-2 { color: rgba(220,255, 49,1) }
+.rgba-primary-3 { color: rgba(211,255,  0,1) }
+.rgba-primary-4 { color: rgba(206,249,  0,1) }

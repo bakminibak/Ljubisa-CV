@@ -1,0 +1,50 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta name="description" content="Ljubisa Stojanovski CV Resume">
+        <meta name="keywords" content="HTML,CSS,JavaScript">
+        <meta name="author" content="Ljubisa Stojanovski">
+        <link rel="stylesheet" type="text/css" href="css/scratch.css">
+        <script src="js/scratchie.js"></script> 
+        <title>Ljubisa Stojanovski CV</title>
+    </head>
+    <body>
+       <!--
+        https://github.com/andreruffert/scratchie.js
+        -->
+        
+        <div class="container" id="js-container">
+            <canvas class="canvas" id="js-canvas" width="300" height="300"></canvas>
+            <form class="form" style="visibility: hidden;">
+                <h2>'Allo, 'Allo!</h2>
+                <h3>The secret code is:</h3>
+                <h1><code>HlkafSYc</code></h1>
+                <div>
+                    <input type="text" name="code" placeholder="Secret Code">
+                </div>
+                <br>
+                <div>
+                    <input type="submit" value="Submit">
+                </div>
+            </form>  
+        </div>
+        <script>
+        (function() {
+            var scratchie = new Scratchie('[data-scratchie]', {
+                brush: 'images/brush.png',
+                onRenderEnd: function() {
+                    // Show the form when Image is loaded.
+                    this.element.querySelectorAll('.scratchie__secret')[0].style.visibility = 'visible';
+                },
+                onScratchMove: function(filledInPixels) {
+                    console.log(filledInPixels + '%');
+                }
+            });
+            // Global expose
+            window.scratchie = scratchie;
+        })();
+        </script>
+    </body>
+    </html>

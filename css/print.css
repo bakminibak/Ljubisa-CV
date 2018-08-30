@@ -1,0 +1,197 @@
+@media print {
+    html, body {
+        height: 100%;
+        background-color: white;
+        text-shadow: none;
+    }
+    body.modern h1, body.modern h2, body.modern h3, body.modern h4 {        
+        text-shadow: none;
+    }
+    header, #thank-you, footer {
+        display: none;
+    }
+    footer {            
+        text-align: left;
+        padding-bottom: 5px;
+        display: block;
+    }
+    footer ol li {  
+        float: none;
+        text-align: left;
+    }
+    section {
+        margin:0;
+        margin-left:auto;
+        margin-right:auto;    
+        width: auto;
+        height: auto;
+        border-bottom: dashed 1px;
+        max-height: 100%;
+    }
+    section .container {
+        height: auto;
+        min-height: 80%;
+        width: auto;    
+        position: relative;
+    }
+    svg {
+        display: none;
+    }
+    .nextSectionButton {
+        display: none;
+    }
+    #homePage {
+        height: 70%;
+        margin: 0;
+        padding: 0;
+    }
+    #homePage .container, #homePage .container .wrap {
+        padding: 0;
+        margin: 0;   
+        height: 70%;
+    
+    }
+    #portfolio, #portfolio .container {
+        padding: 0;
+        margin: 0;        
+        height: 99%;
+    }
+    .container {
+        padding:0;
+        margin:0;
+    }
+    #table-of-contents {
+        display:block;
+    }
+    #introduction img{
+        width:25%;
+        padding-right: 25px;
+        padding-bottom: 25px;
+    }
+    #best-scores #developer-skills, #best-scores #design-skills {
+        width: 100%;
+        float: none; 
+        clear:both;
+        margin-bottom: 85px;
+    }
+    #contact-form {      
+        height: 99%;
+    }
+    .arrow-down-btn {
+        display: none;
+    }
+    #portfolio .crime-tape, #portfolio .crime-tape p, error {
+        display: none;
+    }
+    .qrBubiMail {
+        text-align: center;
+        width: 25%;
+        margin:100px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 50px;
+        border:10px solid;
+    }
+    .qrBubiMail svg {
+        width: 100%;
+        height: auto;
+        display: block;  
+        fill: black;      
+    }
+    #portfolio .wrapper {
+        margin-top:180px;
+    }
+    #portfolio .wrapper .portfolio-list ul li {
+        width: 24%;
+        height: 120px;
+        text-align: center !important;
+
+    }
+    #portfolio .portfolio-list ul li img {
+        width: 165px !important;
+        height: auto;
+        display: none !important;
+    }
+    #portfolio .portfolio-list ul li img:first-child {
+        display: block !important;
+    }
+    #portfolio .portfolio-list ul li:nth-child(12) ~ li {
+
+        /* display: none !important; */
+        
+    }    
+    #portfolio .portfolio-list ul li.no-print {
+        display: none;
+    }
+    #portfolio .portfolio-list ul {
+        background-color: #1b1b1b;
+        border: 4px solid #cccccc;
+        padding: 10px;
+        display: table;
+    }
+    .noPrnt {
+        display: none;
+    }
+}
+
+
+/* exp path */
+
+@media print {
+    #experience .experience-step {
+        padding: 2%;
+        position: initial;       
+        page-break-inside: avoid;
+        
+        /*
+        margin: 5%;
+        float: left;
+        width: 29%;
+        */
+        text-align: left;
+        border: none;
+        border-bottom: 1px dashed;        
+        float: left;
+        min-height:140px;   
+        width: 45%;
+        
+        pointer-events : none;
+        margin-bottom: 10px;
+    }
+    #experience .experience-step .exp-date::before { 
+        font-weight: bolder;
+        content: "» Date Staring: ";
+    }
+    #experience .experience-step .desc::before {     
+        font-weight: bolder;
+        content: "» Company Name: ";
+    }
+    #experience .experience-step .business-sector::before {  
+        font-weight: bolder;
+        content: "» Type of business or sector: ";
+    }
+    #experience .experience-step .responsibilities::before {    
+        font-weight: bolder;
+        content: "» Main activities and responsibilities: ";
+    }
+    #experience .experience-step:nth-child(even) {        
+       float: right;
+    }    
+    #experience .experience-step:nth-child(odd) {
+        float:left;
+        text-align: right;
+        clear: left;
+    }   
+       
+    #experience .experience-step div { 
+        padding:2px 5px 2px 5px;
+    } 
+    
+    #experience .experience-step div div{ 
+        padding-left:0px;
+        padding-right: 0px;
+    }
+    #experience .experience-step div div::before { 
+        content: "";
+    }
+}

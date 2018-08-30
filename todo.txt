@@ -1,0 +1,5 @@
+
+- da se sredi na active ili hover da da se upali animacija za balloon popup  na intro i experiance
+- da se sredi shadow na print: experiance
+- 100% hand made
+

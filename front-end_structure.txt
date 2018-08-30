@@ -1,0 +1,48 @@
+FRONT-END ENGENIEER APPROACH 
+
+1. BROWSERS
+MAIN FLOW:
+PARSE HTML, DOM TREE, RENDER TREE, LAYOUT & PAINT (REFLOW)
+
+
+#HOW BROWSER WORKS
+ - MAIN THREAD, SPECULATIVE FOR EXTRNAL RESOURCES AND CHASHED IN MEMORY
+
+ - DOM
+ - HTML PARSING
+ -- PARSING LOOP: DOCUMENT >> TOKENIZER (TAGS) >> TREE CONSTRUCTION / DOM TREE. INTERFACE WHICH JS INTERACTS
+
+ - CSS PARSING
+  -- STYLE SOURCES (BROWSER, USER, AUTHOR, INLINE)
+  -- CASCADE PRIORITY: BROWSER >> NORMAL (USER, AUTHOR) >> IMPORTANT (AUTHOR, USER)
+  -- ANATOMY OF A RULE: SELECTOR, DECLARATION, PROPERTY, VALUE
+  -- SPECIFICITY: A) INLINE, B) IDS, C) CLASSES, D) ELEMENT
+  -- CONFLICT RESOLUTION: IMPORTANCE, ORIGIN, SPECIFICITY, SOURCE ORDER
+ - JS PARSING
+
+
+#BEST PRACTICES
+
+
+
+
+#WORK Experience
+
+
+Your responsibilities
+
+ - Development of high-quality software design and architecture
+ - Lead a development team and review code of other project team members
+ - Creating responsive implementations of designs based on state of the art best practices
+ - Working as an active team member in agile projects
+
+Technical Knowledge and Skills
+
+ - Senior level knowledge in Web Frontend Software development
+ - Deep knowledge in web technologies like HTML, JavaScript, CSS
+ - Experience with e-business projects
+ - Experience in leading a team of software developers
+ - Awareness of accessibility standards
+ - Knowledge of Angular is a plus
+ - Knowledge about major development tools like GIT, Jenkins/Bamboo, Confluence, JIRA is a plus
+ - Good communication skills in English

@@ -1,0 +1,184 @@
+@import url('https://fonts.googleapis.com/css?family=Indie+Flower');
+body {
+    font-family: 'Times New Roman', Times, serif;
+    font-size:14px;
+    word-break: keep-all;
+
+}
+h1, h2, h3, h4 {    
+    font-size: 6.8vh;
+    text-align: center;
+    font-weight: bolder;
+    letter-spacing: -0.1vh;
+}
+h1 {
+    font-size: 6rem;
+    font-size: 6vmax;
+    text-transform: uppercase;
+    font-weight:bolder;    
+}
+#homePage h1 {
+    font-size: 6vmax;
+    text-align: center;
+}
+#thank-you h1 {
+    font-size: 6vmax;
+    text-align: center;
+}
+h2 {
+    font-size: 3rem;
+    font-size: 3vmax;   
+}
+h3 {
+    font-size: 2rem;
+    font-size: 2vmax;
+}
+h4 {
+    font-size: 1.5rem;    
+    font-size: 1.9vmax;
+}
+h5 {
+    font-size: 1.3rem;    
+    font-size: 1vmax;
+}
+p {     
+    font-size: 1.5vw;      
+    font-size: 1.7vmax;
+}
+span.titleDesc {
+    border-bottom: 3px double;
+}
+#bio h1 {    
+    margin-bottom: 25px;
+    padding-bottom: 25px;
+}
+#bio h2 {    
+    margin-top: 0px;
+    padding-top: 0px;
+}
+#experience .experience-step {
+    font-size: 1.6vmax;
+    cursor: pointer;
+}
+#experience .experience-step .exp-date {
+    font-weight: bold;
+}
+body.modern span.titleDesc {
+    font-weight: bolder;
+}
+.x-small {
+    font-size:0.9vmax;
+}
+.medium {
+    font-size:1.1vmax;
+}
+td, table  {    
+    font-size: 1.7vmax;
+}
+.tg td:hover {
+    font-size: 2.1vmax;
+}
+.tg h2 {
+    font-size: 2vmax;
+}
+#homePage h3 {    
+    font-size: 1.8vmax;
+    line-height: 1.2vmax;
+    padding: 0;
+    margin: 0;
+}
+#homePage h5 {    
+    font-size: 1.2vmax;
+    line-height: 1.5vmax;    
+    padding: 0;
+    margin: 10px 0px;
+}
+#best-scores .skills-left h3 {
+    text-align: right;
+}
+#best-scores .skills-right h3 {
+    text-align: left;
+}
+#best-scores table td span {
+    font-size: 1.2vmax;
+}
+.text-col-split {    
+    width:auto;
+    margin: auto 0;
+}
+.text-col-split  p {
+    margin-top:0;
+}
+#experience .infoHelp {
+    font-size: 0.5vmax;
+    padding: 10px;
+
+}
+.shorInfo {
+    font-size: 1vw;
+}
+.prnt {
+    font-weight: bold;
+}
+footer ol li{
+    font-weight: bolder;
+    font-size: 1.2vw;
+}
+#contact-form textarea, #contact-form input {
+    font-family: 'Indie Flower', cursive;    
+    font-weight: bolder;
+    font-size: 1.6vmax;
+}
+@media screen and (min-width: 710px){
+    .text-col-split  {
+        -webkit-column-count: 2; /* Chrome, Safari, Opera */
+        -moz-column-count: 2; /* Firefox */
+        column-count: 2;
+        -webkit-column-gap: 4vw;
+        -moz-column-gap: 4vw;
+        column-gap: 4vw;
+    }
+}
+@media screen and (max-width: 710px){
+    .text-col-split  {
+        -webkit-column-count: 1; /* Chrome, Safari, Opera */
+        -moz-column-count: 1; /* Firefox */
+        column-count: 1;
+    }
+}
+@media print {
+    body {
+        color: #000000 !important;
+    }
+    h1, h2 {
+        padding-top:10px;
+        padding-bottom: 10px;
+    }
+    h1 {
+        font-size: 3rem;
+    }
+    h2 {
+        font-size: 2rem;
+    }
+    p, table, table th, table td {
+        font-size: 18px;
+    }
+    #experience .experience-step {
+        font-size: 12px;
+    }
+    #best-scores .skills-left h3 {
+        text-align: left;
+    }
+    figcaption {
+        font-size: 8px;
+        display: none;
+    }
+    #portfolio figure:hover figcaption {
+        text-align: center;
+        font-weight: bolder;
+    }
+    body.modern h1,body.modern h2, body.modern h3, body.modern h4 {
+        text-shadow: none;
+        text-decoration-color: none;
+    }
+}

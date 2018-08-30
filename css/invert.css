@@ -1,0 +1,44 @@
+body.invert {
+    background-color: #001403;
+    color: #dbff34; 
+    color: #82E531;
+}
+body.invert #experience .experience-step {
+    -webkit-box-shadow: 2px 3px 10px 0px rgba(0,0,0,1);
+    -moz-box-shadow: 2px 3px 10px 0px rgba(0,0,0,1);
+    box-shadow: 2px 3px 10px 0px rgba(0,0,0,1);
+}
+body.invert #experience .experience-step {
+    background-color: rgb(59, 59, 59);
+    background: rgb(259, 59, 59); /* Fall-back for browsers that don't support rgba */
+    background: rgba(59, 59, 59);
+    border: rgb(48, 48, 48);
+}
+.invert table td{
+    border-top: 1px dashed;
+    border-left: 1px dashed;
+}
+.invert table td:first-child {
+    border-left: none;
+}
+.invert .tg th {
+    background-color: none;
+}
+.invert .tg tr:hover {    
+    color: #05530f;
+}
+.invert .tg tr:hover {    
+    background-color: #012e06;
+    color: #63de00;
+}
+.invert .tg td:hover {
+    
+    color: #000000;
+    font-weight: bold;
+    background-color: #63de00;
+    box-shadow: rgb(1, 82, 5) -1px 1px, rgb(1, 82, 5) -2px 2px, rgb(1, 82, 5) -3px 3px, rgb(1, 82, 5) -4px 4px,     rgb(1, 82, 5) -5px 5px, rgb(1, 82, 5) -6px 6px;
+}
+.invert #best-scores table tr:hover {
+    background-color: #63de00;
+    color:rgb(1, 82, 5);
+}
