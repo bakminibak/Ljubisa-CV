@@ -5,7 +5,36 @@
  * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
  * Kroc Camen, and the H5BP dev community and team.
  */
-
+ :root {
+    --blue: #007bff;
+    --indigo: #6610f2;
+    --purple: #6f42c1;
+    --pink: #e83e8c;
+    --red: #dc3545;
+    --orange: #fd7e14;
+    --yellow: #ffc107;
+    --green: #28a745;
+    --teal: #20c997;
+    --cyan: #17a2b8;
+    --white: #fff;
+    --gray: #868e96;
+    --gray-dark: #343a40;
+    --primary: #007bff;
+    --secondary: #868e96;
+    --success: #28a745;
+    --info: #17a2b8;
+    --warning: #ffc107;
+    --danger: #dc3545;
+    --light: #f8f9fa;
+    --dark: #343a40;
+    --breakpoint-xs: 0;
+    --breakpoint-sm: 576px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 992px;
+    --breakpoint-xl: 1200px;
+    --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    --font-family-monospace: "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  }
 /* ==========================================================================
    Base styles: opinionated defaults
    ========================================================================== */
@@ -325,22 +354,41 @@ img.max-height-250 .down{
     position: absolute;
     top:-10px;
  }
- .arrow-down {
+.arrow-down {
     width: 100%; 
     height: 0; 
     border-left:  49vw solid transparent;
     border-right: 49vw solid transparent;
-    
+
     border-top: 15px solid #000000;
-  }
-  .nav-tabs .nav-link {
-      background-color: rgba(255, 255, 255,0.4);
-      border:1px 1px 1px 0px;
-      border-color: #fff;
-      margin-left: 1px;
-      margin-right: 1px;
-  }
-  .nav-tabs .nav-link:first-child {
+}
+ul .nav-justified {
+   display: flex;/* */
+   position: relative;
+}
+.nav-justified .nav-item li{
+    -ms-flex-preferred-size: 0;
+    flex-basis: 0;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    text-align: center;
+}
+.nav-tabs {
+}
+
+.nav-tabs .nav-link {
+    background-color: rgba(255, 255, 255,0.4);
+    border:1px 1px 1px 0px;
+    border-color: #fff;
+    margin-left: 1px;
+    margin-right: 1px;
+}
+.nav-tabs .nav-link.active,
+.nav-tabs .nav-item.show .nav-link {
+  color: #ffffff;
+  background-color:var(--pink); 
+}
+.nav-tabs .nav-link:first-child {
     margin-left: 0px;
 }
 @media screen and (max-width: 990px){ 
