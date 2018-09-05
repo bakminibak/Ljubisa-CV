@@ -186,8 +186,17 @@ h1 {
     position: relative;
     height: auto;    
 }
-#bio, #projects {
+#bio{
     background:  #000000 url("../images/poly.jpg") no-repeat left bottom fixed;
+    -webkit-background-size:cover;
+    -moz-background-size:cover;
+    -o-background-size:cover;
+    background-size:cover;
+    position: relative;
+    height: auto;
+}
+#projects {
+    background:  #000000 url("../images/poly_dark.jpg") no-repeat left bottom fixed;
     -webkit-background-size:cover;
     -moz-background-size:cover;
     -o-background-size:cover;
@@ -373,7 +382,11 @@ ul .nav-justified {
     flex-grow: 1;
     text-align: center;
 }
+.nav-justified .nav-item li a.nav-link {
+    font-size: 14vw;
+} 
 .nav-tabs {
+
 }
 
 .nav-tabs .nav-link {
@@ -386,7 +399,7 @@ ul .nav-justified {
 .nav-tabs .nav-link.active,
 .nav-tabs .nav-item.show .nav-link {
   color: #ffffff;
-  background-color:var(--pink); 
+  background-color:var(--gray-dark); 
 }
 .nav-tabs .nav-link:first-child {
     margin-left: 0px;
