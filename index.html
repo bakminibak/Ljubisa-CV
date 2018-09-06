@@ -26,6 +26,7 @@
                     <!-- li><a href="javascript: changeStyle('dos');">Retro</a></li -->
                     <li><a href="javascript: changeStyle('modern');">Modern</a></li>
                     <li><a href="javascript: changeStyle('street');">Street</a></li>
+                    <li><a href="javascript: changeStyle('materialize');">Materialize 2018</a></li>
                 </ul>
             </li>
             <li class="color-style"><span>[SWITCH COLOR]</span>
@@ -636,6 +637,9 @@ Ljubisa</textarea>
         else element.className = iColor;
     }
     function changeStyle(iStyle){
+        if (iStyle=="materialize"){
+            window.location.href = 'cv-2018/index.html';
+        }
         var element = document.body; 
         element.className = iStyle;
     }
