@@ -402,15 +402,15 @@
     left:-4%;
 }
 #exp-6 {
-    top:25%;
+    top:28%;
     left:10%;
 }
 #exp-6 .close {
     top:-60px;
-    left:1%;
+    left:0%;
 }
 #exp-7 {
-    top:15%;
+    top:22%;
     right:0%;
 }
 #exp-7 .close {
@@ -422,12 +422,23 @@
     transform: rotate(270deg);
 }
 #exp-8 {
-    top:0%;
-    right:40%;
+    top: 10%;
+    right:10%;
 }
 #exp-8 .close {
     top:20px;
     right:-50px;
+    -ms-transform: rotate(180deg); /* IE 9 */
+    -webkit-transform: rotate(180deg); /* Chrome, Safari, Opera */
+    transform: rotate(180deg);
+}
+#exp-9 {
+    top:0%;
+    right:40%;
+}
+#exp-9 .close {
+    top:0%;
+    right:40%;
     -ms-transform: rotate(180deg); /* IE 9 */
     -webkit-transform: rotate(180deg); /* Chrome, Safari, Opera */
     transform: rotate(180deg);
