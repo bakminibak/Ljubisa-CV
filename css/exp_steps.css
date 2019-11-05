@@ -368,6 +368,7 @@
 #exp-1 {
     bottom:0%;
     left:40%;
+    display: none;
 }
 #exp-1 .close {
     bottom:-15px;
