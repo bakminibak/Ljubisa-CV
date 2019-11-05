@@ -1,8 +1,12 @@
 @media print {
+    /** Setting margins */     
+
     html, body {
         height: 100%;
         background-color: white;
         text-shadow: none;
+        margin: 0;
+        padding: 0;
     }
     body.modern h1, body.modern h2, body.modern h3, body.modern h4 {        
         text-shadow: none;
@@ -23,10 +27,11 @@
         margin:0;
         margin-left:auto;
         margin-right:auto;    
-        width: auto;
+        width: 100%;
         height: auto;
-        border-bottom: dashed 1px;
-        max-height: 100%;
+        border-bottom: none;
+        max-height: initial;
+        display: block
     }
     section .container {
         height: auto;
@@ -64,9 +69,18 @@
         display:block;
     }
     #introduction img{
-        width:25%;
+        width:35%;
         padding-right: 25px;
         padding-bottom: 25px;
+    }
+    
+    #introduction div.img-wrapper {
+        width: 40%;
+        max-width: 40%;
+    }
+    #introduction .text-col-split {
+        margin-left: 10rem;
+        margin-right: 10rem;
     }
     #best-scores #developer-skills, #best-scores #design-skills {
         width: 100%;
@@ -132,12 +146,16 @@
     .noPrnt {
         display: none;
     }
-}
 
 
-/* exp path */
 
-@media print {
+    /* exp path */
+
+    .pRelative {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+    }
     #experience .experience-step {
         padding: 2%;
         position: initial;       
@@ -151,7 +169,7 @@
         text-align: left;
         border: none;
         border-bottom: 1px dashed;        
-        float: left;
+        /*float: left;*/
         min-height:140px;   
         width: 45%;
         
@@ -161,32 +179,36 @@
     #experience .experience-step .exp-date::before { 
         font-weight: bolder;
         content: "» Date Staring: ";
+        display: inline;
     }
     #experience .experience-step .desc::before {     
         font-weight: bolder;
-        content: "» Company Name: ";
+        content: "» Company Name: ";        
+        display: inline;
     }
     #experience .experience-step .business-sector::before {  
         font-weight: bolder;
-        content: "» Type of business or sector: ";
+        content: "» Type of business or sector: ";        
+        display: inline;
     }
     #experience .experience-step .responsibilities::before {    
         font-weight: bolder;
         content: "» Main activities and responsibilities: ";
+        display: inline;
     }
     #experience .experience-step:nth-child(even) {        
-       float: right;
+        float: right;
     }    
     #experience .experience-step:nth-child(odd) {
         float:left;
         text-align: right;
         clear: left;
     }   
-       
+        
     #experience .experience-step div { 
         padding:2px 5px 2px 5px;
     } 
-    
+
     #experience .experience-step div div{ 
         padding-left:0px;
         padding-right: 0px;
