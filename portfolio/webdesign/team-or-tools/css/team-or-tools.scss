@@ -1,0 +1,380 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    background-color:#00A4B5!important;
+    width: 100%;
+    height: 100%;
+    font-size: 12px;
+}
+#sopro-logo{
+    position: absolute;
+    width: 250px;
+    left: 2rem;
+    top: 2rem;
+    z-index: 100;
+    .logo-wrap {
+        max-width: 250px;
+    }
+    
+}
+#team-or-tools {
+    color: #FFFFFF;
+    /*
+    max-width: 950px;
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+    */
+    #animation_container {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-wrapper {
+        text-align: center;
+        position: relative;
+        .hero {
+            background-image: url(../images/gears_v1.gif);
+            background-position: center top;
+            background-repeat: no-repeat;
+            min-height: 880px;
+            height: auto;
+            .text-wrap {     
+                /*    */       
+                position: absolute;
+                bottom: 0;
+                top:0px;                
+                left: 0;
+                right: 0;
+                min-width: 740px;
+                height: auto;
+                width: auto;
+                .text {
+                    max-width:580px;
+                    margin-left: auto;
+                    margin-right: auto;
+                    margin-top:310px;
+                    h1 {
+                        font-size: 56px;
+                        font-weight: 900;
+                        text-shadow: 2px 2px 2px rgba(16,79,84,0.63);
+                    }
+                    p {
+                        padding: 0.5rem 3rem;
+                        font-size: 1.2rem;
+                    }
+                }
+            }
+        }
+    }
+}
+#your-guidelines {    
+    max-width: 1600px;
+    margin: auto;
+    margin-top: -50px;
+    .quiz-progress-bar {
+        .bar {
+            position: relative;
+            svg {        
+                width: 100%;
+                position: absolute;
+                top: -50px;
+                .rightCircle {
+                    fill: #00A4B5!important;                    
+                    transition: all 100ms ease-in-out;
+                    &:hover, &.ping {
+                        stroke-width:10px;  
+                        stroke: #00A4B5;                      
+                        fill: #FFFFFF!important;
+                    }
+                }
+                .leftCircle {
+                    fill: #00A4B5!important;                    
+                    transition: all 100ms ease-in-out;
+                    &:hover, &.ping {
+                        stroke-width:10px;                          
+                        stroke: #00A4B5;                      
+                        fill: #FFFFFF!important;
+                    }
+                } 
+            }
+            object  {
+                width: 100%;
+                #left-circle, .rightCircle {
+                    fill: #00AF8F;
+                }
+            }
+        }
+        .score-box {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto;
+            text-align: center;
+            .title, .score {
+                background-color: white;
+                color: #00A4B5;
+                text-transform: uppercase;
+                margin-bottom: 0.5rem;
+                padding: 0.5rem;
+            }
+            .title {
+                font-size: 2rem;
+                font-weight: 600;
+            }
+            .score {
+                font-size: 4rem;
+                font-weight: 600;
+            }
+        }
+        .progress-steps {
+            width: 550px;
+            margin: 0 auto;
+            .steps {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                .step {
+                    width: 25px;
+                    height: 25px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    padding: 0;
+                    text-align: center;
+                    margin: 0.5rem;
+                    border: 2px solid #fff;
+                    border-radius: 20px;
+                    font-weight: 600;
+                    transition: all 100ms linear;
+                    &.active {
+                        background-color: #fff;
+                        color: #00A4B5;
+                    }
+                    &:hover, &.passed {
+                        background-color: rgba(255, 255, 255, 0.534);
+                    }
+                }
+            }
+            .current-step {
+                text-transform: uppercase;
+                font-weight: 900;
+                font-size: 1.2rem;
+                text-align: center;
+            }
+        }
+    }
+    #quiz-holder {        
+        padding: 0 3rem;
+        height: auto;
+        .current-question {
+            margin-bottom: 10rem;
+        }
+        .question-row {
+            padding: 3rem;
+            display: flex;
+            align-items: center;
+            .question-wrap {
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+                user-select: none;
+                &:hover {    
+                    .answer {                
+                        color: #00A4B5;
+                        background-color: #fff;
+                    }
+                    .checkbox-btn {                         
+                        background-color: #fff; 
+                        color: #00A4B5; 
+                        border: 2px solid #00A4B5!important;
+                    }
+                }
+                .checkbox-btn { 
+                    width: 50px;                  
+                    height: 50px;
+                    background-color: #00A4B5;                  
+                    border: 2px solid #fff;
+                    border-radius: 50px;
+                    font-weight: 600;
+                    font-size: 2rem;
+                    display: flex;
+                    margin-right: -2rem;
+                    z-index: 99;
+                    align-items: center;
+                    text-align: center;
+                    justify-content: center;
+                
+                }
+                .answer {
+                    border: 1px solid #fff;
+                    background-color: #00A4B5;
+                    padding: 0.5rem 3rem;
+                    /*margin: 1rem;*/
+                    max-width: 500px;
+                    width: 400px;
+                    min-width: 250px;
+                    flex: 1 auto;
+                    min-height: 100px;
+                    display: flex;
+                    align-items: center;
+                    font-size: 1.5rem;
+                    &:hover {                    
+                        color: #00A4B5;
+                        background-color: #fff;
+                    }
+                }
+                &:nth-child(3) {
+                    flex-direction: row-reverse;
+                    .checkbox-btn { 
+                        margin-left: -2rem;
+                    }
+                }
+
+            }
+            
+            .section-title {
+                width: auto;
+                min-width: 150px;
+                text-align: center;
+                flex: 1 50%;
+                text-transform: uppercase;
+                font-weight: 900;
+                font-size: 1.5rem;                
+                margin-top: -2rem;
+                position: relative;
+                &::after  {
+                    content: "";
+                    border-bottom: 4px #FFFFFF solid;                    
+                    display: block;
+                }       
+                ul.other-questions {
+                    position: absolute; 
+                    text-align: center;
+                    left: 0;
+                    right: 0;
+                    color: #007885;
+                    list-style: none;
+                    font-size: 0.8rem;
+                    margin: 0;
+                    padding: 0;
+                    padding-top: 2rem;
+                }       
+            }
+        }
+    }
+}
+
+
+ .btn {     
+    padding: 0.5rem 2rem;
+    border: 1px solid #3A8C8F;
+    max-width: 350px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 3rem;
+    background-color: #3A8C8F;
+    cursor: pointer;
+     &.btn-outline {
+        background-color: transparent;         
+        border: 1px solid #FFF;
+        &:hover {
+            color: #3A8C8F!important;
+            background-color: #FFF;
+        }
+     }
+     &.big {
+        font-size: 1.5rem;        
+        padding: 0.5rem 4rem;
+     }
+ }
+#modals {    
+    .modal {
+        z-index: 100;
+        position: fixed;
+        left: 0;
+        top:0;
+        bottom: 0;
+        right: 0;
+        width: auto;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        /*display: flex;*/
+        display: none;       
+        align-items: center;
+        .modal-box {       
+            position: relative; 
+            border: 4px solid #3A8C8F;
+            padding: 3rem 4rem;
+            background-color: #FFFFFF;
+            height: auto;
+            width: 720px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 250px;
+            box-sizing: border-box;
+            background-size: 220px auto;
+            background-position: 1rem center;
+            background-repeat: no-repeat;
+            .modal-title {
+                color:#3A8C8F;
+                font-size: 4rem;
+                font-weight: 600;
+            }
+            .desec {
+                font-size: 1rem;
+            }
+            .close-modal {
+                position: absolute;
+                right: -2rem;
+                top: -2rem;
+                background-color: #3A8C8F;
+                border: 2px #3A8C8F solid;
+                color: #FFFFFF;
+                width: 35px;
+                height: 35px;
+                border-radius: 25px;
+                text-align: center;
+                font-size: 1.5rem;
+                font-weight: 900;
+                cursor: pointer;
+                &:hover {
+                    color: #3A8C8F;
+                    background-color: #FFF;
+                    border: 2px #3A8C8F solid;
+                }
+            }
+        }
+        &.team .modal-box {
+            background-image: url(../images/team.png);
+        }
+        &.tools .modal-box {
+            background-image: url(../images/tools.png);
+        }
+    }
+}
+
+
+
+
+#sopro-logo {
+    .Arched_x0020_Green{fill:url(#SVGID_1_);stroke:#FFFFFF;stroke-width:0.25;stroke-miterlimit:1;}
+    .Arched_x0020_Green{fill:url(#SVGID_1_);stroke:#FFFFFF;stroke-width:0.25;stroke-miterlimit:1;}
+    .st0{fill:none;}
+    .st1{fill-rule:evenodd;clip-rule:evenodd;fill:#808285;}
+    .st2{fill-rule:evenodd;clip-rule:evenodd;fill:#3A8C8F;}
+    .st3{fill:#00AF8F;}
+    .st4{fill:#808285;}
+    .st5{fill:#3A8C8F;}
+    &.white {
+        .Arched_x0020_Green,
+        .Arched_x0020_Green,
+        .st1, 
+        .st2, 
+        .st3, 
+        .st4, 
+        .st5{
+            stroke:#FFFFFF;
+            fill:#FFFFFF;
+        }
+    }
+}
