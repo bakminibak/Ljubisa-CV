@@ -291,6 +291,8 @@ html, body {
       -ms-flex-align: center;
           align-items: center;
   font-size: 1.5rem;
+  -webkit-transition: all 100ms ease-in-out;
+  transition: all 100ms ease-in-out;
 }
 
 #your-guidelines #quiz-holder .question-row .question-wrap .answer:hover {
@@ -342,7 +344,7 @@ html, body {
   padding-top: 2rem;
 }
 
-.btn {
+a.btn {
   padding: 0.5rem 2rem;
   border: 1px solid #3A8C8F;
   max-width: 350px;
@@ -350,20 +352,21 @@ html, body {
   margin-right: auto;
   margin-top: 3rem;
   background-color: #3A8C8F;
+  color: white;
   cursor: pointer;
 }
 
-.btn.btn-outline {
+a.btn.btn-outline {
   background-color: transparent;
   border: 1px solid #FFF;
 }
 
-.btn.btn-outline:hover {
+a.btn.btn-outline:hover {
   color: #3A8C8F !important;
   background-color: #FFF;
 }
 
-.btn.big {
+a.btn.big {
   font-size: 1.5rem;
   padding: 0.5rem 4rem;
 }

@@ -217,7 +217,8 @@ html, body {
                     min-height: 100px;
                     display: flex;
                     align-items: center;
-                    font-size: 1.5rem;
+                    font-size: 1.5rem;                              
+                    transition: all 100ms ease-in-out;
                     &:hover {                    
                         color: #00A4B5;
                         background-color: #fff;
@@ -265,7 +266,7 @@ html, body {
 }
 
 
- .btn {     
+ a.btn {     
     padding: 0.5rem 2rem;
     border: 1px solid #3A8C8F;
     max-width: 350px;
@@ -273,6 +274,7 @@ html, body {
     margin-right: auto;
     margin-top: 3rem;
     background-color: #3A8C8F;
+    color:white;
     cursor: pointer;
      &.btn-outline {
         background-color: transparent;         
