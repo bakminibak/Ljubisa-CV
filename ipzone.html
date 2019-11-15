@@ -262,7 +262,7 @@ var myInterval;
 var loadingBar;
 
 function LoadingBar(_pageLoaderID, _seed, _style, _random= false){
-    console.log("LoadingBar Constructor:", _pageLoaderID, _step, _style, _random);
+    console.log("LoadingBar Constructor:", _pageLoaderID, _seed, _style, _random);
 
     var _initTime = new Date().getTime();
     var _timePassed = 0;
@@ -412,7 +412,7 @@ function stopInterval(_interval){
     clearInterval(_interval);
 }
 function startInterval(){    
-    myInterval = setInterval(globalTickTack, 50);
+    myInterval = setInterval(globalTickTack, 50, true);
 }
 function initLoadingBar(){
 
