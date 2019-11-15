@@ -1,5 +1,12 @@
 @import 'dos.css';
 
+:root {
+    --primary-color: #000084;
+    --primary-sub-color: #3c3c86;
+    --secondary-color: #f5e025;
+    --secondary-sub-color: rgb(189, 160, 0);
+
+}
 html, body {
     padding: 0;
     margin: 0;      
@@ -9,7 +16,9 @@ html, body {
     min-width: 300px;  
     font-size: 10px !important;
 }
-
+.output-msg a {
+    display: block;
+}
 header{
     width: inherit !important;
     height: 50px;
@@ -104,6 +113,9 @@ ul#info-toolbar {
     line-height: 35px;  
     background-color: #363636;  
 }
+ul#info-toolbar:focus {
+    background-color: #6e0404;  
+}
 #info-toolbar li, #info-toolbar li ul li {
     cursor: pointer;
 }
@@ -119,8 +131,14 @@ ul#info-toolbar {
 #info-toolbar li:hover ul, #info-toolbar li:active ul { 
     display: block;
 }
+
+form#input-panel {
+}
+
 label {
     font-size: 10px !important;
+    padding: 0.5rem 1.5rem;
+    display: inline-block;
 }
 textarea, input{
     font-family: 'Press Start 2P', cursive;
@@ -172,7 +190,7 @@ input:focus {
 .terminal .output {
     padding: 5px;
     margin-top: -25px;
-    background-color: #000084;
+    background-color: var(--primary-color);
     float: left;
     
 }
@@ -196,4 +214,88 @@ form {
     border-style: double !important;
     padding: 5px;
     
+}
+.scroll {
+    background-color: var(--primary-color);
+}
+.dos .page-loader {    
+    background-color: var(--primary-color);
+    position: absolute;
+    width: auto;
+    height: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    color: #ffffff;
+    z-index: 0;
+    justify-content: center;
+    text-align: center;
+}
+.dos .page-loader .loader-wrap {
+    width: 50%;
+    margin: 0 auto;
+}
+.dos .page-loader .bar {
+    margin: 1rem 0.5rem;
+    padding: 0.5rem 0.5rem;
+    border: #cccccc 1px solid;
+    margin-left: auto;
+    margin-right: auto;
+    min-width: 30rem;
+    width: auto;
+    background-size: 100px;
+    position: relative;
+}
+.dos .page-loader .bar .bar-cells {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    height: auto;
+    min-height: 4rem;
+}
+.dos .page-loader .bar .bar-cells .cell {
+    background-color: var(--secondary-color);
+    border: 1px solid var(--primary-color);
+    width: auto;
+    height: 2rem;
+    min-width: 4px;
+    min-height: 4px;
+    box-sizing: border-box;
+    margin: 0 1px;
+    font-size: 4px;
+    display: flex;
+    flex-grow: 1;
+    flex-wrap: wrap;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    text-indent: -1000rem;
+    transition: all 500ms linear;
+}
+
+.dos .page-loader .bar .bar-cells .cell.empty {
+    background-color:  var(--primary-color);    
+    border: 2px solid var(--primary-sub-color);
+    height: 2rem;  
+}
+.dos .page-loader .bar .bar-cells .cell.selected {
+    background-color:var(--secondary-sub-color);  
+}
+#bio {
+    display: none;
+}
+#local-time {
+    padding: 0.5rem 1rem;
+    background-color: dimgrey;
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: auto;
+    bottom: 0%;
+    display: flex;
+    align-items: center;
 }
