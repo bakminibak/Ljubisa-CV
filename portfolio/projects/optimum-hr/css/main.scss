@@ -81,7 +81,9 @@ p {
 }
 
 .hero-section {
-    background-image: url('../images/slider/photo-1532012197267-da84d127e765.webp');
+    //background: url('../images/slider/photo-1532012197267-da84d127e765.webp');
+    background: rgb(2,0,36);
+    background: linear-gradient(135deg, rgba(2,0,36,0.9) 0%, rgba(9,121,25,0.5) 100%), url('../images/slider/photo-1532012197267-da84d127e765.webp'); 
     background-size: cover;
     background-position: 0 center;
 
@@ -120,6 +122,19 @@ p {
     border-radius: 10rem;
     font-size: 24px;
 }
+.btn {
+    &.btn-readmore {
+        margin: 0;
+        padding: 5px 10px;
+        background-color: #7ba539;
+        color: white;
+        transition: all 0.5s ease-out;
+        &:hover {            
+            color: #7ba539;
+            background-color: white;
+        }
+    }
+}
 .no-scroll {
     //position: fixed;
     overflow: hidden;
@@ -131,6 +146,7 @@ p {
     .set-bg {
         display: flex;
         align-items: center;
+        min-height: 250px;
     }
 }
 .categorie-item {
@@ -138,4 +154,41 @@ p {
         min-height: 260px;
 
     }
+    &:hover {
+        .btn-readmore {           
+            color: #7ba539;
+            background-color: white;
+        }
+        
+    }
+}
+#Services {
+    .categorie-item {
+        &.training {
+            .set-bg {
+                background-position: center bottom!important;
+            }
+        }
+        &.hr-research  {
+            .set-bg {
+                background-position: center bottom!important;
+            }
+        }
+        &.team-building  {
+            .set-bg {
+                background-position: center center!important;
+            }
+        }
+        &.employment {
+            .set-bg {
+                background-position: center center!important;
+            }
+        }
+        &.hr-consulting {
+            .set-bg {
+                background-position: center 77% !important;
+            }
+        }
+    }
+
 }
