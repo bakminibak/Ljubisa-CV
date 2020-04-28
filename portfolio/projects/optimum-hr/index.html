@@ -71,7 +71,7 @@
 
 
 	<!-- Hero section -->
-	<section class="hero-section" data-setbg="images/slider/photo-1532012197267-da84d127e765.webp" style="">
+	<section class="hero-section" data-setbg="images/slider/header_image.jpg" style="">
 		<div class="container">
 			<div class="hero-text text-white">
 				<h2 class="padded-multiline mb-3"><span>Get professional HR services</span></h2>
@@ -477,11 +477,30 @@ Copyright ©<script>document.write(new Date().getFullYear());</script> All right
 			infinite: true,
 			centerMode: true,
 			centerPadding: '20px',
-			slidesToShow: 7,
+			slidesToShow: 5,
 			slidesToScroll: 1,
 			adaptiveHeight: true,
 			autoplay: true,
 			autoplaySpeed: 2000,
+			responsive: [
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 4,
+        slidesToScroll: 2
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 1
+      }
+    }
+    // You can unslick at a given breakpoint now by adding:
+    // settings: "unslick"
+    // instead of a settings object
+  ]
 		});
 
 		function openModal(e){
