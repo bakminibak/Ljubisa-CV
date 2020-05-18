@@ -6,22 +6,20 @@
 	<meta name="description" content="WebUni Education Template">
 	<meta name="keywords" content="webuni, education, creative, html">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<!-- Favicon -->   
-	<link href="https://technext.github.io/webuni/img/favicon.ico" rel="shortcut icon">
 
 	<!-- Google Fonts -->
-	<link href="index_data/css.css" rel="stylesheet">
+	<link href="./index_data/css.css" rel="stylesheet">
 
 	<!-- Stylesheets -->
-	<link rel="stylesheet" href="index_data/bootstrap.css">
-	<link rel="stylesheet" href="index_data/font-awesome.css">
-	<link rel="stylesheet" href="index_data/owl.css">
-	<link rel="stylesheet" href="index_data/style.css">
+	<link rel="stylesheet" href="./index_data/bootstrap.css">
+	<link rel="stylesheet" href="./index_data/font-awesome.css">
+	<link rel="stylesheet" href="./index_data/owl.css">
+	<link rel="stylesheet" href="./index_data/style.css">
 	
 	<link rel="stylesheet" type="text/css" href="./slick/slick.css">
 	<link rel="stylesheet" type="text/css" href="./slick/slick-theme.css">
 	
-	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="./css/main.css">
 
 
 	<!--[if lt IE 9]>
@@ -50,9 +48,9 @@
 				</div>
 				<div class="col-lg-9 col-md-9">
 					<a href="" class="site-btn header-btn d-none">Login</a>
-					<select class="site-btn header-btn">
-						<option selected>English</option>
-						<option value="1">MK</option>
+					<select class="site-btn header-btn" onchange="languageSwitch(event)">
+						<option selected value="">English</option>
+						<option value="MK">Македонски</option>
 					  </select>
 					<nav class="main-menu">
 						<ul>
@@ -246,7 +244,7 @@ Evaluating of the effects of the introduced protocols and policies in the organi
 						<div class="ci-thumb set-bg" data-setbg="images/slider/employmentconsulting.jpg" style="background-image: url('images/slider/employmentconsulting.jpg');"></div>
 						<div class="ci-text">
 							<h5>Employment Consulting</h5>
-							<p>Lorem ipsum dolor sit amet, consectetur</p>
+							<p><strong>Head hunt</strong></p>
 							<div class="btn btn-readmore"   data-toggle="modal" data-target="#service-employment-counsilting">Read More</div>
 						</div>						
 						<div id="service-employment-counsilting" class="modal fade full-bg"  tabindex="-1" role="dialog" aria-labelledby="service-employment-counsilting" aria-hidden="true">
@@ -312,7 +310,7 @@ Evaluating of the effects of the introduced protocols and policies in the organi
 	<section id="Contact" class="course-section contact-form">
 		<h2 style="text-align: center; padding-bottom: 2rem;">Contact</h2>
 		<div id="FSContact1" style="width:99%; max-width:555px;">
-			<form action="http://optimumhr.mk/%d0%ba%d0%be%d0%bd%d1%82%d0%b0%d0%ba%d1%82/#FSContact1" id="fscf_form1" method="post">
+			<form action="http://optimumhr.mk/%d0%ba%d0%be%d0%bd%d1%82%d0%b0%d0%ba%d1%82/#FSContact1" id="fscf_form1" method="post"  onsubmit="return checkform(this);">
 			
 			<div id="fscf_required1">
 			  <span style="text-align:left;">*</span> <span style="text-align:left;">indicates required field</span>
@@ -326,8 +324,8 @@ Evaluating of the effects of the introduced protocols and policies in the organi
 				<div style="text-align:left; padding-top:5px;">
 				</div>
 				<div style="text-align:left;" class="input-half">
-				  <input style="" type="text" id="fscf_f_name1" name="f_name" value="Име">
-				  <input style="" type="text" id="fscf_l_name1" name="l_name" value="Презиме">
+				  <input style="" type="text" id="fscf_f_name1" name="f_name" value="Name">
+				  <input style="" type="text" id="fscf_l_name1" name="l_name" value="Surname">
 				</div>
 			  </div>
 			</div>
@@ -339,7 +337,7 @@ Evaluating of the effects of the introduced protocols and policies in the organi
 				<div style="text-align:left; padding-top:5px;">
 				</div>
 				<div style="text-align:left;">
-				  <input style="" type="text" id="fscf_email1" name="email" value="Вашиот Email">
+				  <input style="" type="text" id="fscf_email1" name="email" value="Your Email">
 				</div>
 			  </div>
 			</div>
@@ -351,7 +349,7 @@ Evaluating of the effects of the introduced protocols and policies in the organi
 				<div style="">
 				</div>
 				<div style="text-align:left;">
-				  <input style="" type="text" id="fscf_field1_2" name="subject" value="Тема на разговор">
+				  <input style="" type="text" id="fscf_field1_2" name="subject" value="Subject">
 				</div>
 			  </div>
 			</div>
@@ -363,29 +361,27 @@ Evaluating of the effects of the introduced protocols and policies in the organi
 				<div style="text-align:left; padding-top:5px;">
 				</div>
 				<div style="text-align:left;">
-				  <textarea style="" id="fscf_field1_3" name="message" cols="30" rows="10">Вашата порака тука</textarea>
+				  <textarea style="" id="fscf_field1_3" name="message" cols="30" rows="10">Your message</textarea>
 				</div>
 			  </div>
 			</div>
 			<div style="clear:both;"></div>
-			
-			<div style="text-align:left; padding-top:5px;">
+			<!-- START CAPTCHA -->
+			<br>
+			<div class="capbox">
+
+			<div id="CaptchaDiv"></div>
+
+			<div class="capbox-inner">
+			Type the number:<br>
+
+			<input type="hidden" id="txtCaptcha">
+			<input type="text" name="CaptchaInput" id="CaptchaInput" size="15"><br>
+
 			</div>
-			<div id="fscf_captcha_image_div1" style="width:250px; height:65px; padding-top:2px;">
-				  <img id="fscf_captcha_image1" style="border-style:none; margin:0; padding:0px; padding-right:5px; float:left;" src="http://optimumhr.mk/wp-content/plugins/si-contact-form/captcha/securimage_show.php?prefix=b8Bk5qZUaBPOcAyZ" alt="CAPTCHA Image" title="CAPTCHA Image" width="175" height="60">
-				  <input id="fscf_captcha_prefix1" type="hidden" name="fscf_captcha_prefix1" value="b8Bk5qZUaBPOcAyZ">
-				 <div id="fscf_captcha_refresh1">
-					<a href="#" rel="nofollow" title="Refresh Image" onclick="fscf_captcha_refresh('1','/wp-content/plugins/si-contact-form/captcha','http://optimumhr.mk/wp-content/plugins/si-contact-form/captcha/securimage_show.php?prefix='); return false;">
-					<img src="http://optimumhr.mk/wp-content/plugins/si-contact-form/captcha/images/refresh.png" alt="Refresh Image" style="border-style:none; margin:0; padding:0px; vertical-align:bottom;" onclick="this.blur();" width="22" height="20"></a>
-				 </div>
 			</div>
-			
-			<div id="fscf_captcha_field1" style="text-align:left; padding-top:5px;">
-				 <label style="text-align:left;" for="fscf_captcha_code1">CAPTCHA Code:<span style="text-align:left;">*</span></label>
-			</div>
-			<div style="text-align:left;">
-				 <input style="" type="text" value="" id="fscf_captcha_code1" name="captcha_code">
-			</div>
+			<br><br>
+			<!-- END CAPTCHA -->
 			
 			<div id="fscf_submit_div1" style="text-align:left; clear:both; padding-top:15px;">
 					<input type="submit" id="fscf_submit1" style="cursor:pointer; margin:0;" value="Submit"> 
@@ -432,7 +428,7 @@ Evaluating of the effects of the introduced protocols and policies in the organi
 					<div class="widget-item">
 						<h4>Contact Info</h4>
 						<ul class="contact-list">
-							<li>ул. Коста Кирков бр. 5<br> Скопје, Македонија</li>
+							<li>Kosta Kirkov 5<br> Skopje, N. Macedonia</li>
 							<li>+389 76 645 077</li>
 							<li>contact@optimumhr.mk</li>
 						</ul>
@@ -452,7 +448,7 @@ Evaluating of the effects of the introduced protocols and policies in the organi
 					<li><a href="#">Privacy</a></li>
 				</ul>
 				<div class="copyright"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright ©<script>document.write(new Date().getFullYear());</script> All rights reserved | n></div>
+Copyright ©<script>document.write(new Date().getFullYear());</script> All rights reserved></div>
 			</div>
 		</div>
 	</footer> 
@@ -469,7 +465,6 @@ Copyright ©<script>document.write(new Date().getFullYear());</script> All right
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 		
 	<script src="index_data/bootstrap.js"></script>
-	<script src="index_data/main.js"></script>
 
 	<script>
 		$(".clients-lists").slick({
@@ -503,18 +498,61 @@ Copyright ©<script>document.write(new Date().getFullYear());</script> All right
   ]
 		});
 
-		function openModal(e){
-			var target = e.currentTarget;
-			var modal = e.currentTarget.parentElement.parentElement.querySelector('.modal');
-
-			document.querySelector('body').classList.toggle("no-scroll");
-			modal.classList.toggle("show");
-			modal.addEventListener('click', function(){
-				console.log("MODAL CLICKED", this);
-				this.classList.remove("show");
-				document.querySelector('body').classList.remove("no-scroll");
-			}, false);
+		function languageSwitch(e){
+			console.log("Sw-L", e.target.value);
+			var domain =  window.location.href.substr(0,window.location.href.indexOf("/"));
+			console.log("domain", domain);
+			window.open(domain+"/"+e.target.value,"_self")
 		}
-
 	</script>
+
+<script type="text/javascript">
+
+	// Captcha Script
+	
+	function checkform(theform){
+	var why = "";
+	
+	if(theform.CaptchaInput.value == ""){
+	why += "- Please Enter CAPTCHA Code.\n";
+	}
+	if(theform.CaptchaInput.value != ""){
+	if(ValidCaptcha(theform.CaptchaInput.value) == false){
+	why += "- The CAPTCHA Code Does Not Match.\n";
+	}
+	}
+	if(why != ""){
+	alert(why);
+	return false;
+	}
+	}
+	
+	var a = Math.ceil(Math.random() * 9)+ '';
+	var b = Math.ceil(Math.random() * 9)+ '';
+	var c = Math.ceil(Math.random() * 9)+ '';
+	var d = Math.ceil(Math.random() * 9)+ '';
+	var e = Math.ceil(Math.random() * 9)+ '';
+	
+	var code = a + b + c + d + e;
+	document.getElementById("txtCaptcha").value = code;
+	document.getElementById("CaptchaDiv").innerHTML = code;
+	
+	// Validate input against the generated number
+	function ValidCaptcha(){
+	var str1 = removeSpaces(document.getElementById('txtCaptcha').value);
+	var str2 = removeSpaces(document.getElementById('CaptchaInput').value);
+	if (str1 == str2){
+	return true;
+	}else{
+	return false;
+	}
+	}
+	
+	// Remove the spaces from the entered and generated code
+	function removeSpaces(string){
+	return string.split(' ').join('');
+	}
+	</script>
+
+
 </body></html>
