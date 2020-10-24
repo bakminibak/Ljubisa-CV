@@ -9,24 +9,24 @@
     </head>
     <body class="dos">
         <header>
-                <ul id="info-toolbar">
-                    <li id="mainmenu" class="layout-style"><a href="#"><span>[MENU]</span></a></li>
-                </ul>                    
-                <nav role="navigation">
-                    <div id="menuToggle">
-                        <input type="checkbox" />            
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <ul id="menu">
-                            <a href="/cv/"><li>My CV</li></a>
-                            <a href="/cv/#portfolio"><li>Portfolio</li></a>
-                            <a href="#"><li>Experimental</li></a>
-                        </ul>
-                    </div>
-                </nav>
-                <div id="local-time">00:00:00:0</div>
-            </header>
+            <ul id="info-toolbar">
+                <li id="mainmenu" class="layout-style"><a href="#"><span>[MENU]</span></a></li>
+            </ul>                    
+            <nav role="navigation">
+                <div id="menuToggle">
+                    <input type="checkbox" />            
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <ul id="menu">
+                        <a href="/cv/"><li>My CV</li></a>
+                        <a href="/cv/#portfolio"><li>Portfolio</li></a>
+                        <a href="#"><li>Experimental</li></a>
+                    </ul>
+                </div>
+            </nav>
+            <div id="local-time">00:00:00:0</div>
+        </header>
         <section id="homePage">
             <div class="container">
                 <div class="wrap">
@@ -394,8 +394,9 @@ function startLoader(){
     console.log("startLoaders");
     //loadingBar.init();
     
-    loadingBar = new LoadingBar("p-loader", 50, "loop", true);
-    loadingBar.start();
+    loadingBar = new LoadingBar("p-loader", 50, "loop", false);
+    loadingBar.start();    
+    startInterval();
 }
 
 function globalTickTack(){
@@ -419,10 +420,17 @@ function initLoadingBar(){
 }
 
 
+class ImageOverlayLoader {
+    constructor(img= 'default.jpg', height, width) {
+        this.height = height;
+        this.width = width;
+    }
+}
+
+
 function documentLoad(){    
     getCommand();
     startLoader();    
-    startInterval();
 }
 
 documentLoad();

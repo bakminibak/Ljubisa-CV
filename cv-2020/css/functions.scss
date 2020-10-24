@@ -1,0 +1,32 @@
+$z-layers: (
+  "goku":            9001, 
+  "middle":       8000,
+  "modal": (
+    "base":           500,
+    "close":          100,
+    "header":          50,
+    "footer":          10
+  ),
+  "default":            1,
+  "below":             -1,
+  "bottomless-pit": -9000
+);
+        
+
+
+@function z($layer) {
+    // ... where the magic happens.
+    @if not map-has-key($z-layers, $layer) {
+        @warn "No layer found for `#{$layer}` in $z-layers map. Property omitted.";
+      }
+    
+    @return map-get($z-layers, $layer);
+  }
+
+@function map-deep-get($map, $keys...) {
+    @each $key in $keys {
+        $map: map-get($map, $key);
+    }
+
+    @return $map;
+}
