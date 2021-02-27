@@ -9,11 +9,12 @@ let layerCloseup = starsContainer.querySelector(".closeup");
 
 
 class Panel {
-    constructor(panelName, panelID, panelHolder, buttonsList) {
+    constructor(panelName, panelID, _panelHolderElement, buttonsList, infoElements = null) {
+        console.log("Panel constructor: ", _panelHolderElement);
         let bottomResizerEnabled = true;
         this.panelID = panelID;
         this.enablePanelAnim = true;
-        this.panelHolderElement = document.querySelector(panelHolder);
+        this.panelHolderElement = _panelHolderElement; //document.querySelector(_panelHolderElement);
         this._panelName = panelName;
         this.newPanel = document.createElement("div");
         this.newPanelHeader = document.createElement("header");
@@ -32,6 +33,8 @@ class Panel {
         //this.newPanel.appendChild(this.wrapperInput);
         this.newPanel.appendChild(this.newPanelInfo);
 
+        console.log(this.panelHolderElement);
+
         if (!bottomResizerEnabled) {
             this.panelHolderElement.appendChild(this.newPanel);
         } else {
@@ -39,9 +42,8 @@ class Panel {
             this.panelHolderElement.insertBefore(this.newPanel, resierEl);
         }
     
-        if (buttonsList) {this.initPanelHeaderButtons(buttonsList)}  
-
-        
+        if (buttonsList) {this.initPanelHeaderButtons(buttonsList)};
+        if (infoElements) {this.addSettingsInfo(infoElements)};
     }
 
     initElements() {
@@ -188,7 +190,7 @@ class PanelController {
         let panelCounter = 0;
         let panelsWrapperControler = _panelsWrapperControler;
         let panelHolderElement = document.querySelector(panelsWrapperControler);
-
+        console.log("PanelController constructor: ", panelHolderElement);
         const panelCounterPrefix = 'p-item-';        
         const defaultButtons = ['minimize', 'more', 'close'];       
 
@@ -196,6 +198,7 @@ class PanelController {
         
         this.wrapperInput = document.createElement("input");
         this.wrapperInput.id = 'wrapperInput';
+        this.wrapperInput.placeholder = 'Create New Panel';
 
         panelHolderElement.insertBefore(this.wrapperInput, panelHolderElement.querySelector('.panels-wrapper__resizer'));
      
@@ -204,17 +207,20 @@ class PanelController {
         //this.wrapperInput = document.querySelector("#wrapperInput");
         this.wrapperInput.addEventListener("keyup", event =>{
             if (event.keyCode === 13) {
-                this.addNewPanel(event.currentTarget.value, panelCounterPrefix + panelCounter, panelsWrapperControler, defaultButtons)
+                let foo = event.currentTarget.value;
+                this.addNewPanel(foo, panelCounterPrefix + panelCounter, panelHolderElement, defaultButtons);
                 panelCounter++;                
             }
         })
     }
-    addNewPanel(value, panelID, panelsWrapperControler, defaultButtons){
-        let newPanel = new Panel(value, panelID, panelsWrapperControler, defaultButtons);
+    addNewPanel(value, panelID, panelsWrapperControler, defaultButtons, infoElement){
+        console.log('PanelController addNewPanel:', panelsWrapperControler);
+        let newPanel = new Panel(value, panelID, panelsWrapperControler, defaultButtons, infoElement);
         this.panelList.push(newPanel);
+        return newPanel;
     }
     removePanel(panelID) {
-        console.log('-- PanelController removePanel');
+        console.log('-- PanelController removePanel', panelID);
         let counter = 0;
         let panelIndex = 0;
         this.panelList.forEach(element => {
@@ -235,7 +241,8 @@ var intervalID;
 let panelController = new PanelController(".panels-wrapper");
 //panelController.addNewPanel('panel1', ['add', 'remove', 'minimize', 'close']);
 //let newPanel1 = new Panel('panel1', 'p1', '.panels-wrapper',['add', 'remove', 'minimize', 'close']);
-
+let mouseX = 0;
+let mouseY = 0;
 
 
 window.onload = function() {
@@ -251,24 +258,98 @@ function init(){
     document.querySelector("#start").addEventListener('click', (event) => {
         console.log("clicked");
     });
-    let newPanel1 = new Panel('panel1', 'p1', '.panels-wrapper',['add', 'remove', 'minimize', 'close']);
-    let newPanel2 = new Panel('panel2', 'p2', '.panels-wrapper',['add', 'remove', 'minimize', 'close']);
+    //let newPanel1 = new Panel('Browser Info', 'p1', document.querySelector('.panels-wrapper'),['add', 'remove', 'minimize', 'close']);
+    //let newPanel2 = new Panel('System', 'p2', document.querySelector('.panels-wrapper'),['add', 'remove', 'minimize', 'close']);
+    
+    let newPanel1 = panelController.addNewPanel('Browser Info', 'p1', document.querySelector('.panels-wrapper'),['add', 'remove', 'minimize', 'close']);
+    let newPanel2 = panelController.addNewPanel('System', 'p2', document.querySelector('.panels-wrapper'),['add', 'remove', 'minimize', 'close']);
     
     //newPanel1.init();
     newPanel1.addSettingsInfo([["cookieEnabled", navigator.cookieEnabled], ["appCodeName", navigator.appCodeName], ["product", navigator.product]]);
     newPanel1.addTextarea('console', navigator.userAgent)
     newPanel2.addSettingsInfo([["typeof(Worker)", typeof(Worker)], ["s333ssss info", "value"], ["sss44ss info", "value"]]);
     newPanel2.updatePanelItem(2, 400);
-    //initTicker();
+    initTicker();
+    document.addEventListener('mousemove', handleMouseMove);   
     /**/
+    
     console.log(navigator.userAgent);
 }
 
+function getMousePos(evt) {
+    let canvasName = "infoViewCanvas";
+    var rect = document.getElementById(canvasName).getBoundingClientRect();
+ 
+    var X = (evt.clientX - rect.left) / (document.getElementById(canvasName).clientWidth / document.getElementById(canvasName).width);
+    var Y = (evt.clientY - rect.top) / (document.getElementById(canvasName).clientHeight / document.getElementById(canvasName).height);
+    X = Math.ceil(X);
+    Y = Math.ceil(Y);
+ 
+    return {
+        x: X,
+        y: Y
+    };
+}
 function initTicker() {
     intervalID = setInterval(updateInterval, 1000);
 }
 
 function updateInterval(){
-    console.log('updateInterval');
-    newPanel2.updatePanelItem(2, new Date().getTime().toString());
+    console.log('TIK updateInterval');
+    //newPanel2.updatePanelItem(2, new Date().getTime().toString());
+    //drawOnCanvas();
+}
+
+function drawOnCanvas(x,y){
+    console.log('draw', x, y);
+    const canvas = document.getElementById('infoViewCanvas');
+    //this.mouseX = 0;
+    //this.mouseY = 0;
+    this.ctx = canvas.getContext('2d');
+    //this.ctx.scale(0.5, 0.5);
+    isDrawing = true;
+    console.log('mousemove: ', x, y);
+    ctx.fillStyle = 'rgba(0, 150, 200, 0.4)';
+    ctx.fillRect(x, y, 2, 2);
+
+    
+}
+function handleMouseMove(event) {
+    let  canvasName = "infoViewCanvas";
+    var eventDoc, doc, body;
+    var rect = document.getElementById(canvasName).getBoundingClientRect();
+ 
+    
+ 
+    event = event || window.event; // IE-ism
+
+    // If pageX/Y aren't available and clientX/Y are,
+    // calculate pageX/Y - logic taken from jQuery.
+    // (This is to support old IE)
+    if (event.pageX == null && event.clientX != null) {
+        eventDoc = (event.target && event.target.ownerDocument) || document;
+        doc = eventDoc.documentElement;
+        body = eventDoc.body;
+
+        event.pageX = event.clientX +
+          (doc && doc.scrollLeft || body && body.scrollLeft || 0) -
+          (doc && doc.clientLeft || body && body.clientLeft || 0);
+        event.pageY = event.clientY +
+          (doc && doc.scrollTop  || body && body.scrollTop  || 0) -
+          (doc && doc.clientTop  || body && body.clientTop  || 0 );
+    }
+    
+    this.mouseX = x =  event.pageX;
+    this.mouseY = y = event.pageY;
+
+    console.log('handleMouseMove:',this.mouseX, this.mouseY);
+    console.log('handleMouseMove:',window.innerWidth, window.innerHeight);
+    var sX = (window.innerWidth / document.getElementById(canvasName).width);
+    var sY = (window.innerHeight / document.getElementById(canvasName).height);
+    
+    console.log('handleMouseMove sX sY:',x/7.68, y/7.66);
+   
+
+    drawOnCanvas(x/7.68, y/7.66)
+    // Use event.pageX / event.pageY here
 }

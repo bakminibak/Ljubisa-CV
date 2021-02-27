@@ -85,7 +85,7 @@ body::before {
   scrollbar-width: thin;
 }
 
-.panels-wrapper textarea.panels-wrapper__resizer {
+.panels-wrapper div.panels-wrapper__resizer textarea {
   border: none;
   min-width: inherit;
   min-height: 5px;
@@ -100,6 +100,7 @@ body::before {
 .panels-wrapper .panel {
   margin: 5px 0;
   background-color: #00000065;
+  border: 1px transparent solid;
 }
 
 .panels-wrapper .panel:first-child {
@@ -241,7 +242,6 @@ body::before {
   padding: 5px;
   margin: 5px;
   background-color: #00000065;
-  margin-bottom: 20px;
 }
 
 .panels-wrapper .panel .info > div {
@@ -284,6 +284,10 @@ body::before {
   opacity: 0;
   -webkit-animation: removePanel 0.2s ease-in;
           animation: removePanel 0.2s ease-in;
+}
+
+.panels-wrapper .panel.active, .panels-wrapper .panel:hover {
+  border: 1px rgba(126, 126, 126, 0.3) solid;
 }
 
 @-webkit-keyframes removePanel {
@@ -402,5 +406,9 @@ body::before {
 
 .front .container .content p {
   max-width: 210px;
+}
+
+#canvas-container #infoViewCanvas {
+  background-color: #182205;
 }
 /*# sourceMappingURL=style.css.map */

@@ -67,7 +67,7 @@ body {
         border: 1px solid rgb(53, 53, 53);
         color: slategrey;
         &:focus,
-        &:focus-visible,
+        &:focus-visible
         {            
             border: 1px solid rgb(53, 53, 53);
         }
@@ -84,7 +84,10 @@ body {
         font-size: 10px;
         min-height: 55px;        
         scrollbar-width: thin;
-        &.panels-wrapper__resizer {
+        
+    }
+    div.panels-wrapper__resizer {
+        textarea {
             border: none;
             min-width: inherit;
             min-height: $grid-small-gap;
@@ -95,10 +98,11 @@ body {
             flex-shrink: 0.5;
         }
     }
-
     .panel {
         margin: $grid-small-gap 0;
         background-color: #00000065;
+        
+        border: 1px transparent solid;
         &:first-child {
             margin-top: 0;
         }
@@ -209,7 +213,7 @@ body {
             padding: $grid-small-gap;  
             margin: $grid-small-gap;  
             background-color: #00000065;
-            margin-bottom: $grid-gap;
+            //margin-bottom: $grid-gap;
             & > div {
                 display: flex;
                 justify-content: space-between;
@@ -252,6 +256,10 @@ body {
             opacity: 0;
             animation:removePanel 0.2s ease-in;
         }    
+        &.active,
+        &:hover {
+            border: 1px rgba(126, 126, 126, 0.3) solid;
+        }
     }
         
 
@@ -364,4 +372,8 @@ body {
         }
     }
 }
-
+#canvas-container {
+    #infoViewCanvas {
+        background-color: rgb(24, 34, 5);
+    }
+}
