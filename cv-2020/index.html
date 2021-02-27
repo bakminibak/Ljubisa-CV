@@ -28,33 +28,38 @@
     <nav>
         <div>No nav</div>
     </nav>
-    <div class="panels-wrapper">
-        <div class="panel" id="settings">
-            <header>
-                <div class="label">settings</div>
-                <div class="buttons">
-                    <div class="button add"></div>
-                    <div class="button remove"></div>
-                    <div class="button minimize"></div>
-                    <div class="button close"></div>
-                    <div class="button more"></div>
+    <div class="scroller">
+        <div class="panels-wrapper">
+            <input id="wrapperInput" type="text" class="input" placeholder="Create New Panel">
+            <!--div class="panel" id="settings">
+                <header>
+                    <div class="label">settings</div>
+                    <div class="buttons">
+                        <div class="button add"></div>
+                        <div class="button remove"></div>
+                        <div class="button minimize"></div>
+                        <div class="button close disabled"></div>
+                        <div class="button more"></div>
+                        <div class="button expand"></div>
+                    </div>
+                </header>
+                <div class="info">
+                    <div>
+                        <div class="title">sample stat</div>  
+                        <div class="stat-value"> 12.2</div>
+                    </div>
+                    <div>
+                        <div class="title">sample stat</div>  
+                        <div class="stat-value"> 12.2</div>
+                    </div>
                 </div>
-            </header>
-            <div class="info">
-                <div>
-                    <div class="title">sample stat</div>  
-                    <div class="stat-value"> 12.2</div>
-                </div>
-                <div>
-                    <div class="title">sample stat</div>  
-                    <div class="stat-value"> 12.2</div>
-                </div>
-            </div>
-        </div>
-        <div>
-            <textarea name="console" id="" cols="30" rows="10">
-                It is vital to improve site speed and performance for user experience. In order to do this you’ll need to know the state of your site as well as which metrics you need to analyse. To understand where potential roadblocks for site speed could lie, let’s start by looking at the process of website loading.
-            </textarea>
+            </div -->
+            <!-- div>
+                <textarea name="console" id="" cols="30" rows="10">
+                    It is vital to improve site speed and performance for user experience. In order to do this you’ll need to know the state of your site as well as which metrics you need to analyse. To understand where potential roadblocks for site speed could lie, let’s start by looking at the process of website loading.
+                </textarea>
+            </div -->
+            <textarea class="panels-wrapper__resizer" cols="30" rows="1" disabled="true"></textarea>
         </div>
     </div>
     <main class="front">

@@ -2,6 +2,7 @@ $grid-gap: 20px;
 $grid-small-gap: 5px;
 
 html, body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
     width: 100vw;
@@ -24,19 +25,20 @@ body {
         background: rgb(139, 139, 139);
     }
 }
-.front {
-    margin-top: 100vh;
-}
+
 #highlights {
     color: white;
 }
+.scroller {
 
+}
 .panels-wrapper {    
     z-index: 10000;
     position: fixed;
     right: 0;
     top: 0;
     height: auto;
+    max-height: 100vh;
     margin: $grid-gap;
     padding:$grid-small-gap;
     background-color: #00000065;    
@@ -44,7 +46,32 @@ body {
     font-size: 14px;
     font-weight: normal;
     color: #ccc;
-    min-width: 320px;
+    min-width: 220px;
+    display: flex;
+    flex-direction: column;
+    
+    //overflow-x: auto;
+    //overflow-y: auto;
+
+    scrollbar-color: rebeccapurple green;
+    scrollbar-width: thin;
+
+    transition: height 2s;
+
+    &.left {left: 0; right: initial;}
+
+    
+    input,
+    .input {
+        background-color: transparent;
+        border: 1px solid rgb(53, 53, 53);
+        color: slategrey;
+        &:focus,
+        &:focus-visible,
+        {            
+            border: 1px solid rgb(53, 53, 53);
+        }
+    }
 
     textarea {
         box-sizing: border-box;
@@ -53,7 +80,20 @@ body {
         border: 1px solid rgb(49, 49, 49);
         color: rgb(167, 167, 167);        
         //margin: $grid-gap;
-        padding: $grid-gap;
+        padding: $grid-small-gap;
+        font-size: 10px;
+        min-height: 55px;        
+        scrollbar-width: thin;
+        &.panels-wrapper__resizer {
+            border: none;
+            min-width: inherit;
+            min-height: $grid-small-gap;
+            height: $grid-small-gap;
+            line-height: $grid-small-gap;
+            overflow: hidden;
+            font-size: 0px;
+            flex-shrink: 0.5;
+        }
     }
 
     .panel {
@@ -69,6 +109,7 @@ body {
             }
         }
         header {
+            
             padding: $grid-small-gap;
             display: flex;
             flex-direction: row;
@@ -77,23 +118,27 @@ body {
             border-bottom: 1px solid rgb(53, 53, 53);
             margin-bottom: calc(#{$grid-gap}/2);
             padding-bottom: calc(#{$grid-gap}/2);
-            &:hover {                
-                background-color: #747474a6;
-                color: initial;
+            &.hover-enabled {                
+                &:hover {                
+                    background-color: #747474a6;
+                    color: initial;
+                }
             }
             .label {
                 margin: 0 $grid-small-gap;
+                color: whitesmoke;
             }
             .buttons {
                 display: flex;
-                .button {
+                .button,
+                button {
                     text-transform: uppercase;
                     text-align: center;
                     $size: 14px;
                     width: $size;
                     height: $size;
                     line-height: unset;
-                    display: block;
+                    display: block;;
                     margin: 2px;
                     padding: 2px;
                     border: 1px solid rgb(59, 59, 59);
@@ -101,15 +146,21 @@ body {
                     flex-direction: row;
                     justify-content: center;
                     align-items: center;
-                    font-size: 0.6rem;
+                    font-size: 0.6rem;                    
+                    cursor: pointer;
+
+                    &.dark {
+                        background-color: transparent;
+                        border: 1px solid rgb(59, 59, 59);
+                    }
         
                     &:hover {
-                        cursor: pointer;
                         background-color: rgb(59, 59, 59);
                     }
                     &:after {
                         font-size: 10px;
                         font-weight: 900;
+                        color: #ccc;
                     }
     
                     &.add {
@@ -134,7 +185,20 @@ body {
                     }
                     &.more {
                         &:after {
-                            content: '\2026';
+                            content: '\205D';
+                        }
+                    }
+                    &.expand {
+                        &:after {
+                            content: '\2263';
+                        }
+                    }
+
+                    &.disabled {
+                        opacity: 0.3;                                   
+                        cursor: initial;
+                        &:hover {
+                            background-color: transparent;
                         }
                     }
         
@@ -153,7 +217,7 @@ body {
                 border-bottom: 1px solid #282626;
                 
                 &:hover {
-                    background-color: #ffffff15;
+                    background-color: #b8b8b82c;
                 }
                 & > div:nth-child(1) {
                     &::after {
@@ -161,17 +225,48 @@ body {
                     }
                 }
                 & > div:nth-child(2) {
-                    background-color: rgba(155, 199, 66, 0.6); 
+                    text-align: right;
+                    background-color: rgba(149, 223, 0, 0.7);
                     color: rgb(22, 32, 2);
                     padding: 0 $grid-small-gap;
-                    font-weight: 900;
+                    font-weight: 600;
+                    min-width: 50px;
                 }
             }
         }
+
+        &.minimized {
+            .buttons .button.minimize {
+                &:after {
+                    content: '\2263';
+                }
+
+            }
+            & > *:not(header)  {
+                display: none;
+            }
+
+        }
+        &.removing {
+            //position: absolute;
+            opacity: 0;
+            animation:removePanel 0.2s ease-in;
+        }    
     }
+        
 
 }
 
+@keyframes removePanel{
+    from {        
+        //transform: rotate(0deg);
+        opacity: 1;
+    } 
+    to{
+        //transform: rotate(45deg);
+        opacity: 0;
+    } 
+}
 
 .highlights--list {
     list-style: none;
@@ -243,7 +338,8 @@ body {
         }
     }
 }
-.front {
+.front {    
+    margin-top: 100vh;
     .container {
         overflow: auto;
         position: absolute;
@@ -251,6 +347,7 @@ body {
         bottom: 0;
         left: 0;
         right: 0;
+        padding-left: 50px;
         z-index: 101;
         //background-color: red;
         background: rgb(0,0,0);

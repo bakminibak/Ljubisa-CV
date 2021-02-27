@@ -1,4 +1,5 @@
 html, body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
   padding: 0;
   width: 100vw;
@@ -22,10 +23,6 @@ body::before {
   background: #8b8b8b;
 }
 
-.front {
-  margin-top: 100vh;
-}
-
 #highlights {
   color: white;
 }
@@ -36,13 +33,43 @@ body::before {
   right: 0;
   top: 0;
   height: auto;
+  max-height: 100vh;
   margin: 20px;
   padding: 5px;
   background-color: #00000065;
   font-size: 14px;
   font-weight: normal;
   color: #ccc;
-  min-width: 320px;
+  min-width: 220px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  scrollbar-color: rebeccapurple green;
+  scrollbar-width: thin;
+  -webkit-transition: height 2s;
+  transition: height 2s;
+}
+
+.panels-wrapper.left {
+  left: 0;
+  right: initial;
+}
+
+.panels-wrapper input,
+.panels-wrapper .input {
+  background-color: transparent;
+  border: 1px solid #353535;
+  color: slategrey;
+}
+
+.panels-wrapper input:focus, .panels-wrapper input:focus-visible,
+.panels-wrapper .input:focus,
+.panels-wrapper .input:focus-visible {
+  border: 1px solid #353535;
 }
 
 .panels-wrapper textarea {
@@ -52,7 +79,22 @@ body::before {
   background-color: transparent;
   border: 1px solid #313131;
   color: #a7a7a7;
-  padding: 20px;
+  padding: 5px;
+  font-size: 10px;
+  min-height: 55px;
+  scrollbar-width: thin;
+}
+
+.panels-wrapper textarea.panels-wrapper__resizer {
+  border: none;
+  min-width: inherit;
+  min-height: 5px;
+  height: 5px;
+  line-height: 5px;
+  overflow: hidden;
+  font-size: 0px;
+  -ms-flex-negative: 0.5;
+      flex-shrink: 0.5;
 }
 
 .panels-wrapper .panel {
@@ -92,13 +134,14 @@ body::before {
   padding-bottom: calc(20px/2);
 }
 
-.panels-wrapper .panel header:hover {
+.panels-wrapper .panel header.hover-enabled:hover {
   background-color: #747474a6;
   color: initial;
 }
 
 .panels-wrapper .panel header .label {
   margin: 0 5px;
+  color: whitesmoke;
 }
 
 .panels-wrapper .panel header .buttons {
@@ -107,7 +150,8 @@ body::before {
   display: flex;
 }
 
-.panels-wrapper .panel header .buttons .button {
+.panels-wrapper .panel header .buttons .button,
+.panels-wrapper .panel header .buttons button {
   text-transform: uppercase;
   text-align: center;
   width: 14px;
@@ -131,36 +175,66 @@ body::before {
       -ms-flex-align: center;
           align-items: center;
   font-size: 0.6rem;
+  cursor: pointer;
 }
 
-.panels-wrapper .panel header .buttons .button:hover {
-  cursor: pointer;
+.panels-wrapper .panel header .buttons .button.dark,
+.panels-wrapper .panel header .buttons button.dark {
+  background-color: transparent;
+  border: 1px solid #3b3b3b;
+}
+
+.panels-wrapper .panel header .buttons .button:hover,
+.panels-wrapper .panel header .buttons button:hover {
   background-color: #3b3b3b;
 }
 
-.panels-wrapper .panel header .buttons .button:after {
+.panels-wrapper .panel header .buttons .button:after,
+.panels-wrapper .panel header .buttons button:after {
   font-size: 10px;
   font-weight: 900;
+  color: #ccc;
 }
 
-.panels-wrapper .panel header .buttons .button.add:after {
+.panels-wrapper .panel header .buttons .button.add:after,
+.panels-wrapper .panel header .buttons button.add:after {
   content: '\002B';
 }
 
-.panels-wrapper .panel header .buttons .button.remove:after {
+.panels-wrapper .panel header .buttons .button.remove:after,
+.panels-wrapper .panel header .buttons button.remove:after {
   content: '\2212';
 }
 
-.panels-wrapper .panel header .buttons .button.minimize:after {
+.panels-wrapper .panel header .buttons .button.minimize:after,
+.panels-wrapper .panel header .buttons button.minimize:after {
   content: '\005F';
 }
 
-.panels-wrapper .panel header .buttons .button.close:after {
+.panels-wrapper .panel header .buttons .button.close:after,
+.panels-wrapper .panel header .buttons button.close:after {
   content: '\2716';
 }
 
-.panels-wrapper .panel header .buttons .button.more:after {
-  content: '\2026';
+.panels-wrapper .panel header .buttons .button.more:after,
+.panels-wrapper .panel header .buttons button.more:after {
+  content: '\205D';
+}
+
+.panels-wrapper .panel header .buttons .button.expand:after,
+.panels-wrapper .panel header .buttons button.expand:after {
+  content: '\2263';
+}
+
+.panels-wrapper .panel header .buttons .button.disabled,
+.panels-wrapper .panel header .buttons button.disabled {
+  opacity: 0.3;
+  cursor: initial;
+}
+
+.panels-wrapper .panel header .buttons .button.disabled:hover,
+.panels-wrapper .panel header .buttons button.disabled:hover {
+  background-color: transparent;
 }
 
 .panels-wrapper .panel .info {
@@ -182,7 +256,7 @@ body::before {
 }
 
 .panels-wrapper .panel .info > div:hover {
-  background-color: #ffffff15;
+  background-color: #b8b8b82c;
 }
 
 .panels-wrapper .panel .info > div > div:nth-child(1)::after {
@@ -190,10 +264,44 @@ body::before {
 }
 
 .panels-wrapper .panel .info > div > div:nth-child(2) {
-  background-color: rgba(155, 199, 66, 0.6);
+  text-align: right;
+  background-color: rgba(149, 223, 0, 0.7);
   color: #162002;
   padding: 0 5px;
-  font-weight: 900;
+  font-weight: 600;
+  min-width: 50px;
+}
+
+.panels-wrapper .panel.minimized .buttons .button.minimize:after {
+  content: '\2263';
+}
+
+.panels-wrapper .panel.minimized > *:not(header) {
+  display: none;
+}
+
+.panels-wrapper .panel.removing {
+  opacity: 0;
+  -webkit-animation: removePanel 0.2s ease-in;
+          animation: removePanel 0.2s ease-in;
+}
+
+@-webkit-keyframes removePanel {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes removePanel {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
 
 .highlights--list {
@@ -268,6 +376,10 @@ body::before {
   height: 50px;
 }
 
+.front {
+  margin-top: 100vh;
+}
+
 .front .container {
   overflow: auto;
   position: absolute;
@@ -275,6 +387,7 @@ body::before {
   bottom: 0;
   left: 0;
   right: 0;
+  padding-left: 50px;
   z-index: 101;
   background: black;
   background: linear-gradient(160deg, black 10%, rgba(0, 0, 0, 0) 100%), url(../images/photo-1558980664-2506fca6bfc2.jpg);
