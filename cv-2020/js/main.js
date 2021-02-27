@@ -173,10 +173,12 @@ class Panel {
         newArea.disabled = true;
         this.newPanel.appendChild(newArea)
     }
-    updatePanelItem(itemRow, value){
-        console.log('updatePanelItem: ', this);
+    updatePanelItem(itemRow, title, value){
+        //console.log('updatePanelItem: ', this);
         let items = this.newPanel.querySelectorAll('.info > div');
+        let statTitle = items[Number(itemRow)].querySelector('div');
         let statValue = items[Number(itemRow)].querySelector('.stat-value');
+        statTitle.innerHTML = title;
         statValue.innerHTML = value;
     }
     destroy(){
@@ -243,7 +245,44 @@ let panelController = new PanelController(".panels-wrapper");
 //let newPanel1 = new Panel('panel1', 'p1', '.panels-wrapper',['add', 'remove', 'minimize', 'close']);
 let mouseX = 0;
 let mouseY = 0;
+let initTime = new Date().getTime();
 
+let currentTime = () => {
+    //let passed = Math.round((new Date().getTime() - initTime)/1000)
+
+    //console.log(secondsToHms(new Date().getTime()));
+    return ;
+}
+let timePassed = () => {
+    //console.log("timePassed", initTime);
+    return secondsToHms(Math.round((new Date().getTime() - initTime)/1000));
+}
+
+let lastMousePosition = {
+    'x': 0,
+    'y':0
+}
+
+function secondsToHms(d) {
+    //d = d +3600 * 2;
+    d = Number(d);
+    var h = Math.floor(d / 3600);
+    var m = Math.floor(d % 3600 / 60);
+    var s = Math.floor(d % 3600 % 60);
+
+    /*
+    var hDisplay = h > 0 ? h + (h == 1 ? " hour, " : " hours, ") : "";
+    var mDisplay = m > 0 ? m + (m == 1 ? " minute, " : " minutes, ") : "";
+    var sDisplay = s > 0 ? s + (s == 1 ? " second" : " seconds") : "";
+    */
+
+    
+    var hDisplay = h < 10 ? h= "0"+h : h;
+    var mDisplay = m < 10 ? m= "0"+m : m;
+    var sDisplay = s < 10 ? s= "0"+s : s;
+
+    return hDisplay + ':' + mDisplay + ':'+ ':'+ sDisplay; 
+}
 
 window.onload = function() {
     init();
@@ -268,7 +307,7 @@ function init(){
     newPanel1.addSettingsInfo([["cookieEnabled", navigator.cookieEnabled], ["appCodeName", navigator.appCodeName], ["product", navigator.product]]);
     newPanel1.addTextarea('console', navigator.userAgent)
     newPanel2.addSettingsInfo([["typeof(Worker)", typeof(Worker)], ["s333ssss info", "value"], ["sss44ss info", "value"]]);
-    newPanel2.updatePanelItem(2, 400);
+    newPanel2.updatePanelItem(2,'DONT', 400);
     initTicker();
     document.addEventListener('mousemove', handleMouseMove);   
     /**/
@@ -291,35 +330,40 @@ function getMousePos(evt) {
     };
 }
 function initTicker() {
-    intervalID = setInterval(updateInterval, 1000);
+    intervalID = setInterval(updateInterval, 500);
 }
 
 function updateInterval(){
-    console.log('TIK updateInterval');
+    //console.log('TIK updateInterval', currentTime());
     //newPanel2.updatePanelItem(2, new Date().getTime().toString());
     //drawOnCanvas();
+    panelController.panelList[1].updatePanelItem(0, 'Time', new Date().toLocaleTimeString());
+    panelController.panelList[1].updatePanelItem(1, 'Time passed', timePassed());
 }
 
 function drawOnCanvas(x,y){
-    console.log('draw', x, y);
     const canvas = document.getElementById('infoViewCanvas');
+    const yellow = 'rgba(240, 255, 0, 0.01)';
+    const blue = 'rgba(0, 179, 255, 0.01)';
+    
     //this.mouseX = 0;
     //this.mouseY = 0;
     this.ctx = canvas.getContext('2d');
+    var radgrad = ctx.createRadialGradient(60,60,0,60,60,60);
+  radgrad.addColorStop(0, 'rgba(0, 179, 255, 0.1');
+  radgrad.addColorStop(0.8, 'rgba(0, 179, 255, 0.05');
+  radgrad.addColorStop(1, 'rgba(0, 179, 255, 0.01)');
     //this.ctx.scale(0.5, 0.5);
     isDrawing = true;
-    console.log('mousemove: ', x, y);
-    ctx.fillStyle = 'rgba(0, 150, 200, 0.4)';
-    ctx.fillRect(x, y, 2, 2);
+    ctx.fillStyle = radgrad;
+    ctx.fillRect(x, y, 4, 4);
 
     
 }
 function handleMouseMove(event) {
     let  canvasName = "infoViewCanvas";
     var eventDoc, doc, body;
-    var rect = document.getElementById(canvasName).getBoundingClientRect();
- 
-    
+    var rect = document.getElementById(canvasName).getBoundingClientRect();    
  
     event = event || window.event; // IE-ism
 
@@ -341,15 +385,11 @@ function handleMouseMove(event) {
     
     this.mouseX = x =  event.pageX;
     this.mouseY = y = event.pageY;
-
-    console.log('handleMouseMove:',this.mouseX, this.mouseY);
-    console.log('handleMouseMove:',window.innerWidth, window.innerHeight);
     var sX = (window.innerWidth / document.getElementById(canvasName).width);
     var sY = (window.innerHeight / document.getElementById(canvasName).height);
     
-    console.log('handleMouseMove sX sY:',x/7.68, y/7.66);
-   
+    console.log(sX, sY)
 
-    drawOnCanvas(x/7.68, y/7.66)
+    drawOnCanvas(x/sX, y/sY)
     // Use event.pageX / event.pageY here
 }
