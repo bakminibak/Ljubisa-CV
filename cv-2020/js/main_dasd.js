@@ -33,8 +33,6 @@ class Panel {
         //this.newPanel.appendChild(this.wrapperInput);
         this.newPanel.appendChild(this.newPanelInfo);
 
-        //this.panelHolderElement.draggable = true;
-        this.newPanel.draggable = true;
         console.log(this.panelHolderElement);
 
         if (!bottomResizerEnabled) {
@@ -46,23 +44,6 @@ class Panel {
     
         if (buttonsList) {this.initPanelHeaderButtons(buttonsList)};
         if (infoElements) {this.addSettingsInfo(infoElements)};
-        
-        this.newPanel.addEventListener("dragstart", ev =>{      
-            console.log('newPanel dragstart', ev);
-            
-            this.newPanel.style.opacity = '0.4';
-            // Add different types of drag data
-            ev.dataTransfer.setData("text/plain", ev.target.innerText);
-            ev.dataTransfer.setData("text/html", ev.target.outerHTML);
-            ev.dataTransfer.setData("text/uri-list", ev.target.ownerDocument.location.href);
-
-        });
-        this.newPanel.addEventListener("dragend", ev =>{      
-            console.log('newPanel dragstopt', ev);
-            
-            this.newPanel.style.opacity = '1';
-            // Add different types of drag data
-        });
     }
 
     initElements() {
@@ -113,7 +94,6 @@ class Panel {
         switch(btnType) {
             case 'close':
                 panelButton.addEventListener("click", function(evt) {
-                    panelController.setPanelWrapperState('status-working');
                     
                     console.log("close clocked", panelAnimation);
                     const panel = this.parentElement.parentElement.parentElement;
@@ -127,28 +107,23 @@ class Panel {
             case 'minimize':
                 panelButton.addEventListener("click", function() {
                     console.log("minimize clocked");
-                    
-                    panelController.setPanelWrapperState('status-working');
                     const panel = this.parentElement.parentElement.parentElement;
                     panel.classList.toggle('minimized');
                 }); 
                 break;
             case 'remove':
                 panelButton.addEventListener("click", function() {
-                    console.log("remove clocked", this.parentElement.parentElement.parentElement);                    
-                    panelController.setPanelWrapperState('status-remove');
+                    console.log("remove clocked", this.parentElement.parentElement.parentElement);
                 }); 
                 break;
             case ('add'):
                 panelButton.addEventListener("click", function() {
-                    console.log("add clocked");                    
-                    panelController.setPanelWrapperState('status-add');
+                    console.log("add clocked");
                 }); 
                 break;
             case 'expand':
                 panelButton.addEventListener("click", function() {
-                    console.log("expand clocked");                    
-                    panelController.setPanelWrapperState('status-expand');
+                    console.log("expand clocked");
                 }); 
                 break;
             case 'more':
@@ -198,125 +173,45 @@ class Panel {
         newArea.disabled = true;
         this.newPanel.appendChild(newArea)
     }
-    updatePanelItem(itemRow, title, value){
-        //console.log('updatePanelItem: ', this);
+    updatePanelItem(itemRow, value){
+        console.log('updatePanelItem: ', this);
         let items = this.newPanel.querySelectorAll('.info > div');
-        let statTitle = items[Number(itemRow)].querySelector('div');
         let statValue = items[Number(itemRow)].querySelector('.stat-value');
-        statTitle.innerHTML = title;
         statValue.innerHTML = value;
     }
     destroy(){
         
     }
-    
 }
 
 
 class PanelController {
     constructor(_panelsWrapperControler) {
-        const panelCounterPrefix = 'p-item-';        
-        const defaultButtons = ['minimize', 'more', 'close'];   
         let panelCounter = 0;
         let panelsWrapperControler = _panelsWrapperControler;
-        this.panelHolderElement = document.querySelector(panelsWrapperControler);
-        this.wrapperInput;
-        this.topStatusBar;
-        let timeoutID;
-        this.intervalID3;
-        this.dragg = {
-            'dragging': false,
-            'objStartX': 0,
-            'objStartY': 0,
-            'objX': 0,
-            'objY': 0,
-            'diffX': 0,
-            'diffY': 0
-        };
+        let panelHolderElement = document.querySelector(panelsWrapperControler);
+        console.log("PanelController constructor: ", panelHolderElement);
+        const panelCounterPrefix = 'p-item-';        
+        const defaultButtons = ['minimize', 'more', 'close'];       
 
-        this.panelList = [];           
-        
-        this.createWrapperUI_Elements();
-        this.wrapperInput.addEventListener("keyup", event =>{            
-            panelController.setPanelWrapperState('status-working');
-            this.resetPanelWrapperState(100);
-            if (event.keyCode === 13) {
-                let foo = event.currentTarget.value;
-                this.addNewPanel(foo, panelCounterPrefix + panelCounter, this.panelHolderElement, defaultButtons);
-                this.resetPanelWrapperState(500);
-                panelCounter++;                
-            }
-        });
-        /*
-        this.topStatusBar.addEventListener("mousemove", event =>{      
-            //if (this.dragg.dragging) this.startDrag();
-        });
-        this.topStatusBar.addEventListener("mousedown", event =>{      
-            let panelHolderElementRef = this; 
-            console.log('topStatusBar mousedown', panelHolderElementRef);
-            this.startDrag();
-        });
-        this.topStatusBar.addEventListener("mouseup", event =>{      
-            let panelHolderElementRef = this; 
-            console.log('topStatusBar mouseup', panelHolderElementRef);
-            this.stopDrag();
-        });
-        this.topStatusBar.addEventListener("mouseleave", event =>{      
-            let panelHolderElementRef = this; 
-            console.log('topStatusBar mouseleave', panelHolderElementRef);
-            //this.stopDrag();
-        });
-        */
-       this.panelHolderElement.addEventListener("dragstart", ev =>{      
-            console.log('topStatusBar dragstart', ev);
-            // Add different types of drag data
-            ev.dataTransfer.setData("text/plain", ev.target.innerText);
-            ev.dataTransfer.setData("text/html", ev.target.outerHTML);
-            ev.dataTransfer.setData("text/uri-list", ev.target.ownerDocument.location.href);
-
-        });
-        this.panelHolderElement.addEventListener("dragend", ev =>{      
-            console.log('topStatusBar dragstopt', ev);
-            // Add different types of drag data
-        });
-
-        
-    }
-    dragstart_handler(ev) {
-        // Add different types of drag data
-        ev.dataTransfer.setData("text/plain", ev.target.innerText);
-        ev.dataTransfer.setData("text/html", ev.target.outerHTML);
-        ev.dataTransfer.setData("text/uri-list", ev.target.ownerDocument.location.href);
-      }
-      
-    createWrapperUI_Elements() {
-        //createStatusBar
-        let panelHolderEl =  this.panelHolderElement.querySelector('.panels-wrapper__resizer');
-
-        this.topStatusBar = document.createElement("header");
-
-        this.topStatusBar.id = "header-statusbar";
-        //Create Input
+        this.panelList = [];   
         
         this.wrapperInput = document.createElement("input");
         this.wrapperInput.id = 'wrapperInput';
         this.wrapperInput.placeholder = 'Create New Panel';
-        
-        this.panelHolderElement.insertBefore(this.topStatusBar, panelHolderEl);
-        this.panelHolderElement.insertBefore(this.wrapperInput, panelHolderEl);
 
-        //
-    }
-    setPanelWrapperState(state = '') {
-        console.log("setPanelWrapperState: ", state);
-        
-        let _panelHolderElement = this.panelHolderElement;
-        let startsWith = "status-"; 
-        let classes = _panelHolderElement.className.split(" ").filter(function(v) { 
-            return v.lastIndexOf(startsWith, 0) !== 0; 
-        }); 
-        _panelHolderElement.className = classes.join(" ").trim();         
-        (state) ? _panelHolderElement.classList.add(state) : state;
+        panelHolderElement.insertBefore(this.wrapperInput, panelHolderElement.querySelector('.panels-wrapper__resizer'));
+     
+
+        console.log("PanelControler constructor: ", panelsWrapperControler);
+        //this.wrapperInput = document.querySelector("#wrapperInput");
+        this.wrapperInput.addEventListener("keyup", event =>{
+            if (event.keyCode === 13) {
+                let foo = event.currentTarget.value;
+                this.addNewPanel(foo, panelCounterPrefix + panelCounter, panelHolderElement, defaultButtons);
+                panelCounter++;                
+            }
+        })
     }
     addNewPanel(value, panelID, panelsWrapperControler, defaultButtons, infoElement){
         console.log('PanelController addNewPanel:', panelsWrapperControler);
@@ -326,61 +221,20 @@ class PanelController {
     }
     removePanel(panelID) {
         console.log('-- PanelController removePanel', panelID);
-        let _panelHolderElement = this.panelHolderElement;
         let counter = 0;
         let panelIndex = 0;
         this.panelList.forEach(element => {
             if (element.newPanel.id === panelID) {                
+                console.log('MATCH', element.newPanel.id,'=', panelID,'/', counter);
                 panelIndex = counter;
                 element.removePanelFunction();
             }                           
             counter++;
         });
         this.panelList = this.panelList.slice(0, panelIndex).concat(this.panelList.slice(panelIndex + 1, this.panelList.length));
-        this.resetPanelWrapperState();
-    }
-    resetPanelWrapperState(time = 500) {
-        this.timeoutID = setTimeout(function(){ 
-            console.log("setTimeout");
-            panelController.setPanelWrapperState();
-        }, time);
-    }
-    startDrag(){
-        console.log('startDrag: ');
-        //this.moveWrapper();        
-        this.dragg.dragging = true;
 
-        //this.intervalID3 = setInterval()
-    }
-    moveWrapper() {        
-
-        //var element =  this.panelHolderElement = document.body.getBoundingClientRect(),
-        let elemRect = this.panelHolderElement.getBoundingClientRect();
-            
-        console.log( 'elemRect', elemRect);
-
-        this.panelHolderElement.style.position = 'absolute';
-
-        console.log(this.panelHolderElement.clientX, this.panelHolderElement.clientLeft);
-        if (!this.dragg.dragging) {
-            this.dragg.diffX = elemRect.x - mouseX;
-            this.dragg.diffY = elemRect.y-20 - mouseY;
-        }
-
-        console.log('moveWrapper: ', mouseX, mouseY);
-        //let newpositionX = mouseX
-
-        this.panelHolderElement.style.right = 'auto';
-        this.panelHolderElement.style.left = (mouseX + this.dragg.diffX)+'px';
-        this.panelHolderElement.style.top = (mouseY + this.dragg.diffY)+'px';
-        
-    }
-    stopDrag(){
-        console.log('stopDrag: ', this, this.dragg);
-        this.dragg.dragging = false;
     }
 }
-
 
 
 var intervalID;
@@ -389,49 +243,13 @@ let panelController = new PanelController(".panels-wrapper");
 //let newPanel1 = new Panel('panel1', 'p1', '.panels-wrapper',['add', 'remove', 'minimize', 'close']);
 let mouseX = 0;
 let mouseY = 0;
-let sX = 0;
-let sY = 0
 let initTime = new Date().getTime();
-let lastStandingTime = new Date().getTime();
-let idleTime = () => {
-    return (currentTime() - lastStandingTime)
-}
 
 let currentTime = () => {
-    //let passed = Math.round((new Date().getTime() - initTime)/1000)
-
-    //console.log(secondsToHms(new Date().getTime()));
-    return Math.round(new Date().getTime());
-}
-let timePassed = () => {
-    //console.log("timePassed", initTime);
     return Math.round((new Date().getTime() - initTime)/1000);
 }
-
-let lastMousePosition = {
-    'x': 0,
-    'y':0
-}
-
-function secondsToHms(d) {
-    //d = d +3600 * 2;
-    d = Number(d);
-    var h = Math.floor(d / 3600);
-    var m = Math.floor(d % 3600 / 60);
-    var s = Math.floor(d % 3600 % 60);
-
-    /*
-    var hDisplay = h > 0 ? h + (h == 1 ? " hour, " : " hours, ") : "";
-    var mDisplay = m > 0 ? m + (m == 1 ? " minute, " : " minutes, ") : "";
-    var sDisplay = s > 0 ? s + (s == 1 ? " second" : " seconds") : "";
-    */
-
-    
-    var hDisplay = h < 10 ? h= "0"+h : h;
-    var mDisplay = m < 10 ? m= "0"+m : m;
-    var sDisplay = s < 10 ? s= "0"+s : s;
-
-    return hDisplay + ':' + mDisplay + ':'+ ':'+ sDisplay; 
+let timePassed = (startTime) => {
+    return Math.round((new Date().getTime() - startTime)/1000);
 }
 
 window.onload = function() {
@@ -447,16 +265,17 @@ function init(){
     document.querySelector("#start").addEventListener('click', (event) => {
         console.log("clicked");
     });
+    //let newPanel1 = new Panel('Browser Info', 'p1', document.querySelector('.panels-wrapper'),['add', 'remove', 'minimize', 'close']);
+    //let newPanel2 = new Panel('System', 'p2', document.querySelector('.panels-wrapper'),['add', 'remove', 'minimize', 'close']);
     
-    let newPanel1 = panelController.addNewPanel('Browser Info', 'p1', document.querySelector('.panels-wrapper'),['add', 'remove', 'minimize']);
-    let newPanel2 = panelController.addNewPanel('System', 'p2', document.querySelector('.panels-wrapper'),['add', 'remove', 'minimize']);
-    let newPanel3 = panelController.addNewPanel('test8', 'p28', document.querySelector('.panels-wrapper'),['add', 'remove', 'minimize', 'close']);
-
+    let newPanel1 = panelController.addNewPanel('Browser Info', 'p1', document.querySelector('.panels-wrapper'),['add', 'remove', 'minimize', 'close']);
+    let newPanel2 = panelController.addNewPanel('System', 'p2', document.querySelector('.panels-wrapper'),['add', 'remove', 'minimize', 'close']);
+    
+    //newPanel1.init();
     newPanel1.addSettingsInfo([["cookieEnabled", navigator.cookieEnabled], ["appCodeName", navigator.appCodeName], ["product", navigator.product]]);
-    newPanel1.addTextarea('console', navigator.userAgent);
-    newPanel2.addSettingsInfo([["typeof(Worker)", typeof(Worker)], ["s333ssss info", "value"], ["sss44ss info", "value"], ["sss44ss info", "value"]]);
-    newPanel2.updatePanelItem(2,'DONT', 400);
-    newPanel3.addTextarea('console', navigator.userAgent);
+    newPanel1.addTextarea('console', navigator.userAgent)
+    newPanel2.addSettingsInfo([["typeof(Worker)", typeof(Worker)], ["s333ssss info", "value"], ["sss44ss info", "value"]]);
+    newPanel2.updatePanelItem(2, 400);
     initTicker();
     document.addEventListener('mousemove', handleMouseMove);   
     /**/
@@ -479,59 +298,30 @@ function getMousePos(evt) {
     };
 }
 function initTicker() {
-    intervalID = setInterval(updateInterval, 100);
+    intervalID = setInterval(updateInterval, 1000);
 }
 
 function updateInterval(){
-    let maxIdleTime = 70000;
-    //console.log('TIK updateInterval',mouseX, mouseY,  (currentTime() - lastStandingTime)/100);
+    console.log('TIK updateInterval', currentTime());
     //newPanel2.updatePanelItem(2, new Date().getTime().toString());
     //drawOnCanvas();
-
-    if (idleTime() < maxIdleTime) drawOnCanvas(mouseX/sX, mouseY/sY, idleTime()/500);
-    panelController.panelList[1].updatePanelItem(0, 'Time', new Date().toLocaleTimeString());
-    panelController.panelList[1].updatePanelItem(1, 'Time passed', secondsToHms(timePassed()));
-    panelController.panelList[1].updatePanelItem(2, 'LST', idleTime()/10);
-    //panelController.panelList[1].updatePanelItem(3, 'Bruch Size', idleTime());
 }
 
-function drawOnCanvas(x,y, brushSize = 1, brushOpacity = 0.8){
-    //console.log('drawOnCanvas',x,y,brushSize)
-    const maxBrushSize = 150;
+function drawOnCanvas(x,y){
     const canvas = document.getElementById('infoViewCanvas');
-    const yellow = '218, 214, 1';
-    const blue = '0, 179, 255';
-    const red = '218, 1, 128';
-    //let brushFillColor = (idleTime() > 10000) ? yellow : blue;
-    if (idleTime()> 40000) {brushFillColor = red; brushSize = brushSize/20}
-    else if (idleTime()> 20000) {brushFillColor = yellow; brushSize = brushSize/4}
-    else { brushFillColor = blue; brushSize = brushSize}
-    brushSize = (brushSize > maxBrushSize) ? maxBrushSize : brushSize;
-
-    panelController.panelList[1].updatePanelItem(3, 'Brush Size',  brushSize);
+    const yellow = 'rgba(240, 255, 0, 0.01)';
+    const blue = 'rgba(0, 179, 255, 0.01)';
     //this.mouseX = 0;
     //this.mouseY = 0;
     this.ctx = canvas.getContext('2d');
-    /**/
-    var radgrad = ctx.createRadialGradient(60,60,0,60,60,60);
-    radgrad.addColorStop(0, `rgba(${brushFillColor}, 0.1`);
-    radgrad.addColorStop(0.5, `rgba(${brushFillColor}, 0.05`);
-    radgrad.addColorStop(1, `rgba(${brushFillColor}, 0)`);
-    
-
     //this.ctx.scale(0.5, 0.5);
     isDrawing = true;
-    //ctx.fillStyle = radgrad;
-    ctx.fillStyle = `rgba(${brushFillColor}, 0.05`;
-    //ctx.fillRect(x, y, brushSize);
-    ctx.beginPath();
-    ctx.arc(x, y, brushSize, 0, 2 * Math.PI);
-    ctx.fill(); 
+    ctx.fillStyle = blue;
+    ctx.fillRect(x, y, 4, 4);
 
     
 }
 function handleMouseMove(event) {
-    lastStandingTime = currentTime();
     let  canvasName = "infoViewCanvas";
     var eventDoc, doc, body;
     var rect = document.getElementById(canvasName).getBoundingClientRect();    
@@ -554,14 +344,12 @@ function handleMouseMove(event) {
           (doc && doc.clientTop  || body && body.clientTop  || 0 );
     }
     
-    x =  event.pageX;
-    y = event.pageY;
-    sX = (window.innerWidth / document.getElementById(canvasName).width);
-    sY = (window.innerHeight / document.getElementById(canvasName).height);
-    
-    mouseX = x;
-    mouseY = y;
+    this.mouseX = x =  event.pageX;
+    this.mouseY = y = event.pageY;
+    var sX = (window.innerWidth / document.getElementById(canvasName).width);
+    var sY = (window.innerHeight / document.getElementById(canvasName).height);
+   
 
-    drawOnCanvas(x/sX, y/sY);
+    drawOnCanvas(x/7.68, y/7.66)
     // Use event.pageX / event.pageY here
 }

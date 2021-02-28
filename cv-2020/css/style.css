@@ -30,7 +30,7 @@ body::before {
 .panels-wrapper {
   z-index: 10000;
   position: fixed;
-  right: 0;
+  left: 70%;
   top: 0;
   height: auto;
   max-height: 100vh;
@@ -48,7 +48,8 @@ body::before {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  scrollbar-color: rebeccapurple green;
+  max-width: 400px;
+  scrollbar-color: rebeccapurple #538000;
   scrollbar-width: thin;
   -webkit-transition: height 2s;
   transition: height 2s;
@@ -61,6 +62,8 @@ body::before {
 
 .panels-wrapper input,
 .panels-wrapper .input {
+  margin-top: 5px;
+  padding: 5px;
   background-color: transparent;
   border: 1px solid #353535;
   color: slategrey;
@@ -69,7 +72,9 @@ body::before {
 .panels-wrapper input:focus, .panels-wrapper input:focus-visible,
 .panels-wrapper .input:focus,
 .panels-wrapper .input:focus-visible {
+  background-color: #a8a8a838;
   border: 1px solid #353535;
+  color: #b9b9b9;
 }
 
 .panels-wrapper textarea {
@@ -100,7 +105,7 @@ body::before {
 .panels-wrapper .panel {
   margin: 5px 0;
   background-color: #00000065;
-  border: 1px transparent solid;
+  border: 1px transparent dashed;
 }
 
 .panels-wrapper .panel:first-child {
@@ -133,6 +138,7 @@ body::before {
   border-bottom: 1px solid #353535;
   margin-bottom: calc(20px/2);
   padding-bottom: calc(20px/2);
+  background-color: #99999941;
 }
 
 .panels-wrapper .panel header.hover-enabled:hover {
@@ -288,6 +294,53 @@ body::before {
 
 .panels-wrapper .panel.active, .panels-wrapper .panel:hover {
   border: 1px rgba(126, 126, 126, 0.3) solid;
+}
+
+.panels-wrapper > header {
+  background-color: rgba(83, 128, 0, 0.9);
+  margin: 0;
+  padding: 0;
+  height: calc(20px / 2);
+}
+
+.panels-wrapper > header:hover {
+  background-color: rgba(149, 223, 0, 0.9);
+}
+
+.panels-wrapper > header:hover:after {
+  content: ' ';
+  position: absolute;
+  padding: 30px;
+}
+
+.panels-wrapper.working > header, .panels-wrapper.status-working > header {
+  background-color: greenyellow;
+  margin: 0;
+  padding: 0;
+  height: calc(20px / 2);
+  background: linear-gradient(135deg, #d2ff52 10%, #91e842 11%, #91e842 20%, #d2ff52 21%, #d2ff52 30%, #91e842 31%, #91e842 40%, #d2ff52 41%, #d2ff52 50%, #91e842 51%, #91e842 60%, #d2ff52 61%, #d2ff52 70%, #91e842 71%, #91e842 80%, #d2ff52 81%, #d2ff52 90%, #91e842 91%);
+  background-size: 80px 550%;
+  -webkit-animation: gradient 5s linear infinite;
+          animation: gradient 5s linear infinite;
+  opacity: 0.8;
+}
+
+@-webkit-keyframes gradient {
+  0% {
+    background-position: 0;
+  }
+  100% {
+    background-position: 1100% 2000%;
+  }
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0;
+  }
+  100% {
+    background-position: 1100% 2000%;
+  }
 }
 
 @-webkit-keyframes removePanel {

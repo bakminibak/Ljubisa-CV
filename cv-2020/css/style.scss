@@ -30,12 +30,11 @@ body {
     color: white;
 }
 .scroller {
-
 }
 .panels-wrapper {    
     z-index: 10000;
     position: fixed;
-    right: 0;
+    left: 70%;
     top: 0;
     height: auto;
     max-height: 100vh;
@@ -49,27 +48,34 @@ body {
     min-width: 220px;
     display: flex;
     flex-direction: column;
+    max-width: 400px;
+    //border-top: 10px solid rgb(101, 153, 23);
     
     //overflow-x: auto;
     //overflow-y: auto;
 
-    scrollbar-color: rebeccapurple green;
+    scrollbar-color: rgb(102, 51, 153) rgb(83, 128, 0);
     scrollbar-width: thin;
 
     transition: height 2s;
+
 
     &.left {left: 0; right: initial;}
 
     
     input,
     .input {
+        margin-top: $grid-small-gap;
+        padding: $grid-small-gap;
         background-color: transparent;
         border: 1px solid rgb(53, 53, 53);
         color: slategrey;
         &:focus,
         &:focus-visible
-        {            
+        {         
+            background-color: #a8a8a838;   
             border: 1px solid rgb(53, 53, 53);
+            color: #b9b9b9;    
         }
     }
 
@@ -86,6 +92,8 @@ body {
         scrollbar-width: thin;
         
     }
+
+    
     div.panels-wrapper__resizer {
         textarea {
             border: none;
@@ -102,7 +110,7 @@ body {
         margin: $grid-small-gap 0;
         background-color: #00000065;
         
-        border: 1px transparent solid;
+        border: 1px transparent dashed;
         &:first-child {
             margin-top: 0;
         }
@@ -122,6 +130,7 @@ body {
             border-bottom: 1px solid rgb(53, 53, 53);
             margin-bottom: calc(#{$grid-gap}/2);
             padding-bottom: calc(#{$grid-gap}/2);
+            background-color: #99999941;
             &.hover-enabled {                
                 &:hover {                
                     background-color: #747474a6;
@@ -262,9 +271,53 @@ body {
         }
     }
         
+    > header  {
+        background-color: rgba(83, 128, 0, 0.9);
+        margin: 0;
+        padding: 0;
+        height: calc(#{$grid-gap} / 2);
+        &:hover {
+            background-color: rgba(149, 223, 0, 0.9);
+            &:after {
+                content: ' ';
+                position: absolute;
+                padding: 30px;
+            }
+            
+        }   
+    }
+
+    &.working,
+    &.status-working{
+        > header  {
+            background-color: greenyellow;
+            margin: 0;
+            padding: 0;
+            height: calc(#{$grid-gap} / 2);
+            //background: linear-gradient(-45deg, #23a6d5, #23d5ab, #23a6d5, #23d5ab, #23a6d5, #23d5ab, #23a6d5, #23d5ab, #23a6d5, #23d5ab, #23a6d5, #23d5ab, #23a6d5, #23d5ab);
+            background: linear-gradient(135deg, #d2ff52 10%,#91e842 11%,#91e842 20%,#d2ff52 21%,#d2ff52 30%,#91e842 31%,#91e842 40%,#d2ff52 41%,#d2ff52 50%,#91e842 51%,#91e842 60%,#d2ff52 61%,#d2ff52 70%,#91e842 71%,#91e842 80%,#d2ff52 81%,#d2ff52 90%,#91e842 91%); 
+            background-size: 80px 550%;
+            animation: gradient 5s linear infinite;
+            opacity: 0.8;
+            //background-repeat: repeat-x;            
+        }
+
+    }
 
 }
+$color-grad-red-orange: #ee7752;
+$color-grad-red-pink: #e73c7e;
+$color-grad-blue-sky: #23a6d5;
+$color-grad-blue-gren: #23d5ab;
 
+@keyframes gradient {
+	0% {
+		background-position:  0;
+	}
+	100% {
+		background-position:  1100% 2000%;
+	}
+}
 @keyframes removePanel{
     from {        
         //transform: rotate(0deg);
