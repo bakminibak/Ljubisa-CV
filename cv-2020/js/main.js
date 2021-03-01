@@ -7,6 +7,94 @@ let layerMiddle = starsContainer.querySelector(".middle");
 let layerCloseup = starsContainer.querySelector(".closeup");
 */
 
+class Game {
+    constructor(gameBoardID){
+        console.log('constructor New Game',gameBoardID);
+        let container = document.querySelector(".front");
+        let gameboard = {};
+        gameboard.gameboardEl = document.createElement("div");
+        gameboard.gameBoardSize = {
+            boardRows: 50,
+            boardCols: 50
+        }
+        
+        let snake = new Snake();
+        gameboard.gameboardEl.id = gameBoardID;
+        gameboard.gameboardEl.classList.add('gameBoard');
+        gameboard.gameboardEl.style.gridTemplateRows = `repeat(${gameboard.gameBoardSize.boardRows}, 1fr)`;
+        gameboard.gameboardEl.style.gridTemplateColumns = `repeat(${gameboard.gameBoardSize.boardCols}, 1fr)`;
+        container.appendChild(gameboard.gameboardEl);
+        this.drawCells(gameboard);
+        
+        console.log("Game snake", snake);
+        this.drawSnake(snake, gameboard);
+    }
+
+    drawCells(gameboard) {
+        let boardCell;
+        
+        console.log('drawCells', gameboard);
+
+        for (let index = 1; index < (gameboard.gameBoardSize.boardRows*gameboard.gameBoardSize.boardCols) + 1; index++) {
+            console.log('Cell', index, gameboard.gameBoardSize.boardRows, gameboard.gameBoardSize.boardCols);
+            //const element = array[index];
+            boardCell = document.createElement("div");       
+            boardCell.classList.add('active'); 
+            let rows = Math.floor(((index)/gameboard.gameBoardSize.boardRows)+1);
+            let cols = Math.floor((index % gameboard.gameBoardSize.boardCols));
+
+            console.log(rows, cols);
+            let cellNumber = document.createTextNode('('+index+') '+' X:'+rows +' Y:'+cols);
+            boardCell.appendChild(cellNumber);
+            gameboard.gameboardEl.appendChild(boardCell);
+            
+        }
+    };
+    drawSnake(snake, gameboard){
+        console.log("drawSnake", snake);
+        console.log("drawSnake", snake.snakeBody);
+        let counter = 0
+        let grid = gameboard.gameboardEl.querySelectorAll('div');
+        let actives = gameboard.gameboardEl.querySelectorAll('.snake');
+        actives.forEach(element => {element.classList.remove('snake', 'head');});
+        console.log(grid.length);
+        //gameboard.gameboardEl.innerHTML = '';
+
+        snake.snakeBody.forEach(segment => {            
+            console.log("drawSnake forEach", segment);
+            let positionCell = ((segment.x-1) * gameboard.gameBoardSize.boardRows) + segment.y ;
+            console.log('positionCell:',segment.x, segment.y, positionCell);
+            grid[positionCell].classList.add('snake');
+            if (counter == 0) grid[positionCell].classList.add('head');
+            /*
+            const snakeElement = document.createElement("div");
+            snakeElement.style.gridRowStart = segment.x;
+            snakeElement.style.gridColumnStart = segment.y;
+            snakeElement.classList.add('snake');
+            if (counter == 0) snakeElement.classList.add('head');
+            gameboard.appendChild(snakeElement);
+            */
+            counter++
+        });
+    }
+}
+class Snake {
+    constructor(){
+        let position = {x: 10, y: 1};
+        this._snakeBody = [
+            {x: 10, y: 11},
+            {x: 11, y: 11},
+            {x: 11, y: 12},
+            {x: 12, y: 12},
+            {x: 13, y: 12}
+        ];
+    }
+    get snakeBody() {
+        return this._snakeBody;
+    }
+
+}
+let myGameBoard = new Game("snakeBoard");
 
 class Panel {
     constructor(panelName, panelID, _panelHolderElement, buttonsList, infoElements = null) {
@@ -46,23 +134,6 @@ class Panel {
     
         if (buttonsList) {this.initPanelHeaderButtons(buttonsList)};
         if (infoElements) {this.addSettingsInfo(infoElements)};
-        
-        this.newPanel.addEventListener("dragstart", ev =>{      
-            console.log('newPanel dragstart', ev);
-            
-            this.newPanel.style.opacity = '0.4';
-            // Add different types of drag data
-            ev.dataTransfer.setData("text/plain", ev.target.innerText);
-            ev.dataTransfer.setData("text/html", ev.target.outerHTML);
-            ev.dataTransfer.setData("text/uri-list", ev.target.ownerDocument.location.href);
-
-        });
-        this.newPanel.addEventListener("dragend", ev =>{      
-            console.log('newPanel dragstopt', ev);
-            
-            this.newPanel.style.opacity = '1';
-            // Add different types of drag data
-        });
     }
 
     initElements() {
@@ -212,7 +283,6 @@ class Panel {
     
 }
 
-
 class PanelController {
     constructor(_panelsWrapperControler) {
         const panelCounterPrefix = 'p-item-';        
@@ -267,18 +337,6 @@ class PanelController {
             //this.stopDrag();
         });
         */
-       this.panelHolderElement.addEventListener("dragstart", ev =>{      
-            console.log('topStatusBar dragstart', ev);
-            // Add different types of drag data
-            ev.dataTransfer.setData("text/plain", ev.target.innerText);
-            ev.dataTransfer.setData("text/html", ev.target.outerHTML);
-            ev.dataTransfer.setData("text/uri-list", ev.target.ownerDocument.location.href);
-
-        });
-        this.panelHolderElement.addEventListener("dragend", ev =>{      
-            console.log('topStatusBar dragstopt', ev);
-            // Add different types of drag data
-        });
 
         
     }
