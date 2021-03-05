@@ -7,63 +7,301 @@ let layerMiddle = starsContainer.querySelector(".middle");
 let layerCloseup = starsContainer.querySelector(".closeup");
 */
 
+
+
+class TileGrid {
+    constructor(containerSelector, elNumber) {
+        let container = document.querySelector(containerSelector);
+        let wrapper = document.createElement('div');
+        wrapper.classList.add('tile-wrapper');
+        container.appendChild(wrapper);
+        for (let index = 0; index < elNumber; index++) {
+            //const element = array[index];
+            let max = 180;
+            const element = document.createElement('div');
+            console.log(Math.floor(Math.random() * Math.floor(max)));
+            element.style.height = element.style.minHeight = Math.floor(Math.random() * Math.floor(max)) + 'px';
+            wrapper.appendChild(element);
+        }
+    }
+}
+
+//let tileGrid = new TileGrid('main.front .container',130);
+
 class Game {
     constructor(gameBoardID){
-        console.log('constructor New Game',gameBoardID);
-        let container = document.querySelector(".front");
-        let gameboard = {};
-        gameboard.gameboardEl = document.createElement("div");
-        gameboard.gameBoardSize = {
-            boardRows: 50,
-            boardCols: 50
+        console.log('constructor New Game',gameBoardID);        
+        let self = this;
+        this.boardCellTypes = {
+            WALL: 'wall',
+            BLOCK: 'block',
+            FOOD: 'food',
+            SNAKE_BODY: 'snake_body',
+            EMPTY: 'empty'
         }
-        
-        let snake = new Snake();
+        this.moveDirectionsTEMP = {
+            LEFT: [0,-1],
+            RIGHT: [0,1],
+            UP: [-1,0],
+            DOWN: [1,0]
+        }
+        let moveDirections = {
+            LEFT: 1,
+            RIGHT: 2,
+            UP: 3,
+            DOWN: 4,
+        }
+        let container = document.querySelector(".front .container");
+        let gameboard = {};
+        this._gameboard = gameboard;
+        let localInterval;
+        gameboard.gameboardEl = document.createElement("div");
+        let _gameboardEl = gameboard.gameboardEl;
+        gameboard.gameBoardSize = {
+            boardRows: 40,
+            boardCols: 40
+        }        
+
+        gameboard.gridBoard = [];
+
+
+        let maxFood = 10;        
+
+
+        this.createRandomGrid(gameboard, maxFood );
+
+        this.snake = new Snake();
         gameboard.gameboardEl.id = gameBoardID;
         gameboard.gameboardEl.classList.add('gameBoard');
         gameboard.gameboardEl.style.gridTemplateRows = `repeat(${gameboard.gameBoardSize.boardRows}, 1fr)`;
         gameboard.gameboardEl.style.gridTemplateColumns = `repeat(${gameboard.gameBoardSize.boardCols}, 1fr)`;
-        container.appendChild(gameboard.gameboardEl);
-        this.drawCells(gameboard);
+        container.appendChild(gameboard.gameboardEl); 
         
-        console.log("Game snake", snake);
-        this.drawSnake(snake, gameboard);
+        this.generateSpecialCells(gameboard, this.boardCellTypes.FOOD, 20);
+        this.generateSpecialCells(gameboard, this.boardCellTypes.BLOCK, 50);
+
+        
+        this.drawCells(gameboard);
+        //self.localInterval = setInterval(function(){ self.updateRandomEmptyGrid(gameboard, maxEmpty)}, 100);
+        //console.log("Game snake", snake);
+        
+        //this.updateRandomEmptyGrid(gameboard, maxFood);
+        this.drawSnake(this.snake, gameboard);
+        //document.addEventListener("keydown", logKey);
+        /**/
+        document.addEventListener("keydown", event =>{         
+            console.log('keydown: ');
+            myGameBoard.logKey(event);
+        });
+        
+    }
+    get getGameboard(){
+        return  this._gameboard;
+    }
+     
+    checkNextStep(nextStepCell, direction){
+        console.log('checkNextStep');
+        
+        let rows = this._gameboard.gameBoardSize.boardRows;
+        let cols = this._gameboard.gameBoardSize.boardCols;
+        let nextCell_id = ((nextStepCell[0]-1) * rows) + nextStepCell[1]+1;
+        
+        console.log('positionCell', nextCell_id);
+        let cellEl = this._gameboard.gameboardEl.querySelector('#cell-ID-'+nextCell_id);
+        let myclass= cellEl.className;
+        if (myclass==='') {
+            console('move cool');
+            return nextCell;
+        } else  {
+            //nextCellDirection = 
+            //this.checkNextStep([],);
+        }
+
+    }
+     
+    checkCellProp(snakeHead, direction){
+        console.log('checkCellProp:', snakeHead, direction);
+        let __gameBoard = this.getGameboard;
+        let nextStepCell = [snakeHead.x + direction[0], snakeHead.y+direction[1]];
+        let rows = __gameBoard.gameBoardSize.boardRows;
+        let cols = __gameBoard.gameBoardSize.boardCols;
+        //let nextStepCell;
+        //getGameboard.
+        let positionCell = ((nextStepCell[0]-1) * rows) + nextStepCell[1]+1;
+        //console.log('positionCell', positionCell);
+
+
+
+        //CHECK OUT OF BOUNDS
+        if ((nextStepCell[0] < 1) || (nextStepCell[0] > rows) || (nextStepCell[1] < 0 ) || (nextStepCell[1] >= cols)) {
+            console.log("WALL REtURN");
+            return [this.boardCellTypes.WALL];
+        }
+        else {
+            let cellEl = __gameBoard.gameboardEl.querySelector('#cell-ID-'+positionCell);
+            let myclass = cellEl.className;
+
+            if (cellEl.className.indexOf('snake')>=0) {            
+                //cellEl.classList.add('selfBite');
+                console.log("selfBite");
+                return [this.boardCellTypes.SNAKE_BODY];
+            }            
+
+            if (cellEl.className.indexOf('food')>=0) {            
+                //cellEl.classList.add('eating');
+                console.log("eating");
+                return [this.boardCellTypes.FOOD, 1];
+            }
+
+            return [this.boardCellTypes.EMPTY];
+        }
+
     }
 
+    logKey(e){/* Game movement */
+        let nextCellType;
+        switch (e.code) {
+            case 'ArrowLeft':
+                nextCellType = this.checkCellProp(this.snake.snakeHead, this.moveDirectionsTEMP.LEFT);
+                console.log('ArrowLeft: ', nextCellType);
+
+                if (this.checkCellProp(this.snake.snakeHead, this.moveDirectionsTEMP.LEFT) != this.boardCellTypes.WALL) this.snake.moveSnake(this.moveDirectionsTEMP.LEFT, this.checkCellProp(this.snake.snakeHead, this.moveDirectionsTEMP.LEFT));
+                
+                break;
+            case 'ArrowRight':
+                if (this.checkCellProp(this.snake.snakeHead, this.moveDirectionsTEMP.RIGHT) != this.boardCellTypes.WALL) this.snake.moveSnake(this.moveDirectionsTEMP.RIGHT, this.checkCellProp(this.snake.snakeHead, this.moveDirectionsTEMP.RIGHT));
+                
+                break;                
+            case 'ArrowUp':        
+                if (this.checkCellProp(this.snake.snakeHead, this.moveDirectionsTEMP.UP) != this.boardCellTypes.WALL) this.snake.moveSnake(this.moveDirectionsTEMP.UP, this.checkCellProp(this.snake.snakeHead, this.moveDirectionsTEMP.UP));
+                
+                break;      
+            case 'ArrowDown':                       
+                if (this.checkCellProp(this.snake.snakeHead, this.moveDirectionsTEMP.DOWN) != this.boardCellTypes.WALL) this.snake.moveSnake(this.moveDirectionsTEMP.DOWN, this.checkCellProp(this.snake.snakeHead, this.moveDirectionsTEMP.DOWN));  
+                
+                break;            
+            default:
+                break;
+        }
+        //this.snake.moveSnake(e.code);
+        this.updateBoard();
+    }
+
+    updateBoard() {
+        console.log('updateBoard');
+        this.drawSnake(this.snake, this._gameboard);
+    }      
+    createRandomGrid(gameboard, maxEmpty){
+        let rowList = [];
+        
+        for (let index = 1; index <= gameboard.gameBoardSize.boardRows; index++) {
+            
+            let colList = [];
+            for (let indexC = 1; indexC <= gameboard.gameBoardSize.boardCols; indexC++) {
+                //gameboard.gridBoard.unshift();
+                colList.push(0);                
+                //rowList[index].push(indexC);
+            }
+            rowList.push(colList);
+        }
+        gameboard.gridBoard = rowList;
+    }
+    generateSpecialCells(gameboard, cellType, maxEmpty) {
+        for (let index = 0; index < maxEmpty; index++) {
+            let randomRow = Math.floor(Math.random() * Math.floor(gameboard.gameBoardSize.boardRows));
+            let randomCell = Math.floor(Math.random() * Math.floor(gameboard.gameBoardSize.boardCols));
+            console.log('randomEmptyGrid', randomRow, randomCell); 
+
+            gameboard.gridBoard[randomRow][randomCell] = cellType;          
+        }    
+    }
+    randomEmptyGrid(gridBoard, maxEmpty) {       
+        let maxCells = gameboard.gameBoardSize.boardRows*gameboard.gameBoardSize.boardCols;
+        this.resetEmptyCells(gameboard.gameboardEl);
+        for (let index = 0; index < maxEmpty; index++) {
+            let elList = gameboard.gameboardEl.querySelectorAll('div');
+            let randomCell = Math.floor(Math.random() * Math.floor(maxCells));
+            while (elList[randomCell].className.indexOf('empty') > 0) {
+                randomCell = Math.floor(Math.random() * Math.floor(maxCells));
+            }
+            
+            elList[randomCell].setAttribute('data-food-weight', Math.floor(Math.random() * Math.floor(5)));
+            elList[randomCell].classList.add('empty', 'food');            
+        }
+    }
     drawCells(gameboard) {
         let boardCell;
-        
-        console.log('drawCells', gameboard);
+        let maxCells = gameboard.gameBoardSize.boardRows*gameboard.gameBoardSize.boardCols;
 
-        for (let index = 1; index < (gameboard.gameBoardSize.boardRows*gameboard.gameBoardSize.boardCols) + 1; index++) {
-            console.log('Cell', index, gameboard.gameBoardSize.boardRows, gameboard.gameBoardSize.boardCols);
-            //const element = array[index];
-            boardCell = document.createElement("div");       
-            boardCell.classList.add('active'); 
-            let rows = Math.floor(((index)/gameboard.gameBoardSize.boardRows)+1);
-            let cols = Math.floor((index % gameboard.gameBoardSize.boardCols));
+        console.log('drawCells', gameboard, maxCells);
 
-            console.log(rows, cols);
-            let cellNumber = document.createTextNode('('+index+') '+' X:'+rows +' Y:'+cols);
-            boardCell.appendChild(cellNumber);
-            gameboard.gameboardEl.appendChild(boardCell);
+        //for (let index = 1; index < (gameboard.gameBoardSize.boardRows*gameboard.gameBoardSize.boardCols) + 1; index++) {
             
-        }
+            let index = 0;
+            gameboard.gridBoard.forEach(element => {
+                //console.log('Cell', index, gameboard.gameBoardSize.boardRows, gameboard.gameBoardSize.boardCols);
+            //const element = array[index];
+                console.log(element);
+                element.forEach(innerelement => {
+                    index++;
+                    console.log("innerelement: ", innerelement);
+                    boardCell = document.createElement("div");  
+                    let newClass = (innerelement === 0) ? 'empty' : innerelement;
+                    console.log('newClass', newClass);
+                    boardCell.classList.add(newClass); 
+                    let rows = Math.floor(((index)/gameboard.gameBoardSize.boardRows)+1);
+                    let cols = Math.floor((index % gameboard.gameBoardSize.boardCols));
+                    let cellNumber = document.createTextNode('('+index+') '+' X:'+rows +' Y:'+cols);
+                    
+                    boardCell.title = '('+index+') '+' X:'+rows +' Y:'+cols; 
+                    boardCell.id = 'cell-ID-' + index; 
+    
+                    
+                    if (innerelement === 2) boardCell.classList.add('food');      
+    
+                    boardCell.appendChild(cellNumber);
+                    gameboard.gameboardEl.appendChild(boardCell);                    
+                });
+            });
     };
+
+    resetEmptyCells(gameboardEl){
+        console.log('resetEmptyCells', gameboardEl);
+        console.log('resetEmptyCells', gameboardEl.children);
+        let el = gameboardEl.childNodes;
+
+        el.forEach(element => {
+            element.className = '';
+        });
+
+    }
+
+    updateRandomEmptyGrid(gameboard, maxEmpty) {       
+        let maxCells = gameboard.gameBoardSize.boardRows*gameboard.gameBoardSize.boardCols;
+        this.resetEmptyCells(gameboard.gameboardEl);
+        for (let index = 0; index < maxEmpty; index++) {
+            let elList = gameboard.gameboardEl.querySelectorAll('div');
+            let randomCell = Math.floor(Math.random() * Math.floor(maxCells));
+            while (elList[randomCell].className.indexOf('empty') > 0) {
+                randomCell = Math.floor(Math.random() * Math.floor(maxCells));
+            }
+            
+            elList[randomCell].setAttribute('data-food-weight', Math.floor(Math.random() * Math.floor(5)));
+            elList[randomCell].classList.add('empty', 'food');            
+        }
+    }
+
     drawSnake(snake, gameboard){
-        console.log("drawSnake", snake);
         console.log("drawSnake", snake.snakeBody);
         let counter = 0
         let grid = gameboard.gameboardEl.querySelectorAll('div');
         let actives = gameboard.gameboardEl.querySelectorAll('.snake');
         actives.forEach(element => {element.classList.remove('snake', 'head');});
-        console.log(grid.length);
         //gameboard.gameboardEl.innerHTML = '';
 
         snake.snakeBody.forEach(segment => {            
-            console.log("drawSnake forEach", segment);
-            let positionCell = ((segment.x-1) * gameboard.gameBoardSize.boardRows) + segment.y ;
-            console.log('positionCell:',segment.x, segment.y, positionCell);
+            let positionCell = ((segment.x-1) * gameboard.gameBoardSize.boardRows) + segment.y;
+            grid[positionCell].className = '';
             grid[positionCell].classList.add('snake');
             if (counter == 0) grid[positionCell].classList.add('head');
             /*
@@ -88,10 +326,104 @@ class Snake {
             {x: 12, y: 12},
             {x: 13, y: 12}
         ];
+        this._foodWeightEaten = 0;
+        let _snakeDirections = {
+            LEFT: 'left',
+            RIGHT: 'right',
+            TOP: 'top',
+            BOTTOM: 'bottom',
+        }
+        this.snakeDirection = _snakeDirections;
     }
     get snakeBody() {
         return this._snakeBody;
     }
+    get snakeHead(){
+        return this._snakeBody[0];
+    }
+    set foodWeightEaten(foodWeight) {
+        this._foodWeightEaten = foodWeight;
+    } 
+    generateNewSnake(snakeWeight = 4){
+        let newSnakeBody = [];
+        for (let index = 0; index < array.length; index++) {
+            for (let indexA = 0; indexA < array.length; indexA++) {
+                const element = {index, indexA};
+                
+            }            
+        }
+    }
+    moveSnake(direction, _cellType = this.boardCellTypes.EMPTY){
+        console.log("moveSnake: ", _cellType);        
+        let cellType = _cellType[0];
+        let newWeight = 0;
+        (_cellType[1]) ? newWeight = _cellType[1] : newWeight;
+
+        let head = {};
+
+               
+        head.x = this._snakeBody[0].x+direction[0];
+        head.y = this._snakeBody[0].y+direction[1];
+        if (cellType === 'food') {
+            this._foodWeightEaten += newWeight;
+        }
+        this._snakeBody.unshift(head);
+        if (this._foodWeightEaten>0) {
+            this._foodWeightEaten--;
+        } else {
+            this._snakeBody.pop();
+        }
+        console.log("moveSnake _snakeBody: ", this._snakeBody);
+        
+
+    }
+    moveSnakeUp(){
+        console.log('moveSnakeUp', this.snakeBody);
+        
+        let head = {};
+
+        //this._snakeBody.pop();         
+            head.x = this._snakeBody[0].x-1;
+            head.y = this._snakeBody[0].y;
+        
+        this._snakeBody.unshift(head)
+        this._snakeBody.pop();
+    }
+    moveSnakeDown(){
+        console.log('moveSnakeDwon', this.snakeBody);
+        
+        let head = {};
+
+        //this._snakeBody.pop();
+        //if (this._snakeBody[0].y < 40 )  {            
+            head.x = this._snakeBody[0].x+1;
+            head.y = this._snakeBody[0].y;
+                
+        this._snakeBody.unshift(head)
+        this._snakeBody.pop();
+    }
+    moveSnakeRight(){
+        console.log('moveSnakeRight', this.snakeBody);
+        
+        let head = {};           
+        head.x = this._snakeBody[0].x;
+        head.y = this._snakeBody[0].y+1;
+        this._snakeBody.unshift(head)
+        this._snakeBody.pop();
+    }
+
+    moveSnakeLeft(){
+        console.log('moveSnakeLeft', this._snakeBody);
+        
+        let head = {};
+      
+            head.x = this._snakeBody[0].x;
+            head.y = this._snakeBody[0].y-1;
+
+        this._snakeBody.unshift(head)
+        this._snakeBody.pop();
+    }
+
 
 }
 let myGameBoard = new Game("snakeBoard");
@@ -303,10 +635,17 @@ class PanelController {
             'diffX': 0,
             'diffY': 0
         };
+        let autoResults = [
+            'Weather',
+            'Browser',
+            'Mouse Heat Map',
+            'Exit',
+        ];
 
         this.panelList = [];           
         
-        this.createWrapperUI_Elements();
+        this.createWrapperUI_Elements(autoResults);
+        
         this.wrapperInput.addEventListener("keyup", event =>{            
             panelController.setPanelWrapperState('status-working');
             this.resetPanelWrapperState(100);
@@ -347,7 +686,7 @@ class PanelController {
         ev.dataTransfer.setData("text/uri-list", ev.target.ownerDocument.location.href);
       }
       
-    createWrapperUI_Elements() {
+    createWrapperUI_Elements(autoResults) {
         //createStatusBar
         let panelHolderEl =  this.panelHolderElement.querySelector('.panels-wrapper__resizer');
 
@@ -358,10 +697,23 @@ class PanelController {
         
         this.wrapperInput = document.createElement("input");
         this.wrapperInput.id = 'wrapperInput';
+        this.wrapperInput.setAttribute('list', 'autoresult');
         this.wrapperInput.placeholder = 'Create New Panel';
+
+        //Create Datalist 
+        let datalistEl = document.createElement('datalist');
+        datalistEl.id = 'autoresult';
+        
+        autoResults.forEach(element => {
+            let itemOption= document.createElement('option');
+            itemOption.value = element;
+            //itemOption.id = 'autoresult';            
+            datalistEl.appendChild(itemOption);
+        });
         
         this.panelHolderElement.insertBefore(this.topStatusBar, panelHolderEl);
         this.panelHolderElement.insertBefore(this.wrapperInput, panelHolderEl);
+        this.panelHolderElement.insertBefore(datalistEl, panelHolderEl);
 
         //
     }
@@ -502,10 +854,6 @@ function init(){
     //here code
     //addSettingsInfo("#settings", "TEST Set", 'ready');
     //addStars();
-    document.querySelector("#start").addEventListener('click', (event) => {
-        console.log("clicked");
-    });
-    
     let newPanel1 = panelController.addNewPanel('Browser Info', 'p1', document.querySelector('.panels-wrapper'),['add', 'remove', 'minimize']);
     let newPanel2 = panelController.addNewPanel('System', 'p2', document.querySelector('.panels-wrapper'),['add', 'remove', 'minimize']);
     let newPanel3 = panelController.addNewPanel('test8', 'p28', document.querySelector('.panels-wrapper'),['add', 'remove', 'minimize', 'close']);

@@ -40,7 +40,7 @@ body {
     max-height: 100vh;
     margin: $grid-gap;
     padding:$grid-small-gap;
-    background-color: #00000065;    
+    background-color: #000000d5;    
     //background-color: rgba(155, 199, 66, 0.8); 
     font-size: 14px;
     font-weight: normal;
@@ -402,6 +402,7 @@ $color-grad-blue-gren: #23d5ab;
 }
 .front {    
     margin-top: 100vh;
+    font-size: 12px;
     .container {
         overflow: auto;
         position: absolute;
@@ -413,7 +414,7 @@ $color-grad-blue-gren: #23d5ab;
         z-index: 101;
         //background-color: red;
         background: rgb(0,0,0);
-        background: linear-gradient(160deg, rgba(0,0,0,1) 10%, rgba(0,0,0,0) 100%), url(../images/photo-1558980664-2506fca6bfc2.jpg);
+        background: linear-gradient(160deg, rgba(0,0,0,1) 10%, rgba(0,0,0,.8) 100%), url(../images/photo-1558980664-2506fca6bfc2.jpg);
         //background: radial-gradient(circle, rgba(0,0,0,0) 50%, rgba(0,0,0,1) 100%), url(../images/photo-1558980664-2506fca6bfc2.jpg);
         background-size: cover;
         background-position: center;
@@ -444,7 +445,7 @@ $color-grad-blue-gren: #23d5ab;
     //bottom: 0;
     margin: 0 auto;
     margin-top: 50px;
-    background-color: $color-grad-blue-sky;
+    background-color: rgba(100, 102, 97, 0.9); //$color-grad-blue-sky;
     gap: 2px;
     display: grid;
     /*
@@ -454,17 +455,76 @@ $color-grad-blue-gren: #23d5ab;
     .snake {
         background-color: $color-grad-red-pink;
         &.head {
-            background-color: $color-grad-blue-gren;
+            background-color: $color-grad-blue-gren;            
+            text-align: center;
+            &:after {
+                content: '* *';
+                font-size: 14px;
+                color: black;
+            }
+            &.eating:after {
+                font-size: 0px;
+                content: '~ ~';
+                font-size: 10px;
+                color: black;
+            }
+        }
+        &.selfBite {
+            background-color: blueviolet;
         }
     }
 
     & > div {
+        user-select: none;
+        overflow: hidden;
         font-size: 0;
-        min-width: 10px;
-        min-height: 10px;
-        border: 2px solid $color-grad-blue-gren;
+        min-width: 3px;
+        min-height: 3px;
+        //border: 1px solid $color-grad-blue-gren;
+        
+        //background-color: $color-grad-blue-gren;
+        //background-color: transparent;
+            
+            //animation-name: example;
+            //animation-duration: 2s;
+
         &:hover {
             background-color: $color-grad-blue-gren;
+            
+            animation-name: example;
+            animation-duration: 1s;
         }
+        &.food {
+            background-color: $color-grad-blue-sky;
+            &.eating {                
+                background-color: $color-grad-red-orange;
+                animation-name: example;
+                animation-duration: 1s;
+            }
+        }
+        &.block {
+            background-color: #91e842;
+        }
+        &.empty {
+            background-color: #2E2E2E;
+        }
+    }
+}
+@keyframes example {
+    from {background-color: inherit; opacity: 1;}
+    to {opacity: 0;}
+  }
+.tile-wrapper {
+    max-width: 640px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+
+    & > div {
+        height: auto;
+        border: 1px solid rgba(61, 94, 11, 0.425);
+        background-color: #92e8423f;
+        min-width: 2px;
     }
 }
