@@ -51,6 +51,13 @@ class Game {
             UP: 3,
             DOWN: 4,
         }
+        this.gridBlocks = {
+            single:         [[1,1]],
+            squere:         [[1,1],[1,2],[2,1],[2,2]],
+            doubleSquere:   [[1,1],[1,2],[1,3],[2,1],[2,2],[2,3],[3,1],[3,2],[3,3]],
+            lineX:          [[1,1],[1,2],[1,3],[1,4],[2,1],[2,2],[2,3],[2,4]],
+            lineY:          [[1,1],[1,2],[2,1],[2,2],[3,1],[3,2],[4,1],[4,2]],
+        }
         let container = document.querySelector(".front .container");
         let gameboard = {};
         this._gameboard = gameboard;
@@ -58,17 +65,14 @@ class Game {
         gameboard.gameboardEl = document.createElement("div");
         let _gameboardEl = gameboard.gameboardEl;
         gameboard.gameBoardSize = {
-            boardRows: 40,
-            boardCols: 40
+            boardRows: 25,
+            boardCols: 75
         }        
+       //_gameboardEl.style.gridTemplateRows = `repeat(${gameboard.gameBoardSize.boardRows}, 1fr)`;
+        //_gameboardEl.style.gridTemplateColumns = `repeat(${gameboard.gameBoardSize.boardCols}, 1fr)`;
 
         gameboard.gridBoard = [];
-
-
-        let maxFood = 10;        
-
-
-        this.createRandomGrid(gameboard, maxFood );
+        this.createRandomGrid(gameboard);
 
         this.snake = new Snake();
         gameboard.gameboardEl.id = gameBoardID;
@@ -77,15 +81,19 @@ class Game {
         gameboard.gameboardEl.style.gridTemplateColumns = `repeat(${gameboard.gameBoardSize.boardCols}, 1fr)`;
         container.appendChild(gameboard.gameboardEl); 
         
-        this.generateSpecialCells(gameboard, this.boardCellTypes.FOOD, 20);
-        this.generateSpecialCells(gameboard, this.boardCellTypes.BLOCK, 50);
+        this.generateSpecialCells(gameboard, this.boardCellTypes.BLOCK, 10, this.gridBlocks.squere);
+        this.generateSpecialCells(gameboard, this.boardCellTypes.BLOCK, 50, this.gridBlocks.lineX);
+       // this.generateSpecialCells(gameboard, this.boardCellTypes.BLOCK, 50, this.gridBlocks.lineY);
+        //this.generateSpecialCells(gameboard, this.boardCellTypes.BLOCK, 5, this.gridBlocks.squere);
+        //this.generateSpecialCells(gameboard, this.boardCellTypes.BLOCK, 15, this.gridBlocks.lineY);
+
+        
+        this.generateSpecialCells(gameboard, this.boardCellTypes.FOOD, 42);
 
         
         this.drawCells(gameboard);
         //self.localInterval = setInterval(function(){ self.updateRandomEmptyGrid(gameboard, maxEmpty)}, 100);
         //console.log("Game snake", snake);
-        
-        //this.updateRandomEmptyGrid(gameboard, maxFood);
         this.drawSnake(this.snake, gameboard);
         //document.addEventListener("keydown", logKey);
         /**/
@@ -98,7 +106,7 @@ class Game {
     get getGameboard(){
         return  this._gameboard;
     }
-     
+     /*
     checkNextStep(nextStepCell, direction){
         console.log('checkNextStep');
         
@@ -118,7 +126,7 @@ class Game {
         }
 
     }
-     
+     */
     checkCellProp(snakeHead, direction){
         console.log('checkCellProp:', snakeHead, direction);
         let __gameBoard = this.getGameboard;
@@ -127,7 +135,7 @@ class Game {
         let cols = __gameBoard.gameBoardSize.boardCols;
         //let nextStepCell;
         //getGameboard.
-        let positionCell = ((nextStepCell[0]-1) * rows) + nextStepCell[1]+1;
+        let positionCell = 1 + ((nextStepCell[0]-1) * cols) + nextStepCell[1];
         //console.log('positionCell', positionCell);
 
 
@@ -140,14 +148,18 @@ class Game {
         else {
             let cellEl = __gameBoard.gameboardEl.querySelector('#cell-ID-'+positionCell);
             let myclass = cellEl.className;
-
-            if (cellEl.className.indexOf('snake')>=0) {            
+            if ((cellEl.className.indexOf(this.boardCellTypes.BLOCK)>=0) || (cellEl.className.indexOf(this.boardCellTypes.WALL)>=0)) {            
+                //cellEl.classList.add('selfBite');
+                console.log("selfBite");
+                return [this.boardCellTypes.BLOCK];
+            } 
+            if (cellEl.className.indexOf(this.boardCellTypes.SNAKE_BODY)>=0) {            
                 //cellEl.classList.add('selfBite');
                 console.log("selfBite");
                 return [this.boardCellTypes.SNAKE_BODY];
             }            
 
-            if (cellEl.className.indexOf('food')>=0) {            
+            if (cellEl.className.indexOf(this.boardCellTypes.FOOD)>=0) {            
                 //cellEl.classList.add('eating');
                 console.log("eating");
                 return [this.boardCellTypes.FOOD, 1];
@@ -164,20 +176,29 @@ class Game {
             case 'ArrowLeft':
                 nextCellType = this.checkCellProp(this.snake.snakeHead, this.moveDirectionsTEMP.LEFT);
                 console.log('ArrowLeft: ', nextCellType);
-
-                if (this.checkCellProp(this.snake.snakeHead, this.moveDirectionsTEMP.LEFT) != this.boardCellTypes.WALL) this.snake.moveSnake(this.moveDirectionsTEMP.LEFT, this.checkCellProp(this.snake.snakeHead, this.moveDirectionsTEMP.LEFT));
+                if (nextCellType != this.boardCellTypes.WALL &&
+                    nextCellType != this.boardCellTypes.BLOCK) this.snake.moveSnake(this.moveDirectionsTEMP.LEFT, nextCellType);
                 
                 break;
             case 'ArrowRight':
-                if (this.checkCellProp(this.snake.snakeHead, this.moveDirectionsTEMP.RIGHT) != this.boardCellTypes.WALL) this.snake.moveSnake(this.moveDirectionsTEMP.RIGHT, this.checkCellProp(this.snake.snakeHead, this.moveDirectionsTEMP.RIGHT));
+                nextCellType = this.checkCellProp(this.snake.snakeHead, this.moveDirectionsTEMP.RIGHT);
+                console.log('ArrowRight: ', nextCellType);
+                if (nextCellType != this.boardCellTypes.WALL &&
+                    nextCellType != this.boardCellTypes.BLOCK) this.snake.moveSnake(this.moveDirectionsTEMP.RIGHT, nextCellType);
                 
                 break;                
-            case 'ArrowUp':        
-                if (this.checkCellProp(this.snake.snakeHead, this.moveDirectionsTEMP.UP) != this.boardCellTypes.WALL) this.snake.moveSnake(this.moveDirectionsTEMP.UP, this.checkCellProp(this.snake.snakeHead, this.moveDirectionsTEMP.UP));
+            case 'ArrowUp': 
+                nextCellType = this.checkCellProp(this.snake.snakeHead, this.moveDirectionsTEMP.UP);
+                console.log('ArrowUp: ', nextCellType);       
+                if (nextCellType != this.boardCellTypes.WALL &&
+                    nextCellType != this.boardCellTypes.BLOCK) this.snake.moveSnake(this.moveDirectionsTEMP.UP, nextCellType);
                 
                 break;      
-            case 'ArrowDown':                       
-                if (this.checkCellProp(this.snake.snakeHead, this.moveDirectionsTEMP.DOWN) != this.boardCellTypes.WALL) this.snake.moveSnake(this.moveDirectionsTEMP.DOWN, this.checkCellProp(this.snake.snakeHead, this.moveDirectionsTEMP.DOWN));  
+            case 'ArrowDown':             
+                nextCellType = this.checkCellProp(this.snake.snakeHead, this.moveDirectionsTEMP.DOWN);
+                console.log('ArrowDown: ', nextCellType);                 
+                if (nextCellType != this.boardCellTypes.WALL &&
+                    nextCellType != this.boardCellTypes.BLOCK) this.snake.moveSnake(this.moveDirectionsTEMP.DOWN, nextCellType);  
                 
                 break;            
             default:
@@ -191,7 +212,7 @@ class Game {
         console.log('updateBoard');
         this.drawSnake(this.snake, this._gameboard);
     }      
-    createRandomGrid(gameboard, maxEmpty){
+    createRandomGrid(gameboard){
         let rowList = [];
         
         for (let index = 1; index <= gameboard.gameBoardSize.boardRows; index++) {
@@ -199,20 +220,44 @@ class Game {
             let colList = [];
             for (let indexC = 1; indexC <= gameboard.gameBoardSize.boardCols; indexC++) {
                 //gameboard.gridBoard.unshift();
-                colList.push(0);                
+                colList.push('empty');                
                 //rowList[index].push(indexC);
             }
             rowList.push(colList);
         }
         gameboard.gridBoard = rowList;
     }
-    generateSpecialCells(gameboard, cellType, maxEmpty) {
-        for (let index = 0; index < maxEmpty; index++) {
-            let randomRow = Math.floor(Math.random() * Math.floor(gameboard.gameBoardSize.boardRows));
-            let randomCell = Math.floor(Math.random() * Math.floor(gameboard.gameBoardSize.boardCols));
-            console.log('randomEmptyGrid', randomRow, randomCell); 
+    generateSpecialCells(gameboard, cellType, maxEmpty, blockSizeType = this.gridBlocks.single) {
+        let offsetX = 2;
+        let offsetY = 2;
+        console.log('generateSpecialCells:', blockSizeType);
+        console.log('generateSpecialCells:', cellType);
+        console.log('gameboard:', gameboard.gridBoard);
 
-            gameboard.gridBoard[randomRow][randomCell] = cellType;          
+        for (let index = 0; index < maxEmpty; index++) {
+            let randomRow = Math.floor(Math.random() * Math.floor(gameboard.gameBoardSize.boardRows - (offsetX)));
+            let randomCell = Math.floor(Math.random() * Math.floor(gameboard.gameBoardSize.boardCols - (offsetY)));
+            if (cellType === this.boardCellTypes.FOOD) {
+                let blockIndex = gameboard.gridBoard[randomRow][randomCell];               
+                while ((gameboard.gridBoard[randomRow][randomCell].indexOf(this.boardCellTypes.EMPTY) > 0) && ((gameboard.gridBoard[randomRow][randomCell].indexOf(this.boardCellTypes.BLOCK) > 0))) {                    
+                    //console.log("TEST3 ", gameboard.gridBoard[randomRow][randomCell]);
+                    //console.log("TEST3 ", gameboard.gridBoard[randomRow][randomCell].indexOf(this.boardCellTypes.BLOCK));
+                    randomRow = Math.floor(Math.random() * Math.floor(gameboard.gameBoardSize.boardRows - (offsetX)));
+                    randomCell = Math.floor(Math.random() * Math.floor(gameboard.gameBoardSize.boardCols - (offsetY)));
+                    
+                }
+                gameboard.gridBoard[randomRow][randomCell] = cellType;
+                /**/
+            } 
+            else {
+                blockSizeType.forEach(element => {
+                    let x = element[0];
+                    let y = element[1];
+                    gameboard.gridBoard[randomRow + x][randomCell + y] = cellType;
+                }); 
+            }    
+
+                       
         }    
     }
     randomEmptyGrid(gridBoard, maxEmpty) {       
@@ -240,17 +285,17 @@ class Game {
             let index = 0;
             gameboard.gridBoard.forEach(element => {
                 //console.log('Cell', index, gameboard.gameBoardSize.boardRows, gameboard.gameBoardSize.boardCols);
-            //const element = array[index];
-                console.log(element);
+                //const element = array[index];
+                //console.log("gameboard.gridBoard element", element);
                 element.forEach(innerelement => {
                     index++;
-                    console.log("innerelement: ", innerelement);
+                    
+                    //console.log("innerelement", element);
                     boardCell = document.createElement("div");  
                     let newClass = (innerelement === 0) ? 'empty' : innerelement;
-                    console.log('newClass', newClass);
                     boardCell.classList.add(newClass); 
-                    let rows = Math.floor(((index)/gameboard.gameBoardSize.boardRows)+1);
-                    let cols = Math.floor((index % gameboard.gameBoardSize.boardCols));
+                    let rows = Math.round(((index)/gameboard.gameBoardSize.boardCols));
+                    let cols = (Math.round((index % gameboard.gameBoardSize.boardCols)) === 0 ) ? gameboard.gameBoardSize.boardCols : Math.round(index % gameboard.gameBoardSize.boardCols);
                     let cellNumber = document.createTextNode('('+index+') '+' X:'+rows +' Y:'+cols);
                     
                     boardCell.title = '('+index+') '+' X:'+rows +' Y:'+cols; 
@@ -276,7 +321,8 @@ class Game {
 
     }
 
-    updateRandomEmptyGrid(gameboard, maxEmpty) {       
+    updateRandomEmptyGrid(gameboard, maxEmpty, blockType = this.gridBlocks.lineY) {       
+        console.log('updateRandomEmptyGrid:', blockType);
         let maxCells = gameboard.gameBoardSize.boardRows*gameboard.gameBoardSize.boardCols;
         this.resetEmptyCells(gameboard.gameboardEl);
         for (let index = 0; index < maxEmpty; index++) {
@@ -287,20 +333,24 @@ class Game {
             }
             
             elList[randomCell].setAttribute('data-food-weight', Math.floor(Math.random() * Math.floor(5)));
-            elList[randomCell].classList.add('empty', 'food');            
+            elList[randomCell].classList.add('food');            
         }
     }
 
     drawSnake(snake, gameboard){
         console.log("drawSnake", snake.snakeBody);
+        console.log("gameboard", gameboard);
         let counter = 0
         let grid = gameboard.gameboardEl.querySelectorAll('div');
         let actives = gameboard.gameboardEl.querySelectorAll('.snake');
         actives.forEach(element => {element.classList.remove('snake', 'head');});
         //gameboard.gameboardEl.innerHTML = '';
 
-        snake.snakeBody.forEach(segment => {            
-            let positionCell = ((segment.x-1) * gameboard.gameBoardSize.boardRows) + segment.y;
+        snake.snakeBody.forEach(segment => {          
+            
+            //console.log("positionCell:", segment.x, gameboard.gameBoardSize.boardCols);  
+            let positionCell = ((segment.x-1) * gameboard.gameBoardSize.boardCols) + segment.y;
+
             grid[positionCell].className = '';
             grid[positionCell].classList.add('snake');
             if (counter == 0) grid[positionCell].classList.add('head');
@@ -320,11 +370,9 @@ class Snake {
     constructor(){
         let position = {x: 10, y: 1};
         this._snakeBody = [
-            {x: 10, y: 11},
-            {x: 11, y: 11},
-            {x: 11, y: 12},
-            {x: 12, y: 12},
-            {x: 13, y: 12}
+            {x: 2, y: 2},
+            {x: 2, y: 3},
+            {x: 2, y: 4}
         ];
         this._foodWeightEaten = 0;
         let _snakeDirections = {
@@ -353,7 +401,7 @@ class Snake {
             }            
         }
     }
-    moveSnake(direction, _cellType = this.boardCellTypes.EMPTY){
+    moveSnake(direction, _cellType){
         console.log("moveSnake: ", _cellType);        
         let cellType = _cellType[0];
         let newWeight = 0;
@@ -374,56 +422,7 @@ class Snake {
             this._snakeBody.pop();
         }
         console.log("moveSnake _snakeBody: ", this._snakeBody);
-        
-
     }
-    moveSnakeUp(){
-        console.log('moveSnakeUp', this.snakeBody);
-        
-        let head = {};
-
-        //this._snakeBody.pop();         
-            head.x = this._snakeBody[0].x-1;
-            head.y = this._snakeBody[0].y;
-        
-        this._snakeBody.unshift(head)
-        this._snakeBody.pop();
-    }
-    moveSnakeDown(){
-        console.log('moveSnakeDwon', this.snakeBody);
-        
-        let head = {};
-
-        //this._snakeBody.pop();
-        //if (this._snakeBody[0].y < 40 )  {            
-            head.x = this._snakeBody[0].x+1;
-            head.y = this._snakeBody[0].y;
-                
-        this._snakeBody.unshift(head)
-        this._snakeBody.pop();
-    }
-    moveSnakeRight(){
-        console.log('moveSnakeRight', this.snakeBody);
-        
-        let head = {};           
-        head.x = this._snakeBody[0].x;
-        head.y = this._snakeBody[0].y+1;
-        this._snakeBody.unshift(head)
-        this._snakeBody.pop();
-    }
-
-    moveSnakeLeft(){
-        console.log('moveSnakeLeft', this._snakeBody);
-        
-        let head = {};
-      
-            head.x = this._snakeBody[0].x;
-            head.y = this._snakeBody[0].y-1;
-
-        this._snakeBody.unshift(head)
-        this._snakeBody.pop();
-    }
-
 
 }
 let myGameBoard = new Game("snakeBoard");
