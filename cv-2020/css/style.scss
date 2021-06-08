@@ -31,12 +31,11 @@ body {
     grid-template-areas:    'a a'
                             'b c';
     grid-template-rows: 25px auto;
-    grid-template-columns: auto 320px;
+    grid-template-columns: 320px auto;
 }
 
 nav {
     display: block;
-    height: 60px;
     background-color: #91e842;
     grid-area: a;
 }
@@ -45,7 +44,7 @@ nav {
     color: white;
 }
 .scroller {
-    grid-area: c;
+    grid-area: b;
     //width: 300px;
     display: block;
     overflow-y: auto;
@@ -424,8 +423,9 @@ $color-grad-blue-gren: #23d5ab;
 }
 .front {    
     //margin-top: 100vh;
-    height: auto;
-    grid-area: b;
+    height: 100%;
+    overflow-y: auto;
+    grid-area: c;
     font-size: 12px;
     .container {
         position: relative;
@@ -475,6 +475,8 @@ $color-grad-blue-gren: #23d5ab;
     gap: 2px;
     display: grid;
     padding: $grid-gap;
+    grid-template-rows: 20px;
+    grid-template-columns: 20px;
     /*
     grid-template-rows: repeat(15, 1fr);
     grid-template-columns: repeat(21, 1fr);;

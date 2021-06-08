@@ -27,13 +27,12 @@ body {
       grid-template-areas: 'a a' 'b c';
   -ms-grid-rows: 25px auto;
       grid-template-rows: 25px auto;
-  -ms-grid-columns: auto 320px;
-      grid-template-columns: auto 320px;
+  -ms-grid-columns: 320px auto;
+      grid-template-columns: 320px auto;
 }
 
 nav {
   display: block;
-  height: 60px;
   background-color: #91e842;
   -ms-grid-row: 1;
   -ms-grid-column: 1;
@@ -47,8 +46,8 @@ nav {
 
 .scroller {
   -ms-grid-row: 2;
-  -ms-grid-column: 2;
-  grid-area: c;
+  -ms-grid-column: 1;
+  grid-area: b;
   display: block;
   overflow-y: auto;
 }
@@ -464,10 +463,11 @@ nav {
 }
 
 .front {
-  height: auto;
+  height: 100%;
+  overflow-y: auto;
   -ms-grid-row: 2;
-  -ms-grid-column: 1;
-  grid-area: b;
+  -ms-grid-column: 2;
+  grid-area: c;
   font-size: 12px;
 }
 
@@ -514,6 +514,10 @@ nav {
   display: -ms-grid;
   display: grid;
   padding: 20px;
+  -ms-grid-rows: 20px;
+      grid-template-rows: 20px;
+  -ms-grid-columns: 20px;
+      grid-template-columns: 20px;
   /*
     grid-template-rows: repeat(15, 1fr);
     grid-template-columns: repeat(21, 1fr);;
