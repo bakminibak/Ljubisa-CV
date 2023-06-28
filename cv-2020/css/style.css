@@ -1,0 +1,629 @@
+* > * {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+html, body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 10px;
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  /**/
+}
+
+body {
+  color: white;
+  overflow: hidden;
+}
+
+.page-container {
+  width: 100%;
+  height: 100%;
+  display: -ms-grid;
+  display: grid;
+      grid-template-areas: 'a a' 'b c';
+  -ms-grid-rows: 25px auto;
+      grid-template-rows: 25px auto;
+  -ms-grid-columns: auto 320px;
+      grid-template-columns: auto 320px;
+}
+
+nav {
+  display: block;
+  height: 60px;
+  background-color: #91e842;
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-area: a;
+}
+
+#highlights {
+  color: white;
+}
+
+.scroller {
+  -ms-grid-row: 2;
+  -ms-grid-column: 2;
+  grid-area: c;
+  display: block;
+  overflow-y: auto;
+}
+
+.panels-wrapper {
+  overflow-y: auto;
+  z-index: 10000;
+  right: 0;
+  top: 0;
+  /**/
+  height: 100%;
+  padding: 5px;
+  background-color: #000000d5;
+  font-size: 14px;
+  font-weight: normal;
+  color: #ccc;
+  min-width: 220px;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: inherit;
+  scrollbar-color: rebeccapurple #538000;
+  scrollbar-width: thin;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  -webkit-transition: height 2s;
+  transition: height 2s;
+}
+
+.panels-wrapper.left {
+  left: 0;
+  right: initial;
+}
+
+.panels-wrapper input,
+.panels-wrapper .input {
+  margin-top: 5px;
+  padding: 5px;
+  background-color: transparent;
+  border: 1px solid #353535;
+  color: slategrey;
+}
+
+.panels-wrapper input:focus, .panels-wrapper input:focus-visible,
+.panels-wrapper .input:focus,
+.panels-wrapper .input:focus-visible {
+  background-color: #a8a8a838;
+  border: 1px solid #353535;
+  color: #b9b9b9;
+}
+
+.panels-wrapper textarea {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 100%;
+  background-color: transparent;
+  border: 1px solid #313131;
+  color: #a7a7a7;
+  padding: 5px;
+  font-size: 10px;
+  min-height: 55px;
+  scrollbar-width: thin;
+}
+
+.panels-wrapper div.panels-wrapper__resizer textarea {
+  border: none;
+  min-width: inherit;
+  min-height: 5px;
+  height: 5px;
+  line-height: 5px;
+  overflow: hidden;
+  font-size: 0px;
+  -ms-flex-negative: 0.5;
+      flex-shrink: 0.5;
+}
+
+.panels-wrapper .panel {
+  margin: 5px 0;
+  background-color: #00000065;
+  border: 1px transparent dashed;
+}
+
+.panels-wrapper .panel:first-child {
+  margin-top: 0;
+}
+
+.panels-wrapper .panel svg {
+  max-width: 10px;
+}
+
+.panels-wrapper .panel svg path {
+  fill: white;
+}
+
+.panels-wrapper .panel header {
+  padding: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-bottom: 1px solid #353535;
+  margin-bottom: calc(20px/2);
+  padding-bottom: calc(20px/2);
+  background-color: #99999941;
+}
+
+.panels-wrapper .panel header.hover-enabled:hover {
+  background-color: #747474a6;
+  color: initial;
+}
+
+.panels-wrapper .panel header .label {
+  margin: 0 5px;
+  color: whitesmoke;
+}
+
+.panels-wrapper .panel header .buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.panels-wrapper .panel header .buttons .button,
+.panels-wrapper .panel header .buttons button {
+  text-transform: uppercase;
+  text-align: center;
+  width: 14px;
+  height: 14px;
+  line-height: unset;
+  display: block;
+  margin: 2px;
+  padding: 2px;
+  border: 1px solid #3b3b3b;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 0.6rem;
+  cursor: pointer;
+}
+
+.panels-wrapper .panel header .buttons .button.dark,
+.panels-wrapper .panel header .buttons button.dark {
+  background-color: transparent;
+  border: 1px solid #3b3b3b;
+}
+
+.panels-wrapper .panel header .buttons .button:hover,
+.panels-wrapper .panel header .buttons button:hover {
+  background-color: #3b3b3b;
+}
+
+.panels-wrapper .panel header .buttons .button:after,
+.panels-wrapper .panel header .buttons button:after {
+  font-size: 10px;
+  font-weight: 900;
+  color: #ccc;
+}
+
+.panels-wrapper .panel header .buttons .button.add:after,
+.panels-wrapper .panel header .buttons button.add:after {
+  content: '\002B';
+}
+
+.panels-wrapper .panel header .buttons .button.remove:after,
+.panels-wrapper .panel header .buttons button.remove:after {
+  content: '\2212';
+}
+
+.panels-wrapper .panel header .buttons .button.minimize:after,
+.panels-wrapper .panel header .buttons button.minimize:after {
+  content: '\005F';
+}
+
+.panels-wrapper .panel header .buttons .button.close:after,
+.panels-wrapper .panel header .buttons button.close:after {
+  content: '\2716';
+}
+
+.panels-wrapper .panel header .buttons .button.more:after,
+.panels-wrapper .panel header .buttons button.more:after {
+  content: '\205D';
+}
+
+.panels-wrapper .panel header .buttons .button.expand:after,
+.panels-wrapper .panel header .buttons button.expand:after {
+  content: '\2263';
+}
+
+.panels-wrapper .panel header .buttons .button.disabled,
+.panels-wrapper .panel header .buttons button.disabled {
+  opacity: 0.3;
+  cursor: initial;
+}
+
+.panels-wrapper .panel header .buttons .button.disabled:hover,
+.panels-wrapper .panel header .buttons button.disabled:hover {
+  background-color: transparent;
+}
+
+.panels-wrapper .panel .info {
+  padding: 5px;
+  margin: 5px;
+  background-color: #00000065;
+}
+
+.panels-wrapper .panel .info > div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 5px;
+  border-bottom: 1px solid #282626;
+}
+
+.panels-wrapper .panel .info > div:hover {
+  background-color: #b8b8b82c;
+}
+
+.panels-wrapper .panel .info > div > div:nth-child(1)::after {
+  content: ": ";
+}
+
+.panels-wrapper .panel .info > div > div:nth-child(2) {
+  text-align: right;
+  background-color: rgba(149, 223, 0, 0.7);
+  color: #162002;
+  padding: 0 5px;
+  font-weight: 600;
+  min-width: 50px;
+}
+
+.panels-wrapper .panel.minimized .buttons .button.minimize:after {
+  content: '\2263';
+}
+
+.panels-wrapper .panel.minimized > *:not(header) {
+  display: none;
+}
+
+.panels-wrapper .panel.removing {
+  opacity: 0;
+  -webkit-animation: removePanel 0.2s ease-in;
+          animation: removePanel 0.2s ease-in;
+}
+
+.panels-wrapper .panel.active, .panels-wrapper .panel:hover {
+  border: 1px rgba(126, 126, 126, 0.3) solid;
+}
+
+.panels-wrapper > header {
+  background-color: rgba(83, 128, 0, 0.9);
+  margin: 0;
+  padding: 0;
+  height: calc(20px / 2);
+}
+
+.panels-wrapper > header:hover {
+  background-color: rgba(149, 223, 0, 0.9);
+}
+
+.panels-wrapper > header:hover:after {
+  content: ' ';
+  position: absolute;
+  padding: 30px;
+}
+
+.panels-wrapper.working > header, .panels-wrapper.status-working > header {
+  background-color: greenyellow;
+  margin: 0;
+  padding: 0;
+  height: calc(20px / 2);
+  background: linear-gradient(135deg, #d2ff52 10%, #91e842 11%, #91e842 20%, #d2ff52 21%, #d2ff52 30%, #91e842 31%, #91e842 40%, #d2ff52 41%, #d2ff52 50%, #91e842 51%, #91e842 60%, #d2ff52 61%, #d2ff52 70%, #91e842 71%, #91e842 80%, #d2ff52 81%, #d2ff52 90%, #91e842 91%);
+  background-size: 80px 550%;
+  -webkit-animation: gradient 5s linear infinite;
+          animation: gradient 5s linear infinite;
+  opacity: 0.8;
+}
+
+@-webkit-keyframes gradient {
+  0% {
+    background-position: 0;
+  }
+  100% {
+    background-position: 1100% 2000%;
+  }
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0;
+  }
+  100% {
+    background-position: 1100% 2000%;
+  }
+}
+
+@-webkit-keyframes removePanel {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes removePanel {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.highlights--list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.highlights--list li {
+  padding: 10px;
+  text-align: center;
+}
+
+.highlights--list li:nth-child(4n+1) .description {
+  background-color: red;
+}
+
+.highlights--list li:nth-child(4n+2) .description {
+  background-color: #ffee00;
+}
+
+.highlights--list li:nth-child(4n+3) .description {
+  background-color: #00ff22;
+}
+
+.highlights--list li:nth-child(4n+4) .description {
+  background-color: cyan;
+}
+
+.highlights--list .title {
+  font-size: 3rem;
+  font-weight: bolder;
+}
+
+.highlights--list .description {
+  padding: 2px 6px;
+}
+
+.highlights--list .description.invert {
+  background-color: black;
+}
+
+#main-animation {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #2E2E2E;
+}
+
+#main-animation #stars {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+}
+
+#main-animation #stars .star {
+  position: absolute;
+  z-index: 151;
+  opacity: 0.8;
+}
+
+#main-animation #stars .star svg {
+  width: 50px;
+  height: 50px;
+}
+
+.front {
+  height: auto;
+  -ms-grid-row: 2;
+  -ms-grid-column: 1;
+  grid-area: b;
+  font-size: 12px;
+}
+
+.front .container {
+  position: relative;
+  overflow: auto;
+  height: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding-left: 50px;
+  z-index: 101;
+  background: black;
+  background: linear-gradient(160deg, black 10%, rgba(0, 0, 0, 0.8) 100%), url(../images/photo-1558980664-2506fca6bfc2.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.front .container .content {
+  padding: 50px;
+}
+
+.front .container .content p {
+  max-width: 210px;
+}
+
+#canvas-container #infoViewCanvas {
+  background-color: #182205;
+}
+
+.gameBoard {
+  z-index: 12000;
+  width: 90%;
+  height: 80%;
+  max-height: 80vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: 20px;
+  background-color: rgba(100, 102, 97, 0.9);
+  gap: 2px;
+  display: -ms-grid;
+  display: grid;
+  padding: 20px;
+  /*
+    grid-template-rows: repeat(15, 1fr);
+    grid-template-columns: repeat(21, 1fr);;
+    */
+}
+
+.gameBoard .snake {
+  background-color: #e73c7e;
+}
+
+.gameBoard .snake.head {
+  background-color: #23d5ab;
+  text-align: center;
+}
+
+.gameBoard .snake.head:after {
+  content: '* *';
+  font-size: 14px;
+  color: black;
+}
+
+.gameBoard .snake.head.eating:after {
+  font-size: 0px;
+  content: '~ ~';
+  font-size: 10px;
+  color: black;
+}
+
+.gameBoard .snake.selfBite {
+  background-color: blueviolet;
+}
+
+.gameBoard > div {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  overflow: hidden;
+  font-size: 0;
+  min-width: 3px;
+  min-height: 3px;
+}
+
+.gameBoard > div:hover {
+  background-color: #23d5ab;
+  -webkit-animation-name: example;
+          animation-name: example;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+}
+
+.gameBoard > div.food {
+  background-color: #23a6d5;
+}
+
+.gameBoard > div.food.eating {
+  background-color: #ee7752;
+  -webkit-animation-name: example;
+          animation-name: example;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+}
+
+.gameBoard > div.block {
+  background-color: #91e842;
+}
+
+.gameBoard > div.empty {
+  background-color: #2E2E2E;
+}
+
+@-webkit-keyframes example {
+  from {
+    background-color: inherit;
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes example {
+  from {
+    background-color: inherit;
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.tile-wrapper {
+  max-width: 640px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.tile-wrapper > div {
+  height: auto;
+  border: 1px solid rgba(61, 94, 11, 0.425);
+  background-color: #92e8423f;
+  min-width: 2px;
+}
+/*# sourceMappingURL=style.css.map */
